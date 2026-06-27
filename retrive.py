@@ -1,4 +1,3 @@
-
 from qdrant_client import models, QdrantClient
 from qdrant_client.models import SparseVector
 from fastembed import SparseTextEmbedding
