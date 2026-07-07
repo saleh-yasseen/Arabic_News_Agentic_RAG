@@ -1,16 +1,31 @@
+print("Loading environment variables...")
+
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-from qdrant_client import models, QdrantClient
+print("Loading Qdrant client and models...")
+
+from qdrant_client import models, qdrant_client
 from qdrant_client.models import SparseVector
 from fastembed import SparseTextEmbedding
 from sentence_transformers import SentenceTransformer
 
+print("Starting Qdrant client and model initialization...")
+
+print("_____")
+
 collection_name = "arabic_news"
 
-client = QdrantClient(path="../data/qdrant_db")
+client = qdrant_client.QdrantClient(path="./data/qdrant_db")
+print("client loaded")
 model = SentenceTransformer("aubmindlab/bert-base-arabertv02")
+print("dense model loaded")
 sparse_model = SparseTextEmbedding(model_name="Qdrant/bm25")
+print("sparse model loaded")
+
+print("_____")
+
+print("Qdrant client and models initialized successfully.")
 
 def _retrieve(query: str, top_k: int =5, category_filter: str = None):
     dense_vec = model.encode(query, normalize_embeddings=True).tolist()
@@ -85,7 +100,3 @@ def answer_direct(query:str) ->dict:
 
     }
 
-if __name__ == "__main__":
-    result = search_news("ما هي آخر الأخبار السياسية؟")
-    client.close()
-    print(result)
