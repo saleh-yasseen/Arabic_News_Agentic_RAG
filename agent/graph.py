@@ -1,7 +1,7 @@
 from typing import TypedDict, Optional
 from langchain_groq import ChatGroq
 import json
-from tools import search_news, summarize_topic, compare_timeline, answer_direct
+from agent.tools import search_news, summarize_topic, compare_timeline, answer_direct
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -21,7 +21,7 @@ ROUTING_PROMPT = """
 you are a routing agent for an arabic news system. given a user query, choose exactly one tool:
 
 - search_news: for specific factual questions about a news event or topic
-- summarise_topic: for broad questions asking for an overview or summary of a topic
+- summarize_topic: for broad questions asking for an overview or summary of a topic
 - compare_timeline: for questions asking about how something developed over time, or comparing events
 - answer_direct: for general knowledge questions unrelated to news (definitions, concepts)
 
@@ -31,16 +31,21 @@ respond with only one tool name, nothing else.
 
 """
 
-GENERATION_PROMPT = """
-you are an Arabic news assistant. Answer the user's question in Arabic using only the context below. if the context doesn't contain enough information, sayso honestly
+GENERATION_PROMPT = GENERATION_PROMPT = """
+أنت محرر أخبار عربي محترف. اكتب تقريرًا إخباريًا شاملاً باللغة العربية بناءً على السياق أدناه.
 
-context:
-{context}
+التنسيق المطلوب:
+- عنوان رئيسي للخبر
+- مقدمة تلخص أبرز ما جاء في الأخبار
+- فقرة تتناول التفاصيل والسياق
+- فقرة تتناول التداعيات أو الموقف الراهن
+- أسلوب صحفي احترافي ومفصل
 
-question: {query}
+السياق: {context}
 
-answer in arabic: 
+السؤال: {query}
 
+التقرير الإخباري:
 """
 
 def route_query(state: AgentState) -> dict:
