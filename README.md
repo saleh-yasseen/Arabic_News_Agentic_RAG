@@ -25,33 +25,34 @@ The differentiator from a standard RAG tutorial: hybrid retrieval (most tutorial
 
 ```mermaid
 flowchart TD
-    UI[Streamlit UI - Arabic RTL] --> API[FastAPI - /query]
-    API --> ROUTE[Router node]
-    ROUTE -->|routing call| LLM[Groq - Llama 3.3 70B]
-    ROUTE --> TOOLS{Tool selection}
+    UI["Streamlit UI - Arabic RTL"] --> API["FastAPI - query endpoint"]
+    API --> ROUTE["Router node"]
+    ROUTE -->|"routing call"| LLM["Groq - Llama 3.3 70B"]
+    ROUTE --> TOOLS{"Tool selection"}
 
-    TOOLS --> SEARCH[search_news]
-    TOOLS --> SUMM[summarize_topic]
-    TOOLS --> COMPARE[compare_timeline]
-    TOOLS --> DIRECT[answer_direct]
+    TOOLS --> SEARCH["search_news"]
+    TOOLS --> SUMM["summarize_topic"]
+    TOOLS --> COMPARE["compare_timeline"]
+    TOOLS --> DIRECT["answer_direct"]
 
-    SEARCH --> DENSE[AraBERT dense vectors]
-    SEARCH --> SPARSE[BM25 sparse vectors]
+    SEARCH --> DENSE["AraBERT dense vectors"]
+    SEARCH --> SPARSE["BM25 sparse vectors"]
     SUMM --> DENSE
     SUMM --> SPARSE
     COMPARE --> DENSE
     COMPARE --> SPARSE
 
-    DENSE --> FUSE[RRF fusion]
+    DENSE --> FUSE["RRF fusion"]
     SPARSE --> FUSE
-    FUSE --> QDRANT[(Qdrant - SANAD collection)]
-    QDRANT --> CHECK[check_context_quality]
+    FUSE --> QDRANT[("Qdrant - SANAD collection")]
+    QDRANT --> CHECK["check_context_quality"]
 
-    CHECK -->|proceed| GEN[Generate response]
-    CHECK -.->|re-query loop, currently inactive| SEARCH
+    CHECK -->|"proceed"| GEN["Generate response"]
+    CHECK -.->|"re-query loop - currently inactive"| SEARCH
     DIRECT --> GEN
-    GEN -->|generation call| LLM
-    GEN --> API --> UI
+    GEN -->|"generation call"| LLM
+    GEN --> API
+    API --> UI
 ```
 
 The re-query loop is drawn as a dotted line deliberately: it exists in the graph but the threshold that would trigger it never fires in normal operation, so it's currently dead code. See [known limitations](#known-limitations).
@@ -63,15 +64,15 @@ The LangGraph state machine, node by node:
 ```mermaid
 stateDiagram-v2
     [*] --> Route
-    Route --> SearchNews: intent = search
-    Route --> SummarizeTopic: intent = summarise
-    Route --> CompareTimeline: intent = compare
-    Route --> AnswerDirect: intent = general knowledge
+    Route --> SearchNews: intent is search
+    Route --> SummarizeTopic: intent is summarise
+    Route --> CompareTimeline: intent is compare
+    Route --> AnswerDirect: intent is general knowledge
     SearchNews --> CheckContextQuality
     SummarizeTopic --> CheckContextQuality
     CompareTimeline --> CheckContextQuality
     CheckContextQuality --> Generate: sufficient context
-    CheckContextQuality --> SearchNews: insufficient (loop currently inactive)
+    CheckContextQuality --> SearchNews: insufficient - loop currently inactive
     AnswerDirect --> Generate
     Generate --> [*]
 ```
