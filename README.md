@@ -4,23 +4,6 @@ An agentic RAG system over Arabic news. A LangGraph state machine routes a user'
 
 The differentiator from a standard RAG tutorial: hybrid retrieval (most tutorials only do dense), explicit tool routing via LangGraph rather than a black-box agent loop, and a visible agent trace (tool selected, retrieval loops, sources) in the UI.
 
-## Contents
-
-- [Architecture](#architecture)
-- [Agent flow](#agent-flow)
-- [Why these choices](#why-these-choices)
-- [Tools](#tools)
-- [Tech stack](#tech-stack)
-- [Project status](#project-status)
-- [Known limitations](#known-limitations)
-- [Debugging highlights](#debugging-highlights)
-- [Design decisions considered and rejected](#design-decisions-considered-and-rejected)
-- [Planned enhancements](#planned-enhancements)
-- [Setup and installation](#setup-and-installation)
-- [Running the app](#running-the-app)
-- [API usage](#api-usage)
-- [Repository structure](#repository-structure)
-
 ## Architecture
 
 ```mermaid
@@ -81,14 +64,14 @@ LangGraph was chosen over a LangChain ReAct agent specifically so this routing l
 
 ## Why these choices
 
+The two decisions worth explaining:
+
 | Decision | Alternative considered | Why this way |
 |---|---|---|
 | LangGraph | LangChain ReAct agent | Explicit state machine, inspectable nodes and edges, visualisable graph |
 | Qdrant (local) | Pinecone | Zero-setup local dev, native hybrid search via BM25 + dense in one query |
-| AraBERT (`aubmindlab/bert-base-arabertv02`) | multilingual-e5, MiniLM | Purpose-built for Arabic, stronger retrieval quality than generic multilingual models |
-| BM25 via FastEmbed | Elasticsearch | Simpler stack, Qdrant-native, no second service to run |
-| Groq (Llama 3.3 70B) | Gemini free tier, HF Inference | Gemini's free-tier rate limits were too restrictive for iterative multi-call agent testing |
-| SANAD dataset | Live scrape from day one | Get the core loop working first, add live sources once it's proven |
+
+The rest of the stack was picked for less interesting reasons: AraBERT over generic multilingual embeddings because it's purpose-built for Arabic, BM25 via FastEmbed over a separate Elasticsearch service to avoid running a second process, Groq over Gemini because Gemini's free-tier rate limits couldn't handle iterative multi-call agent testing, and SANAD over a live scrape on day one to get the core loop working before adding freshness.
 
 ## Tools
 
@@ -148,18 +131,16 @@ Most of the engineering time on this project went into debugging, not features. 
 | Silent routing fallback | Routing prompt used `summarise_topic`, `TOOL_MAP` used `summarize_topic` — every summarise-intent query silently fell back to `search_news` | Spelling reconciled between prompt and map |
 | `KeyError` under FastAPI only, not standalone | `AgentState.response` typed `str` but initialised as `None` | Changed to `Optional[str]` |
 
-## Design decisions considered and rejected
-
-**Live per-query Al Jazeera scraping**, triggered from a LangGraph conditional edge, was evaluated and rejected: it added an LLM call to every query just to decide whether to scrape, was fragile against CSS selector changes on the live site, had an asyncio/sync execution mismatch, and was the wrong fit for a single-user demo. The chosen approach instead is a `search_live_news` tool backed by a structured news API, with scraping demonstrated separately as an offline scheduled ingestion script.
-
 ## Planned enhancements
 
-- Scheduled Al Jazeera scraping (offline, `trafilatura`, per category, every few hours) feeding a separate `arabic_news_live` Qdrant collection
-- Streaming "thinking" UI exposing actual LangGraph node completion events, not a fake spinner
-- Post-response analysis panel: tool selected, source counts, dense-only vs sparse-only vs fused retrieval comparison
-- Advanced playground panel: model selector, tool override, retrieval mode toggle, parameter sliders
+Live per-query Al Jazeera scraping (triggered mid-request from a LangGraph conditional edge) was tried and dropped — it added an LLM call to every query just to decide whether to scrape, broke against CSS selector changes, and had an asyncio/sync execution mismatch. Scraping is offline and scheduled instead.
+
+- `search_live_news` tool backed by a structured news API, plus scheduled offline Al Jazeera scraping (`trafilatura`, per category) into a separate `arabic_news_live` Qdrant collection
+- Streaming "thinking" UI showing real LangGraph node completion events instead of a fake spinner
+- Post-response panel: tool selected, source counts, dense vs sparse vs fused retrieval comparison
+- Playground panel: model selector, tool override, retrieval mode toggle, parameter sliders
 - Headlines strip on dashboard load, sourced from the live collection
-- Cross-encoder reranker, starting with a hosted service to avoid the local model-loading issues already hit with AraBERT
+- Cross-encoder reranker, starting hosted to avoid the local model-loading issues AraBERT already caused
 
 ## Setup and installation
 
