@@ -1,0 +1,14 @@
+﻿fastapi==0.115.0
+uvicorn==0.32.0
+streamlit==1.39.0
+qdrant-client==1.12.0
+sentence-transformers==3.2.0
+transformers==4.46.0
+torch==2.5.0
+fastembed==0.5.1
+langchain-groq==0.2.0
+langgraph==0.2.0
+python-dotenv==1.0.1
+requests==2.32.3
+datasets==3.0.0
+langchain-text-splitters==0.3.0
