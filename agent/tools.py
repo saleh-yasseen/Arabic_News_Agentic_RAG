@@ -1,3 +1,4 @@
+
 print("Loading environment variables...")
 
 import os
@@ -16,7 +17,10 @@ print("_____")
 
 collection_name = "arabic_news"
 
-client = qdrant_client.QdrantClient(path="./data/qdrant_db")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+QDRANT_PATH = os.path.join(BASE_DIR, "data", "qdrant_db")
+
+client = qdrant_client.QdrantClient(path=QDRANT_PATH)
 print("client loaded")
 model = SentenceTransformer("aubmindlab/bert-base-arabertv02")
 print("dense model loaded")
@@ -41,7 +45,7 @@ def _retrieve(query: str, top_k: int =5, category_filter: str = None):
     results = client.query_points(
         collection_name=collection_name,
         prefetch=[
-            models.Prefetch(query=dense_vec, using="", limit=20, filter=query_filter),
+            models.Prefetch(query=dense_vec, using="", limit=top_k*2, filter=query_filter),
             models.Prefetch(
                 query=SparseVector(
                     indices=sparse_vec.indices.tolist(),

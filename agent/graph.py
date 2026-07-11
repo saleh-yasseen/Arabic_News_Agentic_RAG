@@ -31,7 +31,7 @@ respond with only one tool name, nothing else.
 
 """
 
-GENERATION_PROMPT = GENERATION_PROMPT = """
+GENERATION_PROMPT = """
 أنت محرر أخبار عربي محترف. اكتب تقريرًا إخباريًا شاملاً باللغة العربية بناءً على السياق أدناه.
 
 التنسيق المطلوب:
