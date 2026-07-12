@@ -11,8 +11,9 @@ class AgentState(TypedDict):
     query: str
     tool_choice:Optional[str]
     context: str
-    response: str
+    response:Optional[str]
     loop_count:int
+    sources: list
 
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
