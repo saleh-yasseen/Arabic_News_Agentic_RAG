@@ -28,8 +28,7 @@ you are a routing agent for an arabic news system. given a user query, choose ex
 
 Query:{query}
 
-respond with only one tool name, nothing else. 
-
+respond with only one tool name, nothing else.  
 """
 
 GENERATION_PROMPT = """
@@ -74,13 +73,17 @@ def execute_tool(state: AgentState) -> dict:
 
     if "context" in result:
         context = result["context"]
+        sources =[]
+
     elif "results" in result:
         context = " ".join([r["text"] for r in result["results"]])
+        sources = result["results"]
+
     else:
         context = ""
-    
+        sources =[]
     print("execute tool done")
-    return{"context":context}
+    return{"context":context, "sources": sources}
 
 
 def generate_response(state: AgentState) -> dict :
@@ -92,7 +95,7 @@ def generate_response(state: AgentState) -> dict :
 def check_context_quality(state: AgentState) ->str :
     if state["loop_count"] >= 2:
         return "generate"
-    if len(state["context"]) < 100:
+    if len(state.get("sources", [])) < 3:
         return "retry"
     print("loop is working")
     return "generate"

@@ -43,7 +43,7 @@ rag_env/
 
 # Qdrant database
 data/qdrant_db/
-
+qdrant_storage/
 # OS
 .DS_Store
 Thumbs.db

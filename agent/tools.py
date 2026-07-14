@@ -1,6 +1,4 @@
 
-print("Loading environment variables...")
-
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -17,10 +15,12 @@ print("_____")
 
 collection_name = "arabic_news"
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-QDRANT_PATH = os.path.join(BASE_DIR, "data", "qdrant_db")
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# QDRANT_PATH = os.path.join(BASE_DIR, "data", "qdrant_db")
+# client = qdrant_client.QdrantClient(path=QDRANT_PATH)
 
-client = qdrant_client.QdrantClient(path=QDRANT_PATH)
+client = qdrant_client.QdrantClient(host="localhost", port=6333)
+
 print("client loaded")
 model = SentenceTransformer("aubmindlab/bert-base-arabertv02")
 print("dense model loaded")

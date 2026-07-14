@@ -25,6 +25,12 @@ if submitted and query:
             data = resp.json()
 
             st.markdown(f'<div class="response-box">{data["response"]}</div>', unsafe_allow_html=True)
+            st.markdown("---")
+
+            if data.get("sources"):
+                with st.expander(f"المصادر "):
+                    for i, src in enumerate(data['sources'], 1):
+                        st.markdown(f"**{i}.**[{src['category']}] {src['text'][:200]}...")
 
             st.markdown("---")
             col1, col2, col3 = st.columns(3)
@@ -33,7 +39,7 @@ if submitted and query:
                 st.markdown(f'<span class="tool-badge">{data["tool_choice"]}</span>', unsafe_allow_html=True)
             with col2:
                 st.markdown("**Retrieval loops**")
-                st.markdown(f'<div class="meta-box">{data["loop_count"]} loop(s)</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="meta-box">{data.get("loop_count", 0)} loop(s)</div>', unsafe_allow_html=True)
             with col3:
                 st.markdown("**Status**")
                 st.markdown('<div class="meta-box">✓ Complete</div>', unsafe_allow_html=True)
