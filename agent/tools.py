@@ -61,21 +61,69 @@ def _retrieve(query: str, top_k: int =5, category_filter: str = None):
         limit=top_k
     )
     return results.points
+def _retrieve_dense_only(query, top_k=5, category_filter=None):
+    dense_vec = model.encode(query, normalize_embeddings=True).tolist()
+    query_filter = None
+    if category_filter:
+        query_filter = models.Filter(
+            must=[models.FieldCondition(
+                key="category",
+                match=models.MatchValue(value=category_filter)
+            )]
+        )
+    results = client.query_points(
+        collection_name=collection_name,
+        query=dense_vec,
+        using="",
+        query_filter=query_filter,
+        limit=top_k
+    )
+    return results.points
+def _retrieve_sparse_only(query, top_k=5, category_filter=None):
+    sparse_vec = list(sparse_model.embed([query]))[0]
+    query_filter = None
+    if category_filter:
+        query_filter = models.Filter(
+            must= models.field_condition(
+                key="category",
+                match=models.MatchValue(value=category_filter)
+            )
+        )
+    results = client.query_points(
+        collection_name=collection_name,
+        query = SparseVector(
+            indices=sparse_vec.indices.tolist(),
+            values=sparse_vec.values.tolist()
+        ),
+        using="sparse",
+        query_filter=query_filter,
+        limit=top_k
+    )
+    return results.points
 
 def search_news(query: str)->dict:
-    points =_retrieve(query, top_k=5)
-    return {
+    fused_points =_retrieve(query, top_k=5)
+    dense_points = _retrieve_dense_only(query, top_k=5)
+    sparse_points = _retrieve_sparse_only(query, top_k=5)
+    def serialize(points):
+        return [
+                {
+                    "id": str(p.id),
+                    "category": p.payload["category"],
+                    "text": p.payload["text"],
+                    "score": p.score
+                }
+                for p in points
+            ]
+    return{
         "tool":"search_news",
         "query": query,
-        "results": [
-            {
-                "id": str(p.id),
-                "category": p.payload["category"],
-                "text": p.payload["text"],
-                "score": p.score
-            }
-            for p in points
-        ]
+        "results": serialize(fused_points),
+        "comparison": {
+            "dense": serialize(dense_points),
+            "sparse": serialize(sparse_points),
+            "fused": serialize(fused_points)
+        }
     }
 def summarize_topic(query: str) -> dict:
     points = _retrieve(query, top_k=5)

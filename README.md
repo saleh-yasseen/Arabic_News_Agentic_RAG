@@ -1,168 +1,130 @@
 # Arabic News Agentic RAG
 
-An agentic RAG system over Arabic news. A LangGraph state machine routes a user's Arabic question to one of four tools, each running hybrid retrieval (dense + sparse) against a local Qdrant index, then Groq's Llama 3.3 70B generates a grounded Arabic response. FastAPI backend, Streamlit frontend.
+An Arabic news assistant built around a LangGraph-based agent, hybrid retrieval over a local Qdrant index, and Groq-powered answer generation. The system routes Arabic user questions to one of four tools, retrieves relevant passages, and then writes a grounded Arabic news-style response.
 
-The differentiator from a standard RAG tutorial: hybrid retrieval (most tutorials only do dense), explicit tool routing via LangGraph rather than a black-box agent loop, and a visible agent trace (tool selected, retrieval loops, sources) in the UI.
+## What is implemented now
 
-## Architecture
+The current repository already includes the core pieces of the app:
+
+- A LangGraph workflow for routing user questions to one of four tools:
+  - `search_news`
+  - `summarize_topic`
+  - `compare_timeline`
+  - `answer_direct`
+- Hybrid retrieval using:
+  - dense embeddings from AraBERT
+  - sparse BM25 retrieval via FastEmbed
+  - RRF fusion for combining both signals
+- A FastAPI backend with:
+  - `POST /query`
+  - `POST /query/stream`
+  - `GET /health`
+- A Streamlit frontend in Arabic with live status updates and source display
+- A prototype live scraper module for collecting Arabic news content into a separate Qdrant collection
+
+## Current architecture
 
 ```mermaid
 flowchart TD
-    UI["Streamlit UI - Arabic RTL"] --> API["FastAPI - query endpoint"]
-    API --> ROUTE["Router node"]
-    ROUTE -->|"routing call"| LLM["Groq - Llama 3.3 70B"]
-    ROUTE --> TOOLS{"Tool selection"}
+    UI["Streamlit UI"] --> API["FastAPI"]
+    API --> ROUTE["route"]
+    ROUTE --> TOOL["tool selection"]
+    TOOL --> SEARCH["search_news"]
+    TOOL --> SUMM["summarize_topic"]
+    TOOL --> COMPARE["compare_timeline"]
+    TOOL --> DIRECT["answer_direct"]
 
-    TOOLS --> SEARCH["search_news"]
-    TOOLS --> SUMM["summarize_topic"]
-    TOOLS --> COMPARE["compare_timeline"]
-    TOOLS --> DIRECT["answer_direct"]
-
-    SEARCH --> DENSE["AraBERT dense vectors"]
-    SEARCH --> SPARSE["BM25 sparse vectors"]
-    SUMM --> DENSE
-    SUMM --> SPARSE
-    COMPARE --> DENSE
-    COMPARE --> SPARSE
-
-    DENSE --> FUSE["RRF fusion"]
-    SPARSE --> FUSE
-    FUSE --> QDRANT[("Qdrant - SANAD collection")]
-    QDRANT --> CHECK["check_context_quality"]
-
-    CHECK -->|"proceed"| GEN["Generate response"]
-    CHECK -.->|"re-query loop - currently inactive"| SEARCH
-    DIRECT --> GEN
-    GEN -->|"generation call"| LLM
-    GEN --> API
+    SEARCH --> RETRIEVAL["Hybrid retrieval"]
+    SUMM --> RETRIEVAL
+    COMPARE --> RETRIEVAL
+    RETRIEVAL --> QDRANT[("Qdrant collection")]
+    QDRANT --> QUALITY["context check"]
+    QUALITY --> GENERATE["generate response"]
+    GENERATE --> LLM["Groq Llama 3.3 70B"]
+    LLM --> API
     API --> UI
 ```
 
-The re-query loop is drawn as a dotted line deliberately: it exists in the graph but the threshold that would trigger it never fires in normal operation, so it's currently dead code. See [known limitations](#known-limitations).
+## How the agent works
 
-## Agent flow
+1. The router node examines the Arabic query and selects one tool.
+2. The chosen tool runs retrieval against the Qdrant index.
+3. The graph checks whether enough context was retrieved.
+4. If the context is sufficient, the generator produces an Arabic answer.
+5. The backend and frontend expose this flow to the user in a visible way.
 
-The LangGraph state machine, node by node:
+## Tool behavior
 
-```mermaid
-stateDiagram-v2
-    [*] --> Route
-    Route --> SearchNews: intent is search
-    Route --> SummarizeTopic: intent is summarise
-    Route --> CompareTimeline: intent is compare
-    Route --> AnswerDirect: intent is general knowledge
-    SearchNews --> CheckContextQuality
-    SummarizeTopic --> CheckContextQuality
-    CompareTimeline --> CheckContextQuality
-    CheckContextQuality --> Generate: sufficient context
-    CheckContextQuality --> SearchNews: insufficient - loop currently inactive
-    AnswerDirect --> Generate
-    Generate --> [*]
-```
-
-LangGraph was chosen over a LangChain ReAct agent specifically so this routing logic stays inspectable: explicit nodes and edges, rather than a black-box loop.
-
-## Why these choices
-
-The two decisions worth explaining:
-
-| Decision | Alternative considered | Why this way |
-|---|---|---|
-| LangGraph | LangChain ReAct agent | Explicit state machine, inspectable nodes and edges, visualisable graph |
-| Qdrant (local) | Pinecone | Zero-setup local dev, native hybrid search via BM25 + dense in one query |
-
-The rest of the stack was picked for less interesting reasons: AraBERT over generic multilingual embeddings because it's purpose-built for Arabic, BM25 via FastEmbed over a separate Elasticsearch service to avoid running a second process, Groq over Gemini because Gemini's free-tier rate limits couldn't handle iterative multi-call agent testing, and SANAD over a live scrape on day one to get the core loop working before adding freshness.
-
-## Tools
-
-| Tool | Used for |
+| Tool | Purpose |
 |---|---|
 | `search_news` | Specific factual questions about a topic or event |
 | `summarize_topic` | Broad overview or summary requests |
-| `compare_timeline` | Questions framed as development over time or comparison (currently filters by category only, not true chronological ordering) |
+| `compare_timeline` | Questions about development or comparison over time |
 | `answer_direct` | General knowledge questions unrelated to news |
-| `search_live_news` *(planned)* | Current-events queries, backed by a structured news API rather than live scraping |
 
 ## Tech stack
 
 | Layer | Tool |
 |---|---|
-| Dataset | SANAD (`khalidalt/SANAD`, AlKhaleej split), ~26,000 chunks |
-| Dense embeddings | AraBERT v2, 768-dim, loaded via `transformers` directly |
-| Sparse embeddings | BM25 via FastEmbed (`Qdrant/bm25`) |
-| Vector DB | Qdrant, local mode (Docker migration planned) |
 | Agent framework | LangGraph |
-| LLM inference | Groq (Llama 3.3 70B) |
+| LLM | Groq Llama 3.3 70B |
+| Dense embeddings | AraBERT via `sentence-transformers` / `transformers` |
+| Sparse embeddings | BM25 via FastEmbed |
+| Vector DB | Qdrant |
 | Backend | FastAPI |
 | Frontend | Streamlit |
 | Environment | Python 3.11, Windows |
 
 ## Project status
 
-| Phase | Status |
+| Area | Status |
 |---|---|
-| 1. Data and indexing foundation | Done |
-| 2. Hybrid retrieval layer | Done |
-| 3. Agent tool definitions (4 of 5 tools) | Done |
-| 4. LangGraph agent loop | Done |
-| 5. FastAPI backend + Streamlit frontend | Done |
-| 6. Deployment and polish | Not started |
+| Core routing and tool selection | Done |
+| Hybrid retrieval layer | Done |
+| FastAPI backend | Done |
+| Streamlit frontend | Done |
+| Live web scraper | In progress / not fully integrated yet |
+| Deployment polish | Not started |
 
-## Known limitations
+## Web scraper status
 
-Disclosed here rather than left for someone else to find:
+The scraper module is present in [agent/live_scraper.py](agent/live_scraper.py), but it is still a work in progress. It is not yet fully reliable or fully integrated into the main query flow. In other words, the web scraper is not done yet.
 
-- **Dataset recency** — SANAD covers 2017–2019. Questions about current events return stale context or nothing, until the live news tool ships.
-- **Category imbalance** — the AlKhaleej split is politics-heavy, so sports and finance queries often return politics-adjacent chunks.
-- **No real date filtering** — `compare_timeline` filters by category only. SANAD lacks reliable per-article date fields, so chronological ordering isn't implemented.
-- **Re-query loop is decorative** — `check_context_quality`'s threshold effectively never fires in normal operation.
-- **Local Qdrant isn't production-suitable** at current usage patterns; also blocks `uvicorn --reload` due to a file-lock conflict between the watcher and worker process. Requires the Docker migration.
+Current scraper work is focused on:
 
-## Debugging highlights
+- collecting Arabic news content from public sources
+- cleaning and chunking content
+- ingesting it into a separate live collection
+- making the flow robust enough to use in production-style retrieval
 
-Most of the engineering time on this project went into debugging, not features. A sample of what came up:
+## Current limitations
 
-| Problem | Root cause | Fix |
-|---|---|---|
-| AraBERT tokenizer hung on Windows | `sentence-transformers` wrapper deadlocked on load | Load via `transformers` `AutoTokenizer`/`AutoModel` directly, `TOKENIZERS_PARALLELISM=false` |
-| Phantom duplicate/stale index data | Relative Qdrant paths resolved differently depending on working directory | Single absolute path used everywhere |
-| Category filter leaked across categories | Qdrant `query_filter` applied post-fusion only, not to each `Prefetch` sub-query | Filter passed into each `Prefetch` stage individually |
-| Duplicate points on re-index | Random UUIDs meant re-indexing without deleting the collection stacked duplicates | Deterministic MD5 hash IDs from `source_idx` + chunk id |
-| Silent routing fallback | Routing prompt used `summarise_topic`, `TOOL_MAP` used `summarize_topic` — every summarise-intent query silently fell back to `search_news` | Spelling reconciled between prompt and map |
-| `KeyError` under FastAPI only, not standalone | `AgentState.response` typed `str` but initialised as `None` | Changed to `Optional[str]` |
+- The app currently depends on a local Qdrant instance running at `localhost:6333`.
+- The retrieval layer uses the existing indexed collection and does not yet fully rely on the live scraper output.
+- The dataset is still mostly static and may not reflect very recent events.
+- The scraper is experimental and not yet part of the main runtime path.
 
-## Planned enhancements
-
-Live per-query Al Jazeera scraping (triggered mid-request from a LangGraph conditional edge) was tried and dropped — it added an LLM call to every query just to decide whether to scrape, broke against CSS selector changes, and had an asyncio/sync execution mismatch. Scraping is offline and scheduled instead.
-
-- `search_live_news` tool backed by a structured news API, plus scheduled offline Al Jazeera scraping (`trafilatura`, per category) into a separate `arabic_news_live` Qdrant collection
-- Streaming "thinking" UI showing real LangGraph node completion events instead of a fake spinner
-- Post-response panel: tool selected, source counts, dense vs sparse vs fused retrieval comparison
-- Playground panel: model selector, tool override, retrieval mode toggle, parameter sliders
-- Headlines strip on dashboard load, sourced from the live collection
-- Cross-encoder reranker, starting hosted to avoid the local model-loading issues AraBERT already caused
-
-## Setup and installation
+## Setup
 
 1. Activate the project environment:
-   - Windows PowerShell: `.\rag_env\Scripts\Activate.ps1`
+   - Windows PowerShell: `./rag_env/Scripts/Activate.ps1`
    - Linux/macOS: `source rag_env/bin/activate`
 
 2. Install dependencies:
 
-   ```bash
-   pip install fastapi uvicorn streamlit requests python-dotenv langchain-groq langchain-huggingface transformers qdrant-client fastembed
-   ```
-
-   A pinned `requirements.txt` is on the roadmap; for now this list reflects direct dependencies only.
+```bash
+pip install -r requirements.txt
+```
 
 3. Create a `.env` file in the project root:
 
-   ```env
-   GROQ_API_KEY=your_groq_api_key_here
-   ```
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
 
-## Running the app
+4. Make sure Qdrant is available locally on port `6333`.
+
+## Run the app
 
 Start the backend:
 
@@ -170,7 +132,7 @@ Start the backend:
 uvicorn api.main:api --reload --host 0.0.0.0 --port 8000
 ```
 
-Then, in a second terminal, start the frontend:
+Start the frontend in a second terminal:
 
 ```bash
 streamlit run frontend/app.py
@@ -178,33 +140,26 @@ streamlit run frontend/app.py
 
 Open `http://localhost:8501`.
 
-Run from the repository root — the Qdrant path is currently relative and depends on it (hardcoding this out is a pending fix).
-
-## API usage
-
-- `GET /health` — health check
-- `POST /query` — sends a query to the agent, returns the response payload
-
-```bash
-curl -X POST http://localhost:8000/query \
-  -H "Content-Type: application/json" \
-  -d '{"query":"ما آخر التطورات في الأخبار الاقتصادية؟"}'
-```
-
 ## Repository structure
 
-```
+```text
 .
-├── api/
-│   └── main.py          # FastAPI service: /query, /health
 ├── agent/
-│   ├── graph.py          # LangGraph graph, routing, generation
-│   └── tools.py          # search_news, summarize_topic, compare_timeline, answer_direct
+│   ├── graph.py
+│   ├── live_scraper.py
+│   └── tools.py
+├── api/
+│   └── main.py
 ├── frontend/
-│   └── app.py             # Streamlit UI
+│   └── app.py
 ├── data/
-│   ├── qdrant_db/         # Local Qdrant storage (gitignored)
-│   └── ...                # Indexing and exploration notebooks
-├── .env                    # GROQ_API_KEY (gitignored)
+├── requirements.txt
 └── README.md
 ```
+
+## Next steps
+
+- finish and stabilize the live scraper
+- connect the scraper output into the main retrieval flow
+- improve retrieval quality and freshness
+- add better deployment and container support

@@ -14,6 +14,7 @@ class AgentState(TypedDict):
     response:Optional[str]
     loop_count:int
     sources: list
+    comparison: Optional[dict]
 
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
@@ -83,7 +84,7 @@ def execute_tool(state: AgentState) -> dict:
         context = ""
         sources =[]
     print("execute tool done")
-    return{"context":context, "sources": sources}
+    return{"context":context, "sources": sources, "comparison": result.get("comparison")}
 
 
 def generate_response(state: AgentState) -> dict :
