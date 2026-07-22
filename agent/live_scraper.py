@@ -25,7 +25,16 @@ CATEGORIES ={
     "Culture": "culture",
 }
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; ArabicNewsRAG/1.0; portfolio project, non-commercial)"}
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "ar,en-US;q=0.7,en;q=0.3",
+    "Referer": "https://www.google.com/",
+}
+
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
+
 LIVE_COLLECTION = "arabic_news_live"
 
 client = QdrantClient(host="localhost", port=6333)
@@ -70,6 +79,15 @@ SOURCES = {
     },
 }
 
+CATEGORY_KEYWORDS = {
+    "Politics": ["سياسة", "حكومة", "رئيس", "وزير", "انتخابات", "برلمان", "دبلوماسي", "أزمة"],
+    "Economy": ["اقتصاد", "أسواق", "بورصة", "نفط", "عملة", "تجارة", "شركة", "استثمار", "بنك"],
+    "Sports": ["رياضة", "كرة القدم", "مباراة", "بطولة", "كأس العالم", "لاعب", "منتخب", "الدوري"],
+    "Technology": ["تكنولوجيا", "ذكاء اصطناعي", "تطبيق", "هاتف", "إنستغرام", "منصة رقمية", "برمجيات"],
+    "Health": ["صحة", "مرض", "علاج", "طبي", "فيروس", "دواء", "مستشفى"],
+    "Culture": ["ثقافة", "فن", "سينما", "أغنية", "فنان", "كتاب", "مهرجان", "رواية"],
+}
+
 def clean_text(text):
     text = re.sub(r'[اأإآء]', 'ا', text)
     text = re.sub(r'[\u064B-\u065F]', '', text)
@@ -95,7 +113,7 @@ def make_id(url, chunk_idx):
 def get_article_links(domain, slug, limit=15):
     url = f"{domain}/{slug}" if slug else f"{domain}/"
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=15)
+        resp = SESSION.get(url, headers=HEADERS, timeout=30)
         resp.raise_for_status()
     except Exception as e:
         print(f"fetch failed for {url}",{e})
@@ -128,19 +146,24 @@ def classify_category(text):
 
 def get_bbc_feed_articles(limit=25):
     url = "https://bbc.github.io/world-service-rss/arabic.html"
-    resp = requests.get(headers=HEADERS,timeout=15)
-    resp.raise_for_status()
+    try:
+        resp = SESSION.get(url, headers=HEADERS, timeout=30) # Fixed line
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"fetch failed for BBC feed: {e}")
+        return []
+        
     pattern = r'\[([^\]]+)\]\((https://www\.bbc\.(?:com|co\.uk)/arabic/[^\)\s]+)\)'
-    matches =re.findall(pattern, resp.text)
+    matches = re.findall(pattern, resp.text)
     seen_urls = set()
     articles = []
-    for title, url in matches:
-        clean_url = url.split('?')[0]
+    for title, article_url in matches:
+        clean_url = article_url.split('?')[0]
         if clean_url in seen_urls:
             continue
         seen_urls.add(clean_url)
-        articles.append((title,clean_url))
-    return articles[:limit]   
+        articles.append((title, clean_url))
+    return articles[:limit]  
 
 def ingest_category(source_name, category_name, domain, slug):
     if slug is None:
