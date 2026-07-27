@@ -11,7 +11,7 @@ The current repository already includes the core pieces of the app:
   - `summarize_topic`
   - `compare_timeline`
   - `answer_direct`
-- Hybr id retrieval using:
+- Hybrid retrieval using:
   - dense embeddings from AraBERT
   - sparse BM25 retrieval via FastEmbed
   - RRF fusion for combining both signals
@@ -19,7 +19,13 @@ The current repository already includes the core pieces of the app:
   - `POST /query`
   - `POST /query/stream`
   - `GET /health`
-- A Streamlit frontend in Arabic with live status updates and source display
+- A Streamlit frontend in Arabic with live status updates, source display, and an advanced settings panel
+- New interactive controls in the UI for:
+  - choosing the Groq model
+  - overriding the selected tool
+  - switching between `hybrid`, `dense`, and `sparse` retrieval modes
+  - adjusting `top_k`, category filters, temperature, and minimum relevance threshold
+  - toggling the Cohere reranker on or off
 - A prototype live scraper module for collecting Arabic news content into a separate Qdrant collection
 
 ## Current architecture
@@ -83,6 +89,8 @@ flowchart TD
 | Hybrid retrieval layer | Done |
 | FastAPI backend | Done |
 | Streamlit frontend | Done |
+| Advanced UI controls and retrieval settings | Done |
+| Cohere reranking integration | Done |
 | Live web scraper | In progress / not fully integrated yet |
 | Deployment polish | Not started |
 
@@ -120,9 +128,12 @@ pip install -r requirements.txt
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
+COHERE_API_KEY=your_cohere_api_key_here
 ```
 
 4. Make sure Qdrant is available locally on port `6333`.
+
+> The Cohere key is optional for basic usage, but it enables reranking for better retrieval quality.
 
 ## Run the app
 
