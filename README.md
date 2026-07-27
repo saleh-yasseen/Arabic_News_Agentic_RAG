@@ -11,7 +11,7 @@ The current repository already includes the core pieces of the app:
   - `summarize_topic`
   - `compare_timeline`
   - `answer_direct`
-- Hybrid retrieval using:
+- Hybr id retrieval using:
   - dense embeddings from AraBERT
   - sparse BM25 retrieval via FastEmbed
   - RRF fusion for combining both signals

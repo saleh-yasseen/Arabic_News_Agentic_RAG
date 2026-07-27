@@ -1,13 +1,23 @@
 
 import os
+from pathlib import Path
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 print("Loading Qdrant client and models...")
+
+from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 from qdrant_client import models, qdrant_client
 from qdrant_client.models import SparseVector
 from fastembed import SparseTextEmbedding
 from sentence_transformers import SentenceTransformer
+import cohere
+
+co = cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
 
 print("Starting Qdrant client and model initialization...")
 
@@ -31,17 +41,44 @@ print("_____")
 
 print("Qdrant client and models initialized successfully.")
 
-def _retrieve(query: str, top_k: int =5, category_filter: str = None):
-    dense_vec = model.encode(query, normalize_embeddings=True).tolist()
-    sparse_vec = list(sparse_model.embed([query]))[0]
+def _rerank(query, points, top_k=5, category_filter=None):
+    if not points:
+        return points, {}
+    if co is None:
+        return points[:top_k], {}
+    documents = [p.payload["text"] for p in points]
+    try:
+        response = co.rerank(
+            model = "rerank-multilingual-v3.0",
+            query=query,
+            documents=documents,
+            top_n=min(top_k, len(documents))
+        )
+        reranked_points = [points[r.index] for r in response.results]
+        scores= {str(points[r.index].id): r.relevance_score for r in response.results}
+        return reranked_points, scores
+    except Exception as e:
+        print(f"Error occurred while reranking: {e}")
+        return points[:top_k], {}
+
+def _retrieve(query: str, top_k: int =5, category_filter: str = None, mode="hybrid"):
     query_filter = None
+
     if category_filter:
         query_filter = models.Filter(
             must=[models.FieldCondition(
                 key="category",
                 match=models.MatchValue(value=category_filter)
             )]
-        )
+        )    
+    if mode == "dense":
+        return _retrieve_dense_only(query, top_k, category_filter)
+    if mode == "sparse":
+        return _retrieve_sparse_only(query, top_k, category_filter)
+    
+    dense_vec = model.encode(query, normalize_embeddings=True).tolist()
+    sparse_vec = list(sparse_model.embed([query]))[0]
+
     results = client.query_points(
         collection_name=collection_name,
         prefetch=[
@@ -61,6 +98,7 @@ def _retrieve(query: str, top_k: int =5, category_filter: str = None):
         limit=top_k
     )
     return results.points
+
 def _retrieve_dense_only(query, top_k=5, category_filter=None):
     dense_vec = model.encode(query, normalize_embeddings=True).tolist()
     query_filter = None
@@ -101,28 +139,43 @@ def _retrieve_sparse_only(query, top_k=5, category_filter=None):
     )
     return results.points
 
-def search_news(query: str)->dict:
-    fused_points =_retrieve(query, top_k=5)
-    dense_points = _retrieve_dense_only(query, top_k=5)
-    sparse_points = _retrieve_sparse_only(query, top_k=5)
-    def serialize(points):
+def search_news(query: str, mode:str = "hybrid", top_k: int = 5, category_filter: str = None, use_reranker:bool = True, min_score: float =None) ->dict:
+    pool_size = max(15, top_k *3)
+    fused_points =_retrieve(query, top_k=pool_size,category_filter=category_filter, mode=mode)
+    dense_points = _retrieve_dense_only(query, top_k=5,category_filter=category_filter)
+    sparse_points = _retrieve_sparse_only(query, top_k=5,category_filter=category_filter)
+    reranked_points, rerank_scores = _rerank(query, fused_points, top_k=5,category_filter=category_filter)
+
+    if use_reranker:
+        result_points, result_scores = _rerank(query, fused_points, top_k=top_k)
+    else:
+        result_points, result_scores = fused_points[:top_k], {}
+
+    if min_score is not None:
+        result_points = [
+            p for p in result_points
+            if (result_scores.get(str(p.id), p.score) >= min_score)
+        ]
+
+    def serialize(points, score_override=None):
         return [
                 {
                     "id": str(p.id),
                     "category": p.payload["category"],
                     "text": p.payload["text"],
-                    "score": p.score
+                    "score": (score_override.get(str(p.id), p.score) if score_override else p.score)
                 }
                 for p in points
             ]
     return{
         "tool":"search_news",
         "query": query,
-        "results": serialize(fused_points),
+        "results": serialize(reranked_points, rerank_scores),
         "comparison": {
             "dense": serialize(dense_points),
             "sparse": serialize(sparse_points),
-            "fused": serialize(fused_points)
+            "fused": serialize(fused_points[:5]),
+            "reranked": serialize(reranked_points, rerank_scores) if use_reranker else []
         }
     }
 def summarize_topic(query: str) -> dict:

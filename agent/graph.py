@@ -15,6 +15,14 @@ class AgentState(TypedDict):
     loop_count:int
     sources: list
     comparison: Optional[dict]
+    model: str
+    tool_override: Optional[str]
+    retrieval_mode: str
+    temperature: float
+    top_k: int
+    category_filter: Optional[str]
+    use_reranker: bool
+    min_score: Optional[float]
 
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
@@ -50,6 +58,9 @@ GENERATION_PROMPT = """
 """
 
 def route_query(state: AgentState) -> dict:
+    if state.get("tool_override"):
+        return {"tool_choice": state["tool_override"]}
+    llm = ChatGroq(model=state.get("model", "llama-3.3-70b-versatile"), temperature=0)
     prompt = ROUTING_PROMPT.format(query=state["query"])
     result =llm.invoke(prompt)
     tool_name =result.content.strip()
@@ -70,7 +81,10 @@ TOOL_MAP = {
 
 def execute_tool(state: AgentState) -> dict:
     tool_fn=TOOL_MAP[state["tool_choice"]]
-    result = tool_fn(state["query"])
+    if state["tool_choice"] == "search_news":
+        result = tool_fn(state["query"], mode=state.get("retrieval_mode", "hybrid"),top_k=state.get("top_k",5), category_filter=state.get("category_filter"),use_reranker=state.get("use_reranker", True),min_score=state.get("min_score"))
+    else:
+        result = tool_fn(state["query"])
 
     if "context" in result:
         context = result["context"]
@@ -88,6 +102,7 @@ def execute_tool(state: AgentState) -> dict:
 
 
 def generate_response(state: AgentState) -> dict :
+    llm = ChatGroq(model=state.get("model", "llama-3.3-70b-versatile"), temperature=state.get("temperature", 0.0))
     prompt = GENERATION_PROMPT.format(context=state["context"], query=state["query"])
     result = llm.invoke(prompt)
     print("generation_done")

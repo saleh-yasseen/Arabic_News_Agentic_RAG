@@ -1,3 +1,4 @@
+from qdrant_client.models import Optional
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -21,16 +22,28 @@ api=FastAPI()
 
 class QueryRequest(BaseModel):
     query: str
+    model: Optional[str] = "llama-3.3-70b-versatile"
+    tool_override: Optional[str] = None
+    retrieval_mode: Optional[str] = "hybrid"
+    temperature: Optional[float] = 0.0
+    top_k: Optional[int] = 5
+    category_filter: Optional[str] = None
+    use_reranker: Optional[bool] = True
+    min_score: Optional[float] = None
 
-def stream_agent(query: str):
+def stream_agent(request: QueryRequest):
     initial_state = {
-        "query": query,
+        "query": request.query,
         "tool_choice": None,
         "context": "",
         "response": None,
         "loop_count": 0,
         "sources": [],
-        "comparison": None
+        "comparison": None,
+        "model": request.model,
+        "tool_override": request.tool_override,
+        "retrieval_mode": request.retrieval_mode,
+        "temperature": request.temperature
     }
     final_state = {}
     try:
@@ -58,11 +71,7 @@ def stream_agent(query: str):
 
 @api.post("/query/stream")
 def query_stream(request: QueryRequest):
-    return StreamingResponse(
-    stream_agent(request.query),
-    media_type="text/event-stream",
-    headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no", "Connection": "keep-alive"}
-)
+    return StreamingResponse(stream_agent(request), media_type="text/event-stream")
 
 @api.post("/query")
 def query(request: QueryRequest):
