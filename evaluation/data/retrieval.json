@@ -1,0 +1,44 @@
+[
+  {
+    "query": "من هو الأغنى في قائمة فوربس لاثرياء العالم؟",
+    "relevant_docs": [
+      "005fa292-b2c4-4feb-6b75-be87c1dacab6"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "لماذا يُعتبر الأمير محمد بن سلمان خياراً موفقاً؟",
+    "relevant_docs": [
+      "005f4053-70b9-fd4b-952a-c2985a4ce9d7"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما موضوع التحقيق الميداني الذي يعرضه برنامج الشارع المصري على الحدث؟",
+    "relevant_docs": [
+      "004db7f6-f85e-15a6-e430-18b7e31da332"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "كم عدد الأطفال الذين توفوا خلال العام الماضي؟",
+    "relevant_docs": [
+      "011ba733-ec3d-7049-1da4-b25e93f379b2"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي الفيتامينات التي تساعد البرتقال على تحسين وظائف الدماغ؟",
+    "relevant_docs": [
+      "00d8d199-365f-e19f-33f7-6cd1416b39c3"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما كانت الفئة العمرية للمرضى الذين شملتهم الدراسة؟",
+    "relevant_docs": [
+      "011061dd-7603-2854-afd2-89b54bf26589"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  }
+]

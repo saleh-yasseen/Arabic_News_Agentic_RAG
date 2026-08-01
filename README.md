@@ -28,6 +28,18 @@ The current repository already includes the core pieces of the app:
   - toggling the Cohere reranker on or off
 - A prototype live scraper module for collecting Arabic news content into a separate Qdrant collection
 
+## UI advanced panels
+
+The Streamlit interface includes an advanced settings panel designed for experimentation and comparison:
+
+- The model selector lets you compare different Groq models for response quality and speed.
+- The tool override option lets you force the agent to use a specific tool, which is useful for debugging routing behavior.
+- The retrieval mode switch helps compare hybrid retrieval against dense-only or sparse-only search.
+- The sliders and filters let you tune retrieval depth, category focus, and relevance thresholds.
+- The reranker toggle enables or disables Cohere-based reranking to show how post-retrieval refinement affects results.
+
+These controls make it easier to inspect how the agent behaves under different retrieval and generation settings.
+
 ## Current architecture
 
 ```mermaid
@@ -167,6 +179,17 @@ Open `http://localhost:8501`.
 ├── requirements.txt
 └── README.md
 ```
+
+## Evaluation
+
+The latest evaluation run reported the following results on a small benchmark set:
+
+- Router accuracy: 83.3%
+- Retrieval recall@5 with hybrid + reranker: 67%
+- Generation groundedness: 4.0/5
+- Average end-to-end latency: 2.77 seconds
+
+These results show strong routing performance, a clear benefit from reranking for retrieval quality, and acceptable latency for a local prototype.
 
 ## Next steps
 

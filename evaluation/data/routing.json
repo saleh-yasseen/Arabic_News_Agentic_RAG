@@ -1,0 +1,98 @@
+[
+  {
+    "query": "ما هي الدولة التي استضافت كأس العالم لكرة القدم في عام 2018؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "ما هو عدد الأهداف التي سجلها كريستيانو رونالدو في كأس العالم 2018؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "من هو الرئيس الأمريكي الذي استقال من منصبه في عام 1974؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "في أي مدينة تقع الألعاب البارالمبية الصيفية لعام 2020؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "ما هي الدولة التي استضافت دورة الألعاب الآسيوية في عام 2018؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "من هو الفائز بجائزة نوبل في الأدب للعام 2019؟",
+    "expected_tool": "search_news"
+  },
+  {
+    "query": "ما هي أحدث التطورات في مجال تكنولوجيا المعلومات؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "كيف يؤثر التغير المناخي على البيئات الطبيعية والبشرية؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "ما هي النقاط الرئيسية في تاريخ الحضارات القديمة؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "كيف يُعتبر الفن جزءًا لا يتجزأ من الهوية الثقافية؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "ما هي الآليات الأساسية للتحكم في الجينوم البشري؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "ما هي العوامل المؤثرة في تطور اللغات البشرية عبر العصور؟",
+    "expected_tool": "summarize_topic"
+  },
+  {
+    "query": "كيف تغيرت أساليب التعليم في المدارس خلال القرن الماضي؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "ما هي التغيرات التي حدثت في صناعة السيارات منذ Appearance السبعينيات حتى الآن؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "كيف تطور نظام الاتصالات من البريد العادي إلى البريد الإلكتروني والشبكات الاجتماعية؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "ما هي التحولات التي شهدها العالم في مجال صناعة الطاقة المتجددة خلال العقود القليلة الماضية؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "كيف تغيرت عادات الشراء عند الناس منذ ظهور التسوق عبر الإنترنت؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "ما هي الاختلافات بين العلاقة بين الأصدقاء في الحقبة الرقمية الآن والعلاقة بين الأصدقاء في الماضي؟",
+    "expected_tool": "compare_timeline"
+  },
+  {
+    "query": "ما هي الفوائد الصحية للشاي الأخضر؟",
+    "expected_tool": "answer_direct"
+  },
+  {
+    "query": "ما هو الفرق بين البناء الذكي والبناء التقليدي؟",
+    "expected_tool": "answer_direct"
+  },
+  {
+    "query": "من هو مبتكر نظرية الانفجار العظيم؟",
+    "expected_tool": "answer_direct"
+  },
+  {
+    "query": "كيف تتشكل السحب في الغلاف الجوي للأرض؟",
+    "expected_tool": "answer_direct"
+  },
+  {
+    "query": "ما هي الأهمية البيئية لحماية النباتات والنظم الإيكولوجية؟",
+    "expected_tool": "answer_direct"
+  },
+  {
+    "query": "ما هو مفهوم القانون الفيزيائي للطاقة المحفوظة؟",
+    "expected_tool": "answer_direct"
+  }
+]

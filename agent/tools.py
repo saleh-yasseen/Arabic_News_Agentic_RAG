@@ -16,8 +16,11 @@ from qdrant_client.models import SparseVector
 from fastembed import SparseTextEmbedding
 from sentence_transformers import SentenceTransformer
 import cohere
+import time
+
 
 co = cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
+_RERANK_WARNING_SHOWN = False
 
 print("Starting Qdrant client and model initialization...")
 
@@ -41,25 +44,32 @@ print("_____")
 
 print("Qdrant client and models initialized successfully.")
 
-def _rerank(query, points, top_k=5, category_filter=None):
+def _rerank(query, points, top_k=5, category_filter=None, max_retries=3):
     if not points:
         return points, {}
     if co is None:
         return points[:top_k], {}
     documents = [p.payload["text"] for p in points]
-    try:
-        response = co.rerank(
-            model = "rerank-multilingual-v3.0",
-            query=query,
-            documents=documents,
-            top_n=min(top_k, len(documents))
-        )
-        reranked_points = [points[r.index] for r in response.results]
-        scores= {str(points[r.index].id): r.relevance_score for r in response.results}
-        return reranked_points, scores
-    except Exception as e:
-        print(f"Error occurred while reranking: {e}")
-        return points[:top_k], {}
+    for attempt in range(max_retries):
+        try:
+            response = co.rerank(
+                model="rerank-multilingual-v3.0",
+                query=query,
+                documents=documents,
+                top_n=min(top_k, len(documents))
+            )
+            reranked_points = [points[r.index] for r in response.results]
+            scores = {str(points[r.index].id): r.relevance_score for r in response.results}
+            return reranked_points, scores
+        except Exception as e:
+            is_rate_limit = "429" in str(e) or "rate limit" in str(e).lower()
+            if is_rate_limit and attempt < max_retries - 1:
+                wait = 6 * (attempt + 1)
+                print(f"  rerank rate-limited, waiting {wait}s before retry {attempt + 2}/{max_retries}")
+                time.sleep(wait)
+                continue
+            print(f"Rerank failed ({'rate limit' if is_rate_limit else 'error'}), falling back to RRF order: {e}")
+            return points[:top_k], {}
 
 def _retrieve(query: str, top_k: int =5, category_filter: str = None, mode="hybrid"):
     query_filter = None
@@ -144,11 +154,12 @@ def search_news(query: str, mode:str = "hybrid", top_k: int = 5, category_filter
     fused_points =_retrieve(query, top_k=pool_size,category_filter=category_filter, mode=mode)
     dense_points = _retrieve_dense_only(query, top_k=5,category_filter=category_filter)
     sparse_points = _retrieve_sparse_only(query, top_k=5,category_filter=category_filter)
-    reranked_points, rerank_scores = _rerank(query, fused_points, top_k=5,category_filter=category_filter)
 
     if use_reranker:
-        result_points, result_scores = _rerank(query, fused_points, top_k=top_k)
+        reranked_points, rerank_scores = _rerank(query, fused_points, top_k=top_k, category_filter=category_filter)
+        result_points, result_scores = reranked_points, rerank_scores
     else:
+        reranked_points, rerank_scores = [], {}
         result_points, result_scores = fused_points[:top_k], {}
 
     if min_score is not None:
