@@ -5,6 +5,13 @@ question to one of four tools, each doing hybrid retrieval (AraBERT dense + BM25
 RRF fusion, optionally reranked with Cohere) against a Qdrant index, then Groq generates a
 grounded Arabic response. FastAPI backend, Streamlit frontend with a live agent trace.
 
+![Python 3.11](https://img.shields.io/badge/python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-streaming-009688)
+![LangGraph](https://img.shields.io/badge/LangGraph-agent-1C3C3C)
+![Qdrant](https://img.shields.io/badge/Qdrant-hybrid%20search-DC244C)
+![Groq](https://img.shields.io/badge/Groq-Llama%203.3-orange)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED)
+
 <p align="center">
   <img src="assets/demo.gif" alt="Demo walkthrough" width="800">
 </p>
@@ -18,20 +25,33 @@ grounded Arabic response. FastAPI backend, Streamlit frontend with a live agent 
 
 ## What makes this different from a standard RAG tutorial
 
-- **Hybrid retrieval, not just dense.** Most RAG walkthroughs embed everything and call it
-  done. This runs AraBERT dense search and BM25 sparse search in parallel, merges them with
-  Reciprocal Rank Fusion, and — this is the part that's usually just claimed, not shown —
-  the UI displays the dense-only, sparse-only, fused, and reranked result lists
-  side by side for the same query, so the difference is visible, not asserted.
+- **Hybrid retrieval, not just dense.** Unlike many introductory RAG implementations, this
+  runs AraBERT dense search and BM25 sparse search in parallel and merges them with
+  Reciprocal Rank Fusion. The UI shows the dense-only, sparse-only, fused, and reranked
+  result lists side by side for the same query, so the difference between hybrid and
+  single-method retrieval is something you can see, not just a claim in this README.
 - **Explicit agent routing via LangGraph, not a black-box loop.** A router node picks one
   of four tools per query; a conditional edge retries retrieval once if the first pass comes
   back thin. The graph is inspectable and exportable as an image (below), not a prompt
   wrapped in a while-loop.
-- **A real evaluation suite**, not a vibes-based "it works on my machine." Router accuracy,
-  retrieval recall/precision/MRR across four retrieval modes, LLM-as-judge generation
-  scoring, and per-stage latency — all reproducible with one command, with the sample size
-  and methodology limitations stated plainly rather than hidden. See
-  [Evaluation](#evaluation) below.
+- **A real evaluation suite.** Router accuracy, retrieval recall/precision/MRR across four
+  retrieval modes, LLM-as-judge generation scoring, and per-stage latency — all
+  reproducible with one command. Sample size and methodology limitations are stated
+  plainly rather than hidden. See [Evaluation](#evaluation) below.
+
+## Dataset
+
+Corpus: [SANAD](https://huggingface.co/datasets/khalidalt/SANAD) (`khalidalt/SANAD`,
+AlKhaleej split) — the full split contains 190k+ articles across 7 categories; this
+project indexes a subset. Current indexed collection: **26,320 chunks** across Politics,
+Finance, Medical, Religion, Sports, Tech, and Culture, after cleaning, chunking, and
+deduplication. Embedded with AraBERT v2 (768-dim dense) alongside BM25 sparse vectors.
+
+## Screenshots
+
+<!-- Add 2-3 screenshots here alongside the demo gif: the hybrid comparison panel
+     (dense/sparse/fused/reranked columns), the evaluation script's terminal output,
+     and the advanced settings panel. Images land better than prose on GitHub. -->
 
 ## Agent graph
 
@@ -141,9 +161,27 @@ either signal alone.
   return politics-adjacent chunks. Retrieval evaluation's per-category breakdown makes this
   visible rather than hiding it in an aggregate score.
 - **`compare_timeline` is not chronological**, as noted above — category-scoped only.
-- **Cohere trial tier rate limit** (10 calls/minute) affects both live reranking under
-  concurrent load and evaluation run reproducibility. Disclosed rather than worked around
-  with a fabricated production-tier assumption.
+- **Cohere's trial tier caps reranking at 10 requests/minute.** This affects both live
+  reranking under concurrent load and evaluation run reproducibility — noted here since
+  it's a real constraint on the current deployment, not something to discover by hitting
+  a 429.
+
+## Lessons learned
+
+- Hybrid retrieval only became consistently better than either method alone once reranking
+  was added — RRF fusion helps, but the reranked numbers were the more reliable win across
+  eval runs (see the retrieval mode comparison in [Evaluation](#evaluation)).
+- Qdrant's filtering behaves differently during RRF fusion than expected — a top-level
+  filter doesn't reach each `Prefetch` stage automatically, it has to be passed explicitly
+  to each one.
+- Approximate nearest-neighbor search (Qdrant's HNSW index) introduces small but real
+  variance between otherwise-identical evaluation runs — worth knowing before trusting a
+  single number too tightly.
+- Windows-specific tokenizer deadlocks in `sentence-transformers` required loading AraBERT
+  through `transformers` directly instead.
+- Building a reproducible evaluation suite took longer than building the agent loop itself
+  — mostly rate-limit handling and deciding what "ground truth" honestly means without a
+  hand-labeled dataset.
 - **Live source pipeline is partially blocked, and that's a real finding worth stating
   plainly:** BBC Arabic ingestion works cleanly via their public feed mirror plus
   keyword-based categorization (BBC has no clean per-category URLs). Al Jazeera and Al
@@ -279,17 +317,22 @@ Qdrant service above instead — a deliberate difference, not an inconsistency).
 - Expand the evaluation labeled set past n=6
 - Headlines strip on the dashboard, sourced from the live collection once it exists
 
-## Notable engineering decisions and debugging
+## A few debugging stories
 
-Kept specific rather than generic, since this is the part that actually shows the work:
+Full log in [docs/debugging.md](docs/debugging.md) — nine issues total. Three that took
+the longest:
 
-| Issue | Root cause | Fix |
-|---|---|---|
-| AraBERT load hung/crashed the kernel on Windows | `sentence-transformers`'s SentencePiece tokenizer deadlocks under Windows threading | Load via `transformers` `AutoTokenizer`/`AutoModel` directly, `TOKENIZERS_PARALLELISM=false` |
-| Re-indexing silently didn't take effect, multi-hour debugging loop | Indexing and querying scripts used inconsistent relative Qdrant paths, resolving to different physical folders depending on working directory | Single absolute/dynamically-resolved path used everywhere |
-| Filtered searches leaked wrong categories into results | Qdrant's top-level `query_filter` only applies after RRF fusion, not to each `Prefetch` stage | Pass the same filter into each `Prefetch` individually |
-| Duplicate chunks stacking on every re-index | `uuid.uuid4()` per point meant re-running indexing without deleting the collection just added copies | Deterministic MD5 hash IDs — indexing is now idempotent |
-| `uvicorn --reload` crashed with a file-lock error | Local-mode Qdrant only allows one process to hold the storage lock; `--reload` spawns two | Migrated to Qdrant-as-a-service (Docker) for local dev |
-| Reranked results showed stale RRF scores instead of Cohere's actual relevance scores | Serialization reused the original point score instead of the reranker's returned score | Explicit score-override map keyed by point ID during serialization |
-| Eval numbers changed unexplainably between two identical runs | Cohere trial tier's 10-calls/minute limit was silently failing mid-run and falling back to unranked order, corrupting both latency and downstream generation scores | Retry-with-backoff on rate limit, plus disclosed as a real constraint rather than hidden |
-| Al Jazeera / Al Arabiya scraping failed with connection resets and 403s despite realistic headers | Cloudflare-class bot detection operating at the TLS fingerprint level, which `requests`/urllib3 can't spoof via headers alone | Diagnosed correctly rather than endlessly retried; documented as a disclosed limitation with a concrete next attempt (`curl_cffi`) instead of a silent workaround |
+- **Re-indexing silently didn't take effect, cost a multi-hour debugging loop.**
+  Indexing and querying scripts used inconsistent relative Qdrant paths, resolving to
+  different physical folders depending on working directory. Fixed with a single
+  dynamically-resolved path used everywhere.
+- **Filtered searches leaked the wrong categories into results.** Qdrant's top-level
+  `query_filter` only applies after RRF fusion, not to each `Prefetch` stage — had to pass
+  the same filter into each `Prefetch` individually.
+- **Al Jazeera / Al Arabiya scraping failed with connection resets and 403s** despite
+  realistic browser headers — Cloudflare-class bot detection operating at the TLS
+  fingerprint level, which header spoofing can't defeat. Diagnosed and documented as a
+  disclosed limitation with a concrete next attempt (`curl_cffi`), rather than retried
+  endlessly.
+
+[Read the rest →](docs/debugging.md)

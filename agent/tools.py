@@ -32,7 +32,9 @@ collection_name = "arabic_news"
 # QDRANT_PATH = os.path.join(BASE_DIR, "data", "qdrant_db")
 # client = qdrant_client.QdrantClient(path=QDRANT_PATH)
 
-client = qdrant_client.QdrantClient(host="localhost", port=6333)
+# client = qdrant_client.QdrantClient(host="localhost", port=6333)
+
+client = qdrant_client.QdrantClient(path=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "qdrant_db"))
 
 print("client loaded")
 model = SentenceTransformer("aubmindlab/bert-base-arabertv02")

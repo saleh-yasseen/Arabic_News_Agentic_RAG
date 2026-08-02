@@ -5,8 +5,8 @@ WORKDIR /app
 ENV TOKENIZERS_PARALLELISM=false
 ENV PYTHONUNBUFFERED=1
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements1.txt .
+RUN pip install --no-cache-dir -r requirements1.txt
 
 COPY . .
 RUN chmod +x start.sh
