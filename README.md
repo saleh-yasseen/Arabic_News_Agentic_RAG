@@ -1,161 +1,240 @@
 # Arabic News Agentic RAG
 
-An Arabic news assistant built around a LangGraph-based agent, hybrid retrieval over a local Qdrant index, and Groq-powered answer generation. The system routes Arabic user questions to one of four tools, retrieves relevant passages, and then writes a grounded Arabic news-style response.
+An agentic RAG system over Arabic news. A LangGraph state machine routes a user's Arabic
+question to one of four tools, each doing hybrid retrieval (AraBERT dense + BM25 sparse +
+RRF fusion, optionally reranked with Cohere) against a Qdrant index, then Groq generates a
+grounded Arabic response. FastAPI backend, Streamlit frontend with a live agent trace.
 
-## What is implemented now
+<p align="center">
+  <img src="assets/demo.gif" alt="Demo walkthrough" width="800">
+</p>
 
-The current repository already includes the core pieces of the app:
+<!-- Replace assets/demo.gif with a short screen recording — ~20-30s covering one query
+     through search_news showing the streaming status line, the response, the source
+     panel, and the dense/sparse/fused/reranked comparison. That single clip covers most
+     of what's described in text below. -->
 
-- A LangGraph workflow for routing user questions to one of four tools:
-  - `search_news`
-  - `summarize_topic`
-  - `compare_timeline`
-  - `answer_direct`
-- Hybrid retrieval using:
-  - dense embeddings from AraBERT
-  - sparse BM25 retrieval via FastEmbed
-  - RRF fusion for combining both signals
-- A FastAPI backend with:
-  - `POST /query`
-  - `POST /query/stream`
-  - `GET /health`
-- A Streamlit frontend in Arabic with live status updates, source display, and an advanced settings panel
-- New interactive controls in the UI for:
-  - choosing the Groq model
-  - overriding the selected tool
-  - switching between `hybrid`, `dense`, and `sparse` retrieval modes
-  - adjusting `top_k`, category filters, temperature, and minimum relevance threshold
-  - toggling the Cohere reranker on or off
-- A prototype live scraper module for collecting Arabic news content into a separate Qdrant collection
+---
 
-## UI advanced panels
+## What makes this different from a standard RAG tutorial
 
-The Streamlit interface includes an advanced settings panel designed for experimentation and comparison:
+- **Hybrid retrieval, not just dense.** Most RAG walkthroughs embed everything and call it
+  done. This runs AraBERT dense search and BM25 sparse search in parallel, merges them with
+  Reciprocal Rank Fusion, and — this is the part that's usually just claimed, not shown —
+  the UI displays the dense-only, sparse-only, fused, and reranked result lists
+  side by side for the same query, so the difference is visible, not asserted.
+- **Explicit agent routing via LangGraph, not a black-box loop.** A router node picks one
+  of four tools per query; a conditional edge retries retrieval once if the first pass comes
+  back thin. The graph is inspectable and exportable as an image (below), not a prompt
+  wrapped in a while-loop.
+- **A real evaluation suite**, not a vibes-based "it works on my machine." Router accuracy,
+  retrieval recall/precision/MRR across four retrieval modes, LLM-as-judge generation
+  scoring, and per-stage latency — all reproducible with one command, with the sample size
+  and methodology limitations stated plainly rather than hidden. See
+  [Evaluation](#evaluation) below.
 
-- The model selector lets you compare different Groq models for response quality and speed.
-- The tool override option lets you force the agent to use a specific tool, which is useful for debugging routing behavior.
-- The retrieval mode switch helps compare hybrid retrieval against dense-only or sparse-only search.
-- The sliders and filters let you tune retrieval depth, category focus, and relevance thresholds.
-- The reranker toggle enables or disables Cohere-based reranking to show how post-retrieval refinement affects results.
+## Agent graph
 
-These controls make it easier to inspect how the agent behaves under different retrieval and generation settings.
+<p align="center">
+  <img src="assets/agent_graph.png" alt="LangGraph agent graph" width="500">
+</p>
 
-## Current architecture
+This is the actual compiled graph, not a hand-drawn diagram. To regenerate it after
+changing `agent/graph.py`:
+
+```python
+graph_image = app.get_graph().draw_mermaid_png()
+with open("assets/agent_graph.png", "wb") as f:
+    f.write(graph_image)
+```
+
+Conceptual flow, for reference alongside the image:
 
 ```mermaid
 flowchart TD
-    UI["Streamlit UI"] --> API["FastAPI"]
-    API --> ROUTE["route"]
-    ROUTE --> TOOL["tool selection"]
-    TOOL --> SEARCH["search_news"]
-    TOOL --> SUMM["summarize_topic"]
-    TOOL --> COMPARE["compare_timeline"]
-    TOOL --> DIRECT["answer_direct"]
-
-    SEARCH --> RETRIEVAL["Hybrid retrieval"]
-    SUMM --> RETRIEVAL
-    COMPARE --> RETRIEVAL
-    RETRIEVAL --> QDRANT[("Qdrant collection")]
-    QDRANT --> QUALITY["context check"]
-    QUALITY --> GENERATE["generate response"]
-    GENERATE --> LLM["Groq Llama 3.3 70B"]
-    LLM --> API
+    UI["Streamlit UI"] --> API["FastAPI /query/stream"]
+    API --> ROUTE["route — LLM picks a tool"]
+    ROUTE --> EXEC["execute_tool"]
+    EXEC --> CHECK{"context sufficient?"}
+    CHECK -- "no, retry budget left" --> RETRY["retry_search"]
+    RETRY --> EXEC
+    CHECK -- "yes" --> GEN["generate_response"]
+    GEN --> API
     API --> UI
+
+    EXEC -.-> QDRANT[("Qdrant — dense + sparse")]
+    QDRANT -.-> RRF["RRF fusion"]
+    RRF -.-> RERANK["Cohere rerank (optional)"]
 ```
 
-## How the agent works
-
-1. The router node examines the Arabic query and selects one tool.
-2. The chosen tool runs retrieval against the Qdrant index.
-3. The graph checks whether enough context was retrieved.
-4. If the context is sufficient, the generator produces an Arabic answer.
-5. The backend and frontend expose this flow to the user in a visible way.
-
-## Tool behavior
+## The four tools
 
 | Tool | Purpose |
 |---|---|
-| `search_news` | Specific factual questions about a topic or event |
-| `summarize_topic` | Broad overview or summary requests |
-| `compare_timeline` | Questions about development or comparison over time |
-| `answer_direct` | General knowledge questions unrelated to news |
+| `search_news` | Specific factual questions about a topic or event. Full hybrid retrieval + optional reranking. |
+| `summarize_topic` | Broad overview requests. Pulls a wider pool (top 8+) and synthesizes across sources instead of answering from one. |
+| `compare_timeline` | Category-scoped retrieval — narrows results to a specific news category. **Not** chronological comparison: SANAD lacks reliable per-article dates, so true timeline ordering isn't implemented. Disclosed here rather than left implied by the name. |
+| `answer_direct` | General-knowledge questions unrelated to news. No retrieval — the LLM answers directly, and the UI says so instead of showing an empty sources panel. |
+
+Router accuracy and the specific confusion this introduces (see below) are measured, not
+assumed.
+
+## Interface
+
+- Arabic RTL input, streamed status updates as the agent moves through routing → retrieval
+  → generation (real graph state via Server-Sent Events, not a decorative spinner).
+- Expandable sources panel: every chunk that fed the answer, with category and score.
+- Hybrid comparison panel: dense-only / sparse-only / fused / reranked results for the same
+  query, four columns, side by side.
+- Advanced settings (collapsed by default): model selector (compare Groq model
+  speed/quality), tool override (force a specific tool for debugging or demo), retrieval
+  mode toggle (hybrid / dense / sparse), `top_k`, category filter, reranker on/off, minimum
+  relevance threshold, temperature.
+
+## Evaluation
+
+Automated evaluation across four dimensions, using synthetic queries generated by an LLM
+from the actual indexed corpus — not hand-picked. Code in [evaluation/](evaluation/).
+
+| Metric | Result |
+|---|---|
+| Router accuracy | 83.3% |
+| Retrieval recall@5 (hybrid + reranker) | 66.7% |
+| Generation groundedness (LLM-as-judge) | 3.67/5 |
+| Average end-to-end latency | 2.63 sec |
+
+**Methodology and honest caveats:**
+
+- n=6 labeled queries — kept small deliberately to stay under the Cohere trial tier's
+  10-calls/minute rate limit during iteration. Numbers are directional, not statistically
+  tight. Expanding the labeled set is a tracked follow-up, not skipped by accident.
+- Generation is judged by the same model family that generates the response (Llama 3.3 70B
+  via Groq), which has a documented self-favoring bias in LLM-as-judge setups. Treat
+  correctness/groundedness/completeness as directional signal, not independent
+  verification.
+- The routing confusion matrix shows `summarize_topic` at 50% — several queries meant to
+  test broad-overview intent were routed to `answer_direct` instead. This is a real,
+  identified boundary the router doesn't disambiguate well yet, kept visible rather than
+  smoothed over. Root cause and fix are tracked (few-shot examples needed in the routing
+  prompt, since abstract tool descriptions alone aren't enough at this boundary).
+- Retrieval numbers can vary slightly run-to-run at identical settings — Qdrant's HNSW
+  index is approximate nearest-neighbor search, not exact, so marginal candidates near the
+  prefetch cutoff can shift between runs.
+
+Reproduce with:
+
+```bash
+python evaluation/generate_queries.py   # regenerate synthetic queries, or reuse existing
+python evaluation/run_eval.py           # full suite: routing, retrieval, generation, latency
+```
+
+Retrieval mode comparison (dense / sparse / hybrid / hybrid+reranked) is broken out
+per-mode in the script output — hybrid and reranking both show a measurable lift over
+either signal alone.
+
+## Known limitations
+
+- **Dataset recency.** Core corpus is SANAD (2017–2019 AlKhaleej split). Queries about
+  current events return stale context or nothing from the static index. A live-source
+  pipeline was built (see below) but two of three planned sources are currently blocked.
+- **Category imbalance.** AlKhaleej is politics-heavy; sports and finance queries sometimes
+  return politics-adjacent chunks. Retrieval evaluation's per-category breakdown makes this
+  visible rather than hiding it in an aggregate score.
+- **`compare_timeline` is not chronological**, as noted above — category-scoped only.
+- **Cohere trial tier rate limit** (10 calls/minute) affects both live reranking under
+  concurrent load and evaluation run reproducibility. Disclosed rather than worked around
+  with a fabricated production-tier assumption.
+- **Live source pipeline is partially blocked, and that's a real finding worth stating
+  plainly:** BBC Arabic ingestion works cleanly via their public feed mirror plus
+  keyword-based categorization (BBC has no clean per-category URLs). Al Jazeera and Al
+  Arabiya both actively block direct scraping — Al Jazeera resets connections mid-request,
+  Al Arabiya returns explicit 403s — consistent with Cloudflare-class bot detection
+  operating below the HTTP layer, which header spoofing can't defeat. Next attempts, in
+  order: `curl_cffi` with browser TLS impersonation, falling back to a structured news API
+  filtered to those two domains, or a headless-browser approach as a last resort. Code for
+  all three sources exists in `agent/live_scraper.py`; only BBC is currently wired into a
+  live collection.
 
 ## Tech stack
 
 | Layer | Tool |
 |---|---|
-| Agent framework | LangGraph |
-| LLM | Groq Llama 3.3 70B |
-| Dense embeddings | AraBERT via `sentence-transformers` / `transformers` |
-| Sparse embeddings | BM25 via FastEmbed |
+| Dataset | SANAD (`khalidalt/SANAD`, AlKhaleej split) |
+| Dense embeddings | AraBERT v2 (`aubmindlab/bert-base-arabertv02`, 768-dim) |
+| Sparse embeddings | BM25 via FastEmbed (`Qdrant/bm25`) |
+| Reranking | Cohere `rerank-multilingual-v3.0` (optional, toggleable) |
 | Vector DB | Qdrant |
-| Backend | FastAPI |
+| Agent framework | LangGraph |
+| LLM inference | Groq (Llama 3.3 70B / 3.1 8B Instant, selectable) |
+| Backend | FastAPI (streaming via SSE) |
 | Frontend | Streamlit |
-| Environment | Python 3.11, Windows |
+| Evaluation | Custom suite — routing, retrieval, generation (LLM-as-judge), latency |
+| Deployment | HuggingFace Spaces (Docker SDK) |
 
-## Project status
+## Repository structure
 
-| Area | Status |
-|---|---|
-| Core routing and tool selection | Done |
-| Hybrid retrieval layer | Done |
-| FastAPI backend | Done |
-| Streamlit frontend | Done |
-| Advanced UI controls and retrieval settings | Done |
-| Cohere reranking integration | Done |
-| Live web scraper | In progress / not fully integrated yet |
-| Deployment polish | Not started |
-
-## Web scraper status
-
-The scraper module is present in [agent/live_scraper.py](agent/live_scraper.py), but it is still a work in progress. It is not yet fully reliable or fully integrated into the main query flow. In other words, the web scraper is not done yet.
-
-Current scraper work is focused on:
-
-- collecting Arabic news content from public sources
-- cleaning and chunking content
-- ingesting it into a separate live collection
-- making the flow robust enough to use in production-style retrieval
-
-## Current limitations
-
-- The app currently depends on a local Qdrant instance running at `localhost:6333`.
-- The retrieval layer uses the existing indexed collection and does not yet fully rely on the live scraper output.
-- The dataset is still mostly static and may not reflect very recent events.
-- The scraper is experimental and not yet part of the main runtime path.
+```text
+.
+├── agent/
+│   ├── graph.py            # LangGraph state machine, routing, generation prompts
+│   ├── tools.py             # Four tools, hybrid retrieval, reranking
+│   └── live_scraper.py      # Multi-source live ingestion (BBC working, AJ/Al Arabiya blocked)
+├── api/
+│   └── main.py               # FastAPI — /query, /query/stream, /health
+├── frontend/
+│   └── app.py                 # Streamlit UI — streaming trace, sources, comparison panels
+├── evaluation/
+│   ├── routing_eval.py
+│   ├── retrieval_eval.py
+│   ├── generation_eval.py
+│   ├── latency_eval.py
+│   ├── generate_queries.py    # Synthetic query + ground-truth generation
+│   ├── run_eval.py             # Orchestrates all four, prints README-ready summary
+│   └── data/
+├── data/
+│   └── qdrant_db/               # Indexed corpus (bundled for deployment, gitignored for dev)
+├── assets/
+│   ├── demo.gif
+│   └── agent_graph.png
+├── requirements.txt
+├── .env.example
+└── README.md
+```
 
 ## Setup
 
-1. Activate the project environment:
-   - Windows PowerShell: `./rag_env/Scripts/Activate.ps1`
-   - Linux/macOS: `source rag_env/bin/activate`
-
-2. Install dependencies:
+1. Create the environment (Python 3.11 required — the ML stack does not have pre-built
+   wheels for newer versions):
 
 ```bash
+python -m venv rag_env
+# Windows: .\rag_env\Scripts\Activate.ps1
+# Linux/macOS: source rag_env/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Create a `.env` file in the project root:
+2. Run Qdrant locally via Docker:
+
+```bash
+docker run -d -p 6333:6333 -p 6334:6334 \
+  -v "${PWD}/qdrant_storage:/qdrant/storage" \
+  --name qdrant qdrant/qdrant
+```
+
+3. Copy `.env.example` to `.env` and fill in your keys:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
-COHERE_API_KEY=your_cohere_api_key_here
+COHERE_API_KEY=your_cohere_api_key_here   # optional — enables reranking
 ```
 
-4. Make sure Qdrant is available locally on port `6333`.
-
-> The Cohere key is optional for basic usage, but it enables reranking for better retrieval quality.
+4. Index the corpus (first run only — see `data/` notebooks for the indexing pipeline).
 
 ## Run the app
-
-Start the backend:
 
 ```bash
 uvicorn api.main:api --reload --host 0.0.0.0 --port 8000
 ```
-
-Start the frontend in a second terminal:
 
 ```bash
 streamlit run frontend/app.py
@@ -163,37 +242,54 @@ streamlit run frontend/app.py
 
 Open `http://localhost:8501`.
 
-## Repository structure
+## API
 
-```text
-.
-├── agent/
-│   ├── graph.py
-│   ├── live_scraper.py
-│   └── tools.py
-├── api/
-│   └── main.py
-├── frontend/
-│   └── app.py
-├── data/
-├── requirements.txt
-└── README.md
+```
+GET  /health
+POST /query          — blocking, full agent result
+POST /query/stream    — Server-Sent Events, live status updates + final result
 ```
 
-## Evaluation
+```bash
+curl -X POST http://localhost:8000/query \
+  -H "Content-Type: application/json" \
+  -d '{"query": "ما آخر التطورات في الوضع السوري؟"}'
+```
 
-The latest evaluation run reported the following results on a small benchmark set:
+Optional fields on both endpoints: `model`, `tool_override`, `retrieval_mode`, `top_k`,
+`category_filter`, `use_reranker`, `min_score`, `temperature` — all default to sensible
+values if omitted.
 
-- Router accuracy: 83.3%
-- Retrieval recall@5 with hybrid + reranker: 67%
-- Generation groundedness: 4.0/5
-- Average end-to-end latency: 2.77 seconds
+## Deployment
 
-These results show strong routing performance, a clear benefit from reranking for retrieval quality, and acceptable latency for a local prototype.
+Deployed as a single Docker container on HuggingFace Spaces — FastAPI and Streamlit both
+run inside it, with Qdrant in embedded mode using data baked into the image at build time
+(no separate Qdrant service needed for the deployed version; local dev uses the Docker
+Qdrant service above instead — a deliberate difference, not an inconsistency). See
+`Dockerfile` and `start.sh` in the repo root.
 
-## Next steps
+## What's next
 
-- finish and stabilize the live scraper
-- connect the scraper output into the main retrieval flow
-- improve retrieval quality and freshness
-- add better deployment and container support
+- Resolve Al Jazeera / Al Arabiya scraping (curl_cffi impersonation attempt, or fall back
+  to a structured news API for those two sources specifically)
+- Wire the live collection into `search_news` as a fifth routing option once the source
+  pipeline is reliable
+- Fix the `summarize_topic` / `answer_direct` routing boundary (few-shot examples in the
+  routing prompt — already root-caused, not yet applied)
+- Expand the evaluation labeled set past n=6
+- Headlines strip on the dashboard, sourced from the live collection once it exists
+
+## Notable engineering decisions and debugging
+
+Kept specific rather than generic, since this is the part that actually shows the work:
+
+| Issue | Root cause | Fix |
+|---|---|---|
+| AraBERT load hung/crashed the kernel on Windows | `sentence-transformers`'s SentencePiece tokenizer deadlocks under Windows threading | Load via `transformers` `AutoTokenizer`/`AutoModel` directly, `TOKENIZERS_PARALLELISM=false` |
+| Re-indexing silently didn't take effect, multi-hour debugging loop | Indexing and querying scripts used inconsistent relative Qdrant paths, resolving to different physical folders depending on working directory | Single absolute/dynamically-resolved path used everywhere |
+| Filtered searches leaked wrong categories into results | Qdrant's top-level `query_filter` only applies after RRF fusion, not to each `Prefetch` stage | Pass the same filter into each `Prefetch` individually |
+| Duplicate chunks stacking on every re-index | `uuid.uuid4()` per point meant re-running indexing without deleting the collection just added copies | Deterministic MD5 hash IDs — indexing is now idempotent |
+| `uvicorn --reload` crashed with a file-lock error | Local-mode Qdrant only allows one process to hold the storage lock; `--reload` spawns two | Migrated to Qdrant-as-a-service (Docker) for local dev |
+| Reranked results showed stale RRF scores instead of Cohere's actual relevance scores | Serialization reused the original point score instead of the reranker's returned score | Explicit score-override map keyed by point ID during serialization |
+| Eval numbers changed unexplainably between two identical runs | Cohere trial tier's 10-calls/minute limit was silently failing mid-run and falling back to unranked order, corrupting both latency and downstream generation scores | Retry-with-backoff on rate limit, plus disclosed as a real constraint rather than hidden |
+| Al Jazeera / Al Arabiya scraping failed with connection resets and 403s despite realistic headers | Cloudflare-class bot detection operating at the TLS fingerprint level, which `requests`/urllib3 can't spoof via headers alone | Diagnosed correctly rather than endlessly retried; documented as a disclosed limitation with a concrete next attempt (`curl_cffi`) instead of a silent workaround |

@@ -189,24 +189,45 @@ def search_news(query: str, mode:str = "hybrid", top_k: int = 5, category_filter
             "reranked": serialize(reranked_points, rerank_scores) if use_reranker else []
         }
     }
-def summarize_topic(query: str) -> dict:
-    points = _retrieve(query, top_k=5)
-    combined_content = " ".join([point.payload["text"] for point in points  ])
+def summarize_topic(query: str, top_k: int = 8, use_reranker: bool = True) -> dict:
+    pool_size = max(15, top_k * 2)
+    fused_points = _retrieve(query, top_k=pool_size, mode="hybrid")
+
+    if use_reranker:
+        result_points, result_scores = _rerank(query, fused_points, top_k=top_k)
+    else:
+        result_points, result_scores = fused_points[:top_k], {}
+
+    def serialize(points, score_override=None):
+        return [
+            {
+                "id": str(p.id),
+                "category": p.payload["category"],
+                "text": p.payload["text"],
+                "score": (score_override.get(str(p.id), p.score) if score_override else p.score)
+            }
+            for p in points
+        ]
+
+    results = serialize(result_points, result_scores)
     return {
         "tool": "summarize_topic",
         "query": query,
-        "context": combined_content,
-        "source_count": len(points)
+        "context": " ".join(r["text"] for r in results),
+        "results": results,
+        "source_count": len(results),
     }
-def compare_timeline(query: str, category: str = None ) -> dict:
-    points = _retrieve(query, top_k=10,category_filter= category)
+def compare_timeline(query: str, category: str = None, top_k: int = 10) -> dict:
+    points = _retrieve(query, top_k=top_k, category_filter=category, mode="hybrid")
+    results = [
+        {"id": str(p.id), "category": p.payload["category"], "text": p.payload["text"], "score": p.score}
+        for p in points
+    ]
     return {
         "tool": "compare_timeline",
-        "query" : query,
-        "results": [
-            {"text":point.payload["text"], "category": point.payload["category"]}
-            for point in points
-        ]
+        "query": query,
+        "context": " ".join(r["text"] for r in results),
+        "results": results,
     }
 def answer_direct(query:str) ->dict:
     return {

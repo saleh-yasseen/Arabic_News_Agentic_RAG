@@ -56,6 +56,16 @@ GENERATION_PROMPT = """
 
 التقرير الإخباري:
 """
+SUMMARY_PROMPT = """
+أنت محرر أخبار عربي. لخص الموضوع التالي بناءً على عدة مصادر مختلفة، مع إبراز النقاط الرئيسية المشتركة بين المصادر ونقاط الاختلاف إن وجدت.
+
+السياق (من عدة مصادر):
+{context}
+
+السؤال: {query}
+
+قدم ملخصاً منظماً على شكل نقاط رئيسية، وليس مقالاً إخبارياً مفرداً.
+"""
 
 def route_query(state: AgentState) -> dict:
     if state.get("tool_override"):
@@ -80,30 +90,35 @@ TOOL_MAP = {
 }
 
 def execute_tool(state: AgentState) -> dict:
-    tool_fn=TOOL_MAP[state["tool_choice"]]
-    if state["tool_choice"] == "search_news":
-        result = tool_fn(state["query"], mode=state.get("retrieval_mode", "hybrid"),top_k=state.get("top_k",5), category_filter=state.get("category_filter"),use_reranker=state.get("use_reranker", True),min_score=state.get("min_score"))
+    tool_fn = TOOL_MAP[state["tool_choice"]]
+    tool_name = state["tool_choice"]
+    if tool_name == "search_news":
+        result = tool_fn(
+            state["query"], mode=state.get("retrieval_mode", "hybrid"),
+            top_k=state.get("top_k", 5), category_filter=state.get("category_filter"),
+            use_reranker=state.get("use_reranker", True), min_score=state.get("min_score")
+        )
+    elif tool_name == "summarize_topic":
+        result = tool_fn(state["query"], top_k=8, use_reranker=state.get("use_reranker", True))
+    elif tool_name == "compare_timeline":
+        result = tool_fn(state["query"], category=state.get("category_filter"), top_k=10)
     else:
         result = tool_fn(state["query"])
 
-    if "context" in result:
-        context = result["context"]
-        sources =[]
+    context = result.get("context") or " ".join(r["text"] for r in result.get("results", []))
 
-    elif "results" in result:
-        context = " ".join([r["text"] for r in result["results"]])
-        sources = result["results"]
-
-    else:
-        context = ""
-        sources =[]
-    print("execute tool done")
-    return{"context":context, "sources": sources, "comparison": result.get("comparison")}
+    return {
+        "context": context,
+        "sources": result.get("results", []),
+        "comparison": result.get("comparison"),
+    }
 
 
 def generate_response(state: AgentState) -> dict :
     llm = ChatGroq(model=state.get("model", "llama-3.3-70b-versatile"), temperature=state.get("temperature", 0.0))
-    prompt = GENERATION_PROMPT.format(context=state["context"], query=state["query"])
+    tool = state.get("tool_choice")
+    template = SUMMARY_PROMPT if tool == "summarize_topic" else GENERATION_PROMPT
+    prompt = template.format(context=state["context"], query=state["query"])
     result = llm.invoke(prompt)
     print("generation_done")
     return {"response":result.content}
