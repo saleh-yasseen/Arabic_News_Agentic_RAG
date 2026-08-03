@@ -42,7 +42,7 @@ rag_env/
 .ipynb_checkpoints
 
 # Qdrant database
-data/qdrant_db/
+# data/qdrant_db/
 qdrant_storage/
 # OS
 .DS_Store
