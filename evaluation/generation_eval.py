@@ -1,15 +1,16 @@
 import time
 import os
+import json
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import sys
-import json
 import re
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from agent.graph import app as agent_app
+from agent.graph import app as agent_app, call_llm_with_retry
 from langchain_groq import ChatGroq
+from _logging import save_evaluation_run
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "generation.json")
 
@@ -45,9 +46,9 @@ def run_agent(query):
 
 
 def judge(query, context, response):
-    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+    llm = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
     prompt = JUDGE_PROMPT.format(query=query, context=context[:3000], response=response)
-    raw = llm.invoke(prompt).content.strip()
+    raw = call_llm_with_retry(llm, prompt, max_retries=10, initial_delay=10).content.strip()
     cleaned = re.sub(r"^```json|```$", "", raw.strip(), flags=re.MULTILINE).strip()
     try:
         return json.loads(cleaned)
@@ -61,6 +62,7 @@ def run_generation_eval():
         data = json.load(f)
 
     scores = {"correctness": [], "groundedness": [], "completeness": []}
+    query_details = []  # To store details for logging
 
     for item in data:
         context, response = run_agent(item["query"])
@@ -68,13 +70,24 @@ def run_generation_eval():
         for key in scores:
             if result.get(key) is not None:
                 scores[key].append(result[key])
-        time.sleep(2)
+
+        # Store query details for logging
+        query_details.append({
+            "query": item["query"],
+            "context_length": len(context),
+            "response_length": len(response),
+            "judge_scores": result
+        })
+
+        time.sleep(10)
 
     averages = {
         key: round(sum(vals) / len(vals), 2) if vals else None
         for key, vals in scores.items()
     }
-    return {"n": len(data), "averages": averages}
+
+    results = {"n": len(data), "averages": averages}
+    return results, query_details
 
 
 def print_generation_report(results):
@@ -84,5 +97,6 @@ def print_generation_report(results):
 
 
 if __name__ == "__main__":
-    results = run_generation_eval()
+    results, query_details = run_generation_eval()
     print_generation_report(results)
+    save_evaluation_run("generation", results, query_details)

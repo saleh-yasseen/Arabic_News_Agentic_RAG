@@ -4,12 +4,14 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import sys
 import json
 import time
-
+from agent.graph import call_llm_with_retry
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.tools import _retrieve, _rerank, model as dense_model
 from agent.graph import GENERATION_PROMPT
 from langchain_groq import ChatGroq
+from _logging import save_evaluation_run
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "evaluation", "data", "retrieval.json")
 
@@ -28,7 +30,7 @@ def measure_one(query):
     context = " ".join([p.payload["text"] for p in reranked])
     llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
     prompt = GENERATION_PROMPT.format(context=context, query=query)
-    llm.invoke(prompt)
+    call_llm_with_retry(llm, prompt, max_retries=5, initial_delay=10)
     t4 = time.perf_counter()
     time.sleep(2)
 
@@ -50,7 +52,10 @@ def run_latency_eval():
 
     keys = ["embedding_ms", "retrieval_ms", "reranker_ms", "generation_ms", "total_ms"]
     averages = {k: round(sum(r[k] for r in runs) / len(runs), 1) for k in keys}
-    return {"n": len(queries), "averages": averages}
+    query_details = [
+        {"query": q, **run} for q, run in zip(queries, runs)
+    ]
+    return {"n": len(queries), "averages": averages}, query_details
 
 
 def print_latency_report(results):
@@ -64,5 +69,6 @@ def print_latency_report(results):
 
 
 if __name__ == "__main__":
-    results = run_latency_eval()
+    results, query_details = run_latency_eval()
     print_latency_report(results)
+    save_evaluation_run("latency", results, query_details)

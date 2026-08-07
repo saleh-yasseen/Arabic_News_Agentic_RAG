@@ -9,24 +9,43 @@ from routing_eval import run_routing_eval, print_routing_report
 from retrieval_eval import run_retrieval_eval, print_retrieval_report
 from generation_eval import run_generation_eval, print_generation_report
 from latency_eval import run_latency_eval, print_latency_report
+from _logging import save_evaluation_run
 
 
 def run_all():
     print("=" * 60)
-    routing = run_routing_eval()
+    routing, routing_details = run_routing_eval()
     print_routing_report(routing)
+    save_evaluation_run("routing", routing, routing_details)
 
     print("\n" + "=" * 60)
-    retrieval = run_retrieval_eval()
+    retrieval, retrieval_details = run_retrieval_eval()
     print_retrieval_report(retrieval)
+    if retrieval is not None:
+        save_evaluation_run("retrieval", retrieval, retrieval_details)
 
     print("\n" + "=" * 60)
-    generation = run_generation_eval()
+    generation, generation_details = run_generation_eval()
     print_generation_report(generation)
+    save_evaluation_run("generation", generation, generation_details)
 
     print("\n" + "=" * 60)
-    latency = run_latency_eval()
+    latency, latency_details = run_latency_eval()
     print_latency_report(latency)
+    save_evaluation_run("latency", latency, latency_details)
+
+    combined = {
+        "routing": routing,
+        "retrieval": retrieval,
+        "generation": generation,
+        "latency": latency,
+    }
+    save_evaluation_run("all", combined, [
+        {"section": "routing", "details": routing_details},
+        {"section": "retrieval", "details": retrieval_details},
+        {"section": "generation", "details": generation_details},
+        {"section": "latency", "details": latency_details},
+    ])
 
     print("\n" + "=" * 60)
     print("README summary block\n")
