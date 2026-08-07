@@ -32,9 +32,9 @@ collection_name = "arabic_news"
 # QDRANT_PATH = os.path.join(BASE_DIR, "data", "qdrant_db")
 # client = qdrant_client.QdrantClient(path=QDRANT_PATH)
 
-# client = qdrant_client.QdrantClient(host="localhost", port=6333)
+client = qdrant_client.QdrantClient(host="localhost", port=6333)
 
-client = qdrant_client.QdrantClient(path=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "qdrant_db"))
+# client = qdrant_client.QdrantClient(path=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "qdrant_db"))
 
 print("client loaded")
 model = SentenceTransformer("aubmindlab/bert-base-arabertv02")
@@ -134,10 +134,10 @@ def _retrieve_sparse_only(query, top_k=5, category_filter=None):
     query_filter = None
     if category_filter:
         query_filter = models.Filter(
-            must= models.field_condition(
+            must=[models.FieldCondition(
                 key="category",
                 match=models.MatchValue(value=category_filter)
-            )
+            )]
         )
     results = client.query_points(
         collection_name=collection_name,

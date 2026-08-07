@@ -1,9 +1,12 @@
 from typing import TypedDict, Optional
 from langchain_groq import ChatGroq
+import groq
 import json
 from agent.tools import search_news, summarize_topic, compare_timeline, answer_direct
 from dotenv import load_dotenv
 import os
+import time
+import re
 load_dotenv()
 groq_api_key = os.getenv("GROQ_API_KEY")
 
@@ -27,17 +30,50 @@ class AgentState(TypedDict):
 llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
 ROUTING_PROMPT = """
+أنت وكيل توجيه لنظام أخبار عربي. بناءً على سؤال المستخدم، اختر أداة واحدة بالضبط:
 
-you are a routing agent for an arabic news system. given a user query, choose exactly one tool:
+- search_news: سؤال محدد عن حدث إخباري أو خبر بعينه
+- summarize_topic: طلب نظرة عامة أو ملخص واسع عن موضوع إخباري جارٍ
+- compare_timeline: سؤال عن كيف تطور موضوع عبر الزمن، أو مقارنة بين فترتين أو حدثين
+- answer_direct: سؤال معرفة عامة، غير مرتبط بالأخبار الجارية (تعريف، حقيقة تاريخية، مفهوم عام)
 
-- search_news: for specific factual questions about a news event or topic
-- summarize_topic: for broad questions asking for an overview or summary of a topic
-- compare_timeline: for questions asking about how something developed over time, or comparing events
-- answer_direct: for general knowledge questions unrelated to news (definitions, concepts)
+أمثلة:
 
-Query:{query}
+Query: ماذا قال الرئيس في خطابه أمس؟
+Tool: search_news
 
-respond with only one tool name, nothing else.  
+Query: من فاز بالانتخابات البرلمانية في لبنان هذا الأسبوع؟
+Tool: search_news
+
+Query: من هو مخترع الهاتف؟
+Tool: answer_direct
+
+Query: ما هو الذكاء الاصطناعي؟
+Tool: answer_direct
+
+Query: أعطني نظرة عامة عن الوضع في سوريا
+Tool: summarize_topic
+
+Query: لخص لي آخر الأخبار الاقتصادية هذا الشهر
+Tool: summarize_topic
+
+Query: ما هو التضخم الاقتصادي؟
+Tool: answer_direct
+
+Query: كيف تطورت العلاقات الأمريكية الإيرانية عبر السنوات؟
+Tool: compare_timeline
+
+Query: قارن بين الوضع الاقتصادي قبل وبعد الجائحة
+Tool: compare_timeline
+
+Query: ما هي آخر التطورات في الأزمة اليمنية؟
+Tool: search_news
+
+الآن صنّف هذا السؤال:
+
+Query: {query}
+
+أجب باسم الأداة فقط، دون أي نص إضافي.
 """
 
 GENERATION_PROMPT = """
@@ -67,13 +103,36 @@ SUMMARY_PROMPT = """
 قدم ملخصاً منظماً على شكل نقاط رئيسية، وليس مقالاً إخبارياً مفرداً.
 """
 
+def call_llm_with_retry(llm_instance, prompt, max_retries=5, initial_delay=10):
+    delay = initial_delay
+    for attempt in range(max_retries):
+        try:
+            return llm_instance.invoke(prompt)
+        except Exception as e:
+            msg = str(e)
+            if "tokens per day" in msg or "TPD" in msg:
+                match = re.search(r"try again in (\d+)m([\d.]+)s", msg)
+                if match:
+                    wait = int(match.group(1)) * 60 + float(match.group(2))
+                    print(f"  daily token cap hit, waiting {wait:.0f}s (Groq's own estimate)")
+                    time.sleep(wait + 2)
+                    continue
+                print("  daily token cap hit, no wait estimate parsed — stopping retries")
+                raise
+            if "429" in msg and attempt < max_retries - 1:
+                print(f"  rate-limited, waiting {delay}s (attempt {attempt+2}/{max_retries})")
+                time.sleep(delay)
+                delay *= 1.5
+                continue
+            raise
+
 def route_query(state: AgentState) -> dict:
     if state.get("tool_override"):
         return {"tool_choice": state["tool_override"]}
-    llm = ChatGroq(model=state.get("model", "llama-3.3-70b-versatile"), temperature=0)
+    llm = ChatGroq(model=state.get("model", "llama-3.1-8b-instant"), temperature=0)
     prompt = ROUTING_PROMPT.format(query=state["query"])
-    result =llm.invoke(prompt)
-    tool_name =result.content.strip()
+    result = call_llm_with_retry(llm, prompt, max_retries=10, initial_delay=10)
+    tool_name = result.content.strip()
     valid_tools= ["search_news", "summarize_topic", "compare_timeline", "answer_direct"]
     if tool_name not in valid_tools:
         tool_name = "search_news"
@@ -119,7 +178,7 @@ def generate_response(state: AgentState) -> dict :
     tool = state.get("tool_choice")
     template = SUMMARY_PROMPT if tool == "summarize_topic" else GENERATION_PROMPT
     prompt = template.format(context=state["context"], query=state["query"])
-    result = llm.invoke(prompt)
+    result = call_llm_with_retry(llm, prompt, max_retries=10, initial_delay=10)
     print("generation_done")
     return {"response":result.content}
 

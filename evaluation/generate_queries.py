@@ -83,7 +83,7 @@ def generate_retrieval_and_generation_data(per_category=3):
     print("  -> data/generation.json")
 
 
-def generate_routing_data(per_tool=6):
+def generate_routing_data(per_tool=25):
     routing_data = []
     for tool, description in TOOL_DESCRIPTIONS.items():
         prompt = f"""اكتب {per_tool} أسئلة عربية متنوعة وواقعية، كل سؤال منها يطابق هذا الوصف بدقة:
@@ -104,5 +104,5 @@ def generate_routing_data(per_tool=6):
 
 
 if __name__ == "__main__":
-    generate_routing_data(per_tool=6)
-    generate_retrieval_and_generation_data(per_category=3)
+    generate_routing_data(per_tool=25)
+    generate_retrieval_and_generation_data(per_category=10)

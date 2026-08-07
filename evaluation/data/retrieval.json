@@ -1,43 +1,190 @@
 [
   {
-    "query": "من هو الأغنى في قائمة فوربس لاثرياء العالم؟",
+    "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
     "relevant_docs": [
-      "005fa292-b2c4-4feb-6b75-be87c1dacab6"
+      "0093fa4c-11fb-4e22-e309-c875f44fe5b2"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   },
   {
-    "query": "لماذا يُعتبر الأمير محمد بن سلمان خياراً موفقاً؟",
+    "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
     "relevant_docs": [
-      "005f4053-70b9-fd4b-952a-c2985a4ce9d7"
+      "009a8bd5-b80e-1027-0e2f-565ce6743da4"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   },
   {
-    "query": "ما موضوع التحقيق الميداني الذي يعرضه برنامج الشارع المصري على الحدث؟",
+    "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+    "relevant_docs": [
+      "000fd18b-9c76-ff83-4b98-1801b125ffd6"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+    "relevant_docs": [
+      "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+    "relevant_docs": [
+      "0008559a-f7a3-061e-64ec-2ee85107be5b"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+    "relevant_docs": [
+      "002f0e4c-e127-a59f-b4ff-6be473b4355b"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+    "relevant_docs": [
+      "002f1db4-7f73-a65f-2010-e2e7f60cbb00"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+    "relevant_docs": [
+      "00b3b94c-6e5e-022c-6774-050bd914e59d"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+    "relevant_docs": [
+      "00387974-ec38-44ae-6971-0eade809ce55"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+    "relevant_docs": [
+      "00a845c6-8079-1736-387a-5fda5fbcd32c"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
     "relevant_docs": [
       "004db7f6-f85e-15a6-e430-18b7e31da332"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   },
   {
-    "query": "كم عدد الأطفال الذين توفوا خلال العام الماضي؟",
+    "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
     "relevant_docs": [
-      "011ba733-ec3d-7049-1da4-b25e93f379b2"
+      "003b28c8-18d1-2de5-5caf-ef38a9c1664d"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   },
   {
-    "query": "ما هي الفيتامينات التي تساعد البرتقال على تحسين وظائف الدماغ؟",
+    "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+    "relevant_docs": [
+      "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+    "relevant_docs": [
+      "009748a3-3f83-a6c6-ff61-2518b1ff281f"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+    "relevant_docs": [
+      "00260e4d-36e7-5f4d-89de-d23164664a1c"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+    "relevant_docs": [
+      "004aac7b-3ce1-aae2-3d66-90e8844fff7e"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+    "relevant_docs": [
+      "012f8ab7-ca74-d80c-8edc-838857e26bd1"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+    "relevant_docs": [
+      "00040985-d230-f896-c8bf-6629327d90e9"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+    "relevant_docs": [
+      "008f1985-ccf6-337a-5d0c-20bb25bd02eb"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+    "relevant_docs": [
+      "00b7bcba-4e54-82a0-7a66-44f5b064ec22"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+    "relevant_docs": [
+      "00a21b60-e869-666b-59e5-6e18c295f9e5"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+    "relevant_docs": [
+      "012ca318-77bd-5bd0-1d69-365a181f0191"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+    "relevant_docs": [
+      "00f650c6-e53b-91da-4801-2c679a731956"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
     "relevant_docs": [
       "00d8d199-365f-e19f-33f7-6cd1416b39c3"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   },
   {
-    "query": "ما كانت الفئة العمرية للمرضى الذين شملتهم الدراسة؟",
+    "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
     "relevant_docs": [
-      "011061dd-7603-2854-afd2-89b54bf26589"
+      "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+    "relevant_docs": [
+      "00e1a4c3-7892-48df-9317-642953ce4dbd"
+    ],
+    "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
+  },
+  {
+    "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+    "relevant_docs": [
+      "00d2793b-b0f9-e33c-7b33-f2fa046da051"
     ],
     "note": "synthetic — one known-relevant chunk only; treat recall as a lower bound, since a genuinely relevant near-duplicate chunk elsewhere would be scored as a miss"
   }
