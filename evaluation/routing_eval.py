@@ -5,8 +5,10 @@ import sys
 import json
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.graph import route_query
+from _logging import save_evaluation_run
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "routing.json")
 TOOLS = ["search_news", "summarize_topic", "compare_timeline", "answer_direct"]
@@ -26,6 +28,7 @@ def run_routing_eval():
     data = load_data()
     confusion = {t: {t2: 0 for t2 in TOOLS} for t in TOOLS}
     correct = 0
+    query_details = []
 
     for item in data:
         predicted = predict_tool(item["query"])
@@ -35,6 +38,12 @@ def run_routing_eval():
         confusion[expected][predicted] = confusion[expected].get(predicted, 0) + 1
         if predicted == expected:
             correct += 1
+        query_details.append({
+            "query": item["query"],
+            "expected_tool": expected,
+            "predicted_tool": predicted,
+            "correct": predicted == expected,
+        })
 
     overall_accuracy = round(correct / len(data), 4)
 
@@ -51,7 +60,7 @@ def run_routing_eval():
         "per_tool_accuracy": per_tool_accuracy,
         "confusion_matrix": confusion,
         "n": len(data),
-    }
+    }, query_details
 
 
 def print_routing_report(results):
@@ -69,5 +78,6 @@ def print_routing_report(results):
 
 
 if __name__ == "__main__":
-    results = run_routing_eval()
+    results, query_details = run_routing_eval()
     print_routing_report(results)
+    save_evaluation_run("routing", results, query_details)

@@ -3,10 +3,12 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 import sys
 import json
-
+import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.tools import _retrieve, _retrieve_dense_only, _retrieve_sparse_only, _rerank
+from _logging import save_evaluation_run
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "retrieval.json")
 
@@ -63,7 +65,6 @@ def label_dataset():
         else:
             indices = [int(x.strip()) for x in raw.split(",") if x.strip().isdigit()]
             item["relevant_docs"] = [str(candidates[i - 1].id) for i in indices if 1 <= i <= len(candidates)]
-
         save_data(data)
         print(f"  saved {len(item['relevant_docs'])} relevant docs")
 
@@ -75,7 +76,7 @@ def run_retrieval_eval(k5=5, k10=10):
     labeled = [d for d in data if d["relevant_docs"]]
     if not labeled:
         print("No labeled queries found. Run with --label first.")
-        return None
+        return None, []
 
     def dense_ids(q, k):
         return [str(p.id) for p in _retrieve_dense_only(q, top_k=k)]
@@ -99,15 +100,31 @@ def run_retrieval_eval(k5=5, k10=10):
     }
 
     results = {}
+    query_details = []
     for mode_name, fn in modes.items():
         r5s, r10s, p5s, rrs = [], [], [], []
         for item in labeled:
             relevant = item["relevant_docs"]
             ids_10 = fn(item["query"], k10)
-            r5s.append(recall_at_k(ids_10, relevant, k5))
-            r10s.append(recall_at_k(ids_10, relevant, k10))
-            p5s.append(precision_at_k(ids_10, relevant, k5))
-            rrs.append(mrr(ids_10, relevant))
+            r5 = recall_at_k(ids_10, relevant, k5)
+            r10 = recall_at_k(ids_10, relevant, k10)
+            p5 = precision_at_k(ids_10, relevant, k5)
+            rr = mrr(ids_10, relevant)
+            r5s.append(r5)
+            r10s.append(r10)
+            p5s.append(p5)
+            rrs.append(rr)
+            query_details.append({
+                "mode": mode_name,
+                "query": item["query"],
+                "retrieved_ids": ids_10,
+                "relevant_ids": relevant,
+                "recall_at_5": r5,
+                "recall_at_10": r10,
+                "precision_at_5": p5,
+                "mrr": rr,
+            })
+            time.sleep(5)
 
         n = len(labeled)
         results[mode_name] = {
@@ -117,7 +134,7 @@ def run_retrieval_eval(k5=5, k10=10):
             "mrr": round(sum(rrs) / n, 3),
         }
 
-    return {"n_labeled": len(labeled), "modes": results}
+    return {"n_labeled": len(labeled), "modes": results}, query_details
 
 
 def print_retrieval_report(results):
@@ -133,5 +150,7 @@ if __name__ == "__main__":
     if "--label" in sys.argv:
         label_dataset()
     else:
-        results = run_retrieval_eval()
+        results, query_details = run_retrieval_eval()
         print_retrieval_report(results)
+        if results is not None:
+            save_evaluation_run("retrieval", results, query_details)
