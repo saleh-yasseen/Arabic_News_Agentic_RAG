@@ -104,5 +104,5 @@ def generate_routing_data(per_tool=25):
 
 
 if __name__ == "__main__":
-    generate_routing_data(per_tool=25)
+    generate_routing_data(per_tool=20)
     generate_retrieval_and_generation_data(per_category=10)
