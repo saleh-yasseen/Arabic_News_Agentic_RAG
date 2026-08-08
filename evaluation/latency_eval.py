@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from agent.tools import _retrieve, _rerank, model as dense_model
 from agent.graph import GENERATION_PROMPT
 from langchain_groq import ChatGroq
-from _logging import save_evaluation_run
+from _logging import save_evaluation_run, write_summary, current_run_folder
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "evaluation", "data", "retrieval.json")
 
@@ -72,3 +72,5 @@ if __name__ == "__main__":
     results, query_details = run_latency_eval()
     print_latency_report(results)
     save_evaluation_run("latency", results, query_details)
+    _, folder = current_run_folder()
+    write_summary(folder, {"latency": results})

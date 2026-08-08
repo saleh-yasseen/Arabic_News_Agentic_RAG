@@ -8,7 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.tools import _retrieve, _retrieve_dense_only, _retrieve_sparse_only, _rerank
-from _logging import save_evaluation_run
+from _logging import save_evaluation_run, write_summary, current_run_folder
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "retrieval.json")
 
@@ -154,3 +154,5 @@ if __name__ == "__main__":
         print_retrieval_report(results)
         if results is not None:
             save_evaluation_run("retrieval", results, query_details)
+            _, folder = current_run_folder()
+            write_summary(folder, {"retrieval": results})

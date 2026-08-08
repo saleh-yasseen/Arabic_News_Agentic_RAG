@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.graph import app as agent_app, call_llm_with_retry
 from langchain_groq import ChatGroq
-from _logging import save_evaluation_run
+from _logging import save_evaluation_run, write_summary, current_run_folder
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "generation.json")
 
@@ -100,3 +100,5 @@ if __name__ == "__main__":
     results, query_details = run_generation_eval()
     print_generation_report(results)
     save_evaluation_run("generation", results, query_details)
+    _, folder = current_run_folder()
+    write_summary(folder, {"generation": results})

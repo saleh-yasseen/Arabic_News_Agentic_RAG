@@ -8,7 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from agent.graph import route_query
-from _logging import save_evaluation_run
+from _logging import save_evaluation_run, write_summary, current_run_folder
 
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "routing.json")
 TOOLS = ["search_news", "summarize_topic", "compare_timeline", "answer_direct"]
@@ -81,3 +81,5 @@ if __name__ == "__main__":
     results, query_details = run_routing_eval()
     print_routing_report(results)
     save_evaluation_run("routing", results, query_details)
+    _, folder = current_run_folder()
+    write_summary(folder, {"routing": results})
