@@ -1,0 +1,284 @@
+{
+  "eval_type": "generation",
+  "timestamp": "2026-08-07T23:22:56.425741",
+  "results": {
+    "n": 27,
+    "averages": {
+      "correctness": 4.7,
+      "groundedness": 4.85,
+      "completeness": 4.19
+    }
+  },
+  "query_details": [
+    {
+      "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
+      "context_length": 1337,
+      "response_length": 1672,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
+      "context_length": 1340,
+      "response_length": 1314,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+      "context_length": 1488,
+      "response_length": 1307,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+      "context_length": 1465,
+      "response_length": 1491,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+      "context_length": 1311,
+      "response_length": 1422,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+      "context_length": 1313,
+      "response_length": 1457,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+      "context_length": 1369,
+      "response_length": 1313,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+      "context_length": 1463,
+      "response_length": 1489,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+      "context_length": 1293,
+      "response_length": 1497,
+      "judge_scores": {
+        "correctness": 2,
+        "groundedness": 4,
+        "completeness": 3
+      }
+    },
+    {
+      "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+      "context_length": 1360,
+      "response_length": 1471,
+      "judge_scores": {
+        "correctness": 4,
+        "groundedness": 4,
+        "completeness": 3
+      }
+    },
+    {
+      "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
+      "context_length": 2382,
+      "response_length": 485,
+      "judge_scores": {
+        "correctness": 2,
+        "groundedness": 3,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
+      "context_length": 1491,
+      "response_length": 1537,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+      "context_length": 1333,
+      "response_length": 1332,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+      "context_length": 1490,
+      "response_length": 1989,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+      "context_length": 1490,
+      "response_length": 1499,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+      "context_length": 1487,
+      "response_length": 1615,
+      "judge_scores": {
+        "correctness": 4,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+      "context_length": 1493,
+      "response_length": 1548,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+      "context_length": 1494,
+      "response_length": 2056,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+      "context_length": 1490,
+      "response_length": 1495,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+      "context_length": 1438,
+      "response_length": 1565,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+      "context_length": 1482,
+      "response_length": 1383,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+      "context_length": 1490,
+      "response_length": 1251,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+      "context_length": 1443,
+      "response_length": 1552,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
+      "context_length": 1470,
+      "response_length": 1101,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    },
+    {
+      "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
+      "context_length": 1490,
+      "response_length": 1514,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+      "context_length": 1495,
+      "response_length": 1517,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5
+      }
+    },
+    {
+      "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+      "context_length": 1478,
+      "response_length": 1407,
+      "judge_scores": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 4
+      }
+    }
+  ]
+}

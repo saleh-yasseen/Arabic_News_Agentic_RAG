@@ -54,8 +54,8 @@ Thumbs.db
 .env.*.local
 
 # Logs
-*.log
-logs/
+# *.log
+# logs/
 
 # Cache
 .cache/

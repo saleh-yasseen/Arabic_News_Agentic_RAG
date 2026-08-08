@@ -1,0 +1,642 @@
+{
+  "eval_type": "routing",
+  "timestamp": "2026-08-07T20:19:10.117360",
+  "results": {
+    "overall_accuracy": 0.8,
+    "per_tool_accuracy": {
+      "search_news": 0.76,
+      "summarize_topic": 0.52,
+      "compare_timeline": 0.92,
+      "answer_direct": 1.0
+    },
+    "confusion_matrix": {
+      "search_news": {
+        "search_news": 19,
+        "summarize_topic": 5,
+        "compare_timeline": 1,
+        "answer_direct": 0
+      },
+      "summarize_topic": {
+        "search_news": 0,
+        "summarize_topic": 13,
+        "compare_timeline": 1,
+        "answer_direct": 11
+      },
+      "compare_timeline": {
+        "search_news": 0,
+        "summarize_topic": 2,
+        "compare_timeline": 23,
+        "answer_direct": 0
+      },
+      "answer_direct": {
+        "search_news": 0,
+        "summarize_topic": 0,
+        "compare_timeline": 0,
+        "answer_direct": 25
+      }
+    },
+    "n": 100
+  },
+  "query_details": [
+    {
+      "query": "ما هي أسباب الغزو الروسي لأوكرانيا في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي النتائج المترتبة على انسحاب القوات الأمريكية من أفغانستان في عام 2021؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "من هو الفائز بالجائزة النوبل في الأدب لعام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي العواقب الاقتصادية للعقوبات المفروضة على روسيا بعد الغزو الأوكراني؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "كيف استجاب الاتحاد الأوروبي لازدياد أعداد المigrants القادمين إلى أوروبا في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي التطورات الجديدة في محادثات السلام بين إسرائيل وفلسطين في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي عواقب جائحة كورونا على الاقتصاد العالمي في عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "ما هي أهم الإجراءات التي تتخذها حكومات دول الخليج العربي لمواجهة التغير المناخي؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "كم عدد الوفيات الناجمة عن فيروس كورونا في الصين في عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "كيف ساهمت التكنولوجيا في تحسين الاستجابة للكوارث الطبيعية في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي الخلافات الجوهرية بين الصين والولايات المتحدة الأمريكية في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "كيف أثرت حركة BLACK LIVES MATTER على السياسة الأمريكية في عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "compare_timeline",
+      "correct": false
+    },
+    {
+      "query": "ما هي الآثار المترتبة على تصنيع الأسلحة النووية في كوريا الشمالية في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي استراتيجية شركةSpaceX لتوسيع وجودها في الفضاء في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي التغيرات الجديدة في السياسة الخارجية للولايات المتحدة الأمريكية تجاه الشرق الأوسط في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هو موقف المملكة المتحدة من الخروج من الاتحاد الأوروبي بعد عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي الآثار الاقتصادية لاتفاقية التبادل الحر بين الصين والولايات المتحدة الأمريكية في عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "من هو الفائز في الانتخابات الرئاسية الأمريكية لعام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "كيف تتناول الحكومات العالمية قضية التغير المناخي في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "ما هي العلاقات الاقتصادية بين الصين والهند في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي أبرز الإنجازات التي حققتها وكالة ناسا في استكشاف الفضاء في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي النتائج المترتبة على إغلاق المعابر الحدودية بين الولايات المتحدة الأمريكية والمكسيك في عام 2020؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "كيف ساهمت شركة غوغل في تطور التكنولوجيا في مجال الذكاء الاصطناعي في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي عواقب حرب اليمن على الأمن الإقليمي في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهم الإجراءات التي تتخذها المنظمات الدولية لمكافحة الفقر في عام 2022؟",
+      "expected_tool": "search_news",
+      "predicted_tool": "search_news",
+      "correct": true
+    },
+    {
+      "query": "ما هي أسباب وأهداف الثورات العربية الحديثة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور الفن الإسلامي عبر القرون المختلفة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "compare_timeline",
+      "correct": false
+    },
+    {
+      "query": "ما هي أهمية العلوم الطبيعية في حياة الإنسان الحديثة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف تتأثر الصحة النفسية بالضغوطات اليومية",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "ما هي أهم الاكتشافات العلمية في القرن العشرين",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي تأثيرات التغير المناخي على البيئة والبشر",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف يؤثر النشاط البدني على الصحة العامة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "ما هي أهمية التعليم المتواصل في مجال التكنولوجيا",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف تؤثر الثقافات المختلفة على الحضارات القديمة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "ما هي أهمية الأبحاث العلمية في تحسين حياة الإنسان",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "ما هي تأثيرات الإدمان على الصحة النفسية والجسدية",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف تؤثر الفنون التشكيلية على الثقافة الحديثة",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية الحفاظ على التراث الثقافي للأمم",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف يؤثر التلوث البيئي على صحة الإنسان والحيوان",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية الرياضيات في العلم والتكنولوجيا",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف يؤثر التغيير الاجتماعي على الأفراد والمجتمعات",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية النشاط الاقتصادي في تطور الدول",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف تؤثر العلاقات الدولية على السياسات العالمية",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية الأمن السيبراني في العصر الحديث",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف تؤثر الثقافات الشعبية على الأدب والفنون",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية التعليم العالي في تحقيق التطور",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "answer_direct",
+      "correct": false
+    },
+    {
+      "query": "كيف تؤثر التكنولوجيا على التعليم الحديث",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية البحث العلمي في حل المشاكل العالمية",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف تؤثر السياسات العامة على生活 المواطنين",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف تؤثر الصناعات التكنولوجية على الاقتصاد العالمي",
+      "expected_tool": "summarize_topic",
+      "predicted_tool": "summarize_topic",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت أدوات التواصل الاجتماعي عبر الزمن وكيف أثرت على العلاقات الاجتماعية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور النظام التعليمي في بلدك خلال العقود الثلاثة الماضية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي التطورات الرئيسية التي شهدتها تقنية المعلومات خلال القرن الحالي؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت أساليب التسويق مع تطور التكنولوجيا خلال السنوات العشر الماضية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور الفن التشكيلي عبر التاريخ وتأثير الثقافات المختلفة عليه؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهم التغييرات التي حدثت في صناعة السيارات منذ القرن الماضي؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور مفهوم العمل عن بعد منذ بداية جائحة كورونا؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف اختلف الوضع السياسي في بلدك قبل وبعد الاستقلال؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت أساليب الطب التقليدي خلال العصور القديمة حتى الحداثة؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور مفهوم derechos الإنسان عبر القرون؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهم التطورات التي حدثت في مجال علم الفلك خلال القرن الحادي والعشرين؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "كيف تطور مفهوم الترفيه عبر العصور وتأثير التكنولوجيا عليه؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت معايير الجمال عبر الثقافات المختلفة عبر التاريخ؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور النظام الإداري في بلدك منذ الاستقلال حتى الآن؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي التطورات التي حدثت في مجال الطب النفسي خلال القرن العشرين؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور مفهوم العمل التطوعي خلال السنوات العشر الماضية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف اختلفت أساليب التعليم قبل وبعد الثورة التكنولوجية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور مفهوم الأعمال الاجتماعية عبر التاريخ؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي التغييرات التي حدثت في مجال الهندسة المعمارية خلال القرن الماضي؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت أدوات النقل منذ العصور القديمة حتى الآن؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور مفهوم الحفاظ على البيئة خلال العقود الثلاثة الماضية؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تغيرت النظرة إلي حقوق المرأة خلال القرن العشرين؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "كيف تطور النظام الاقتصادي في بلدك منذ الاستقلال حتى الآن؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهم التطورات التي حدثت في مجال الاتصالات خلال القرن الحادي والعشرين؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "summarize_topic",
+      "correct": false
+    },
+    {
+      "query": "كيف تطور مفهوم السياحة والتسلية عبر الزمن؟",
+      "expected_tool": "compare_timeline",
+      "predicted_tool": "compare_timeline",
+      "correct": true
+    },
+    {
+      "query": "ما هو علم الأحياء؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية الغذاء الصحي للجسم البشري؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "من هو مبتكر النظرية النسبية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "كيف تعمل محركات الاحتراق الداخلي؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي الفوائد الصحية للتمارين الرياضية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو الفرق بين الطاقة الكيميائية والطاقة الميكانيكية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي وظائف الجهاز العصبي في الجسم البشري؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "كيف تتشكل السحب في الغلاف الجوي؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أنواع الأحجار الكريمية الشهيرة؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو دور البكتريا في تكسير النفايات العضوية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أنواع الطيور المعروفة بجمال أغانيها؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو مفهوم التطور الطبيعي؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "كيف تتشكل البراكين والجبال النارية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية المحافظة على تنوع البيئة؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو الفرق بين السواحل الرملية والسواحل الصخرية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي وظائف الكبد في الجسم البشري؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "كيف تعمل أنظمة التبريد في المكيفات؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية النوم للصحة العامة؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو الفرق بين الفهارس والقواميس والمعاجم؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أنواع الرياح الشائعة على سطح الأرض؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو دور الأشعة السينية في التشخيص الطبي؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أنواع المعادن النفيسة والمعادن الاقتصادية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو الفرق بين النباتات وعيش她的 والنباتات المزهرة؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هي أهمية حفظ المياه العذبة للبيئة؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    },
+    {
+      "query": "ما هو الفرق بين الأقمار الطبيعية والكواكب الصناعية؟",
+      "expected_tool": "answer_direct",
+      "predicted_tool": "answer_direct",
+      "correct": true
+    }
+  ]
+}

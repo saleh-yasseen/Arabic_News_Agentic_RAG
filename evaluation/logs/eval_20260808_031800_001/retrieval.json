@@ -1,0 +1,2520 @@
+{
+  "eval_type": "retrieval",
+  "run_id": "eval_20260808_031800_001",
+  "timestamp": "2026-08-08T03:18:00.421724",
+  "results": {
+    "n_labeled": 27,
+    "modes": {
+      "Dense": {
+        "recall_at_5": 0.556,
+        "recall_at_10": 0.593,
+        "precision_at_5": 0.111,
+        "mrr": 0.371
+      },
+      "Sparse": {
+        "recall_at_5": 0.63,
+        "recall_at_10": 0.667,
+        "precision_at_5": 0.126,
+        "mrr": 0.535
+      },
+      "Hybrid": {
+        "recall_at_5": 0.741,
+        "recall_at_10": 0.778,
+        "precision_at_5": 0.148,
+        "mrr": 0.559
+      },
+      "Hybrid + Reranker": {
+        "recall_at_5": 0.852,
+        "recall_at_10": 0.852,
+        "precision_at_5": 0.17,
+        "mrr": 0.815
+      }
+    }
+  },
+  "query_details": [
+    {
+      "mode": "Dense",
+      "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
+      "retrieved_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2",
+        "e1ddb597-fc06-81ad-0c6f-197e2b8ec62f",
+        "c9d21a86-b6e9-d44d-f171-fe477ccebef3",
+        "df7735e0-098e-be1c-8738-8efd28655c88",
+        "7866fd99-1d6c-9e34-6b9e-1cac79abc81d",
+        "e8ab7932-b614-8721-7ab4-642df04233ff",
+        "0da389ed-e039-6926-e8de-6dc20f8e2110",
+        "cbba770a-ac8e-d827-dddf-a9b3e7e55f29",
+        "c65f4935-5739-9487-417d-0e337b32e9ac",
+        "cbdf00cc-776e-0ea2-e220-471a636fcea9"
+      ],
+      "relevant_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
+      "retrieved_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4",
+        "f8a97627-592a-cf93-2fd6-fa4c2b50c96d",
+        "a71e0bcb-445f-8f43-c697-fe898200014c",
+        "f83450f0-13cb-4801-5775-09a249eca0fe",
+        "8c44d689-6565-9b0d-ebe4-12e0469f32c4",
+        "323dcbea-b75f-83cb-f745-3ae2f0770765",
+        "19e08464-8b99-5e2d-1dae-eaf8e78c7309",
+        "49d02947-044d-25d1-8e0d-d03a169309be",
+        "bcae5a13-b9cc-0087-1bd4-4d0c1f6f647b",
+        "0846b0d9-671e-4f33-80d0-763476fbb477"
+      ],
+      "relevant_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+      "retrieved_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6",
+        "ef7a8ee0-327d-701e-bb0d-049290c45989",
+        "84481d61-c991-599f-51b9-75f4b033eb44",
+        "1445919d-96a1-2175-3c9b-e116e0ecc6c8",
+        "2c3b6ed2-2db3-18bc-ac38-dbf98ad11092",
+        "6a371697-81f5-102b-72ee-cc2d14399a19",
+        "bfb80683-88a9-39a5-857e-096da9ca4b8d",
+        "bab754df-582f-5fc5-1019-d40a7b5d14cd",
+        "a43f9c37-c7c7-cbe8-f87b-c53a023bdfbe",
+        "e4f70a06-3177-0bbc-5317-65a8980975a5"
+      ],
+      "relevant_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+      "retrieved_ids": [
+        "e28fe494-e24c-4f9e-fd53-0f67f3f0b346",
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86",
+        "36072252-323f-4cba-7b4c-c9a010b47c8d",
+        "9f55eb18-2575-f4a7-86a0-777a54c53362",
+        "96640846-44d7-c645-1af4-28df314c6932",
+        "23b30a13-62ba-5340-0c4f-6b40c474d58e",
+        "b8742e42-d764-60fb-98f1-6656e6ffe6dc",
+        "70622c03-3a1e-5776-cdfc-1db0ac323add",
+        "46532cfd-baaf-5399-ea85-68945f62f112",
+        "983d638f-19e0-8040-fc7b-7c01b6a73263"
+      ],
+      "relevant_ids": [
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Dense",
+      "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+      "retrieved_ids": [
+        "51652980-598d-a59b-0b7f-071b43e49928",
+        "ebbf81f5-d4b8-abc8-64f8-d196d5e7ff10",
+        "1f735cf1-d996-57ce-3355-ac02d1a81de4",
+        "c0530cd1-a159-2aab-ffdb-552441403739",
+        "1d817025-5c1e-7968-514a-9e40a9982d61",
+        "37d646f0-a13d-f874-17a8-b8c7358fb5f7",
+        "e218c824-ff81-520e-dc8f-c0a97665cd0d",
+        "91e29c35-0dba-4b69-180d-8952a63cf2b7",
+        "5b2cbd20-0143-043f-fe3f-70f5759891dd",
+        "49dfbc09-e0b7-1e43-b706-517b3c781182"
+      ],
+      "relevant_ids": [
+        "0008559a-f7a3-061e-64ec-2ee85107be5b"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+      "retrieved_ids": [
+        "a7d7955a-0974-2093-0ff1-bed0fe083a54",
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b",
+        "16e14e1f-2e20-e558-dd8a-765cea7904fc",
+        "0d0d1d4c-527e-0a27-4145-251462999aac",
+        "b1b84f05-6aaf-d2c7-a7ba-d575d30ffd01",
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86",
+        "b0b50c73-9d3d-9412-67d2-6180017db960",
+        "bab754df-582f-5fc5-1019-d40a7b5d14cd",
+        "ef7a8ee0-327d-701e-bb0d-049290c45989",
+        "66d8713d-9c4d-6728-c404-ce9063a5d3f0"
+      ],
+      "relevant_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Dense",
+      "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+      "retrieved_ids": [
+        "e0c2373b-799d-373d-b706-8de492fa9d09",
+        "70158723-3749-85ec-c985-d2a968890618",
+        "02678337-4e92-fbf5-4417-88d81e01dd3e",
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00",
+        "58f4bcd7-db82-719d-a9e6-ef48219b1fd0",
+        "efaeeb84-9ee0-8a2a-0317-94f4afbfacb7",
+        "79a0ec66-937e-6578-2fd7-c5cc6407a04f",
+        "29f2a57d-d2bf-5a42-a0e6-7cd655c99f23",
+        "b36efb5d-e4bc-0ca0-fe83-35c2050ed967",
+        "2202fb84-b884-84ad-903c-381f27a3b476"
+      ],
+      "relevant_ids": [
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.25
+    },
+    {
+      "mode": "Dense",
+      "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+      "retrieved_ids": [
+        "5125d8af-453a-90c3-b405-4cee524b68fc",
+        "00b3b94c-6e5e-022c-6774-050bd914e59d",
+        "03c6e4ac-12b2-d81c-57c1-6f4c054f4fad",
+        "9e7a8cb7-ce3a-965b-4b10-ce64a375c5ac",
+        "48629fa4-69ea-c482-1686-8b81c267d7ae",
+        "d7414596-1144-956c-39c3-6704182e833f",
+        "50e91a80-510e-675f-f0c3-8f6e5d6aa8c0",
+        "7ec3ba91-e702-9de4-b06b-d16eb5d5ce76",
+        "46d0d9b6-540b-3511-c803-29831ca6a046",
+        "ae9a3ba1-f557-149f-fb3c-7f17382c10e7"
+      ],
+      "relevant_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Dense",
+      "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+      "retrieved_ids": [
+        "e6cb74c0-e092-6548-8b0a-564310dcf520",
+        "00387974-ec38-44ae-6971-0eade809ce55",
+        "0f36d2d8-53c9-345b-7e21-9c73fc5b9758",
+        "1eb87803-0839-8fea-4e25-a2a9a7ea5c36",
+        "1e7e35b1-c659-479a-f610-39c6cd10772a",
+        "b7835495-877b-e76c-2c4a-168566e34bdd",
+        "90ee8f5a-dd7b-43cc-8fa8-94cdbe3d51ad",
+        "3d537174-c5c3-e31e-604e-fccda115df1c",
+        "1df76be6-f94a-ea2b-1bc5-940f2c595dad",
+        "4ec20626-67d9-d39f-d716-75e04671f7c2"
+      ],
+      "relevant_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+      "retrieved_ids": [
+        "d36eaf8f-86e2-346b-7e32-c72d82f1feac",
+        "124def3a-016a-2f45-ea24-8f7a1963cc26",
+        "528072ae-153a-4783-6603-d18e5cce2ac7",
+        "8cbaf7ab-ed2d-924d-8cca-81addb516ec3",
+        "260f83fa-3715-7503-9340-97e8434fb173",
+        "4a3a697e-468c-bf4f-b2af-176e33b6e465",
+        "c76b32d8-42db-1ee7-3fa1-287049d6968f",
+        "211ba202-1229-fc9d-0e09-97f8e6b0251b",
+        "dd033e80-2ff0-48e7-6388-7611a0f970f7",
+        "5740bab4-f6e6-7d3f-fb32-3a2cd5aa7813"
+      ],
+      "relevant_ids": [
+        "00a845c6-8079-1736-387a-5fda5fbcd32c"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
+      "retrieved_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332",
+        "74e5e1eb-e78c-531e-47c3-d28c3f2e1044",
+        "6e093952-8019-c46f-8171-b49ac841180a",
+        "8120d603-9917-c4ed-e7c2-f2ba96b775a9",
+        "6520e835-2175-d2d7-6b44-67b515c35dfd",
+        "13b61f3a-031f-1652-6dc8-951fc9cf9869",
+        "1f3d47ad-0ec8-f4a0-4b9a-8b4a4f3e71e8",
+        "464f7b7a-11aa-552e-01a6-4e8925b3c2d6",
+        "3b43eaa8-a04c-c471-4442-19d2cb250fbc",
+        "340abaad-700a-48fa-9756-f5df654e5297"
+      ],
+      "relevant_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
+      "retrieved_ids": [
+        "95929f2f-e82a-f6ee-5ca0-8501bf46d9e8",
+        "996a18c4-39c6-e873-961a-330dafab1e50",
+        "b28faf9a-0d13-ad36-f7da-a460c07c1581",
+        "3daa6a54-3936-c518-3f3a-4e7dee483ba7",
+        "2293d049-bdf5-0e04-65ee-031e40f41e0b",
+        "dda942ef-ceb6-d9a0-2ff8-df9ec265c686",
+        "45d354b7-b029-0ce8-035a-4be7c4ef8fd7",
+        "a08868b4-0474-e6e1-d5e0-f6c0fb309569",
+        "0ea5a981-130d-0852-b9b9-c0ca7b3b7972",
+        "ac97ea7f-5a37-4ce5-0914-dc1003c093b1"
+      ],
+      "relevant_ids": [
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+      "retrieved_ids": [
+        "2ad1af54-4585-f1e1-906b-5989f7c9f585",
+        "556d7f22-c421-6581-cae3-a22e9e4f65a5",
+        "a0251284-6238-e5ef-c565-87ecf1dcc9f0",
+        "857be04b-78db-977c-2e9f-2e23b29925ec",
+        "6aef7597-495a-ffaa-f0e4-a56975d08751",
+        "d23bc0e4-f566-5083-b944-7930b8f94dc0",
+        "af596362-2d4a-1032-7200-bc8d97906a1c",
+        "c76b32d8-42db-1ee7-3fa1-287049d6968f",
+        "9ec14dce-167e-ab6e-93de-9c34fe128b85",
+        "78a1ce49-1bed-6474-41f1-b36b5e85ea7d"
+      ],
+      "relevant_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+      "retrieved_ids": [
+        "85c038a2-ec83-7a75-2b7b-52f6d2bdcb36",
+        "b0b50c73-9d3d-9412-67d2-6180017db960",
+        "66d8713d-9c4d-6728-c404-ce9063a5d3f0",
+        "36072252-323f-4cba-7b4c-c9a010b47c8d",
+        "bab754df-582f-5fc5-1019-d40a7b5d14cd",
+        "9a24565d-9786-f502-2f52-073385ca1c4d",
+        "17558c08-0aa5-926e-df0a-eae8089876f5",
+        "e28fe494-e24c-4f9e-fd53-0f67f3f0b346",
+        "aab369e0-aa73-9e7a-f741-36c8d108938f",
+        "9f55eb18-2575-f4a7-86a0-777a54c53362"
+      ],
+      "relevant_ids": [
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+      "retrieved_ids": [
+        "a7f806fa-6367-764e-7abb-bd65185897c8",
+        "49c3697b-a42f-494d-2765-a83aff5baad1",
+        "00260e4d-36e7-5f4d-89de-d23164664a1c",
+        "b281c196-08a9-0b55-e9a1-d4f5f43525bd",
+        "e8105cd9-8e5e-1bac-71ec-b268858babcd",
+        "00651efe-428e-3088-5ef9-630a6ae2da43",
+        "203d4c8b-2f00-251e-d5f4-f7814437cdfc",
+        "2372eaec-b3a1-427e-7b3d-32f81b0cd6a5",
+        "752a96d7-fbde-c619-066d-0a5ae289b087",
+        "2a244f1f-a748-c0b3-262c-949a6728354d"
+      ],
+      "relevant_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Dense",
+      "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+      "retrieved_ids": [
+        "81273089-3f82-99e9-a001-b6e5609a2941",
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e",
+        "b7835495-877b-e76c-2c4a-168566e34bdd",
+        "81eb8614-32d0-3a14-8a0d-e112803de594",
+        "27f7e018-3358-3f49-ccd3-265a881b6598",
+        "db69498f-fc35-b8f3-0ca6-23e63a5be9b7",
+        "12b611f1-74f0-bd07-d3ab-ec507096df4f",
+        "a8f9ebc0-9e79-d57d-e9e1-6b3ba423f4e4",
+        "87f4f5bb-5c11-90d7-aa99-539235a7cabf",
+        "a038b236-aade-4e58-cc85-1abf6854aaf1"
+      ],
+      "relevant_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+      "retrieved_ids": [
+        "337bd5de-d120-097a-f3cf-b3937c1012d9",
+        "3b43eaa8-a04c-c471-4442-19d2cb250fbc",
+        "9611e730-4886-2f33-e878-90cfdde3a689",
+        "c5bd4903-6ba6-99ec-4f10-570cf1bf1d6d",
+        "a8f1ef39-c545-2119-1a3f-6f657f1e56aa",
+        "4103ab54-8429-9c6f-41a8-d19b39549379",
+        "2d7de09d-0e04-3065-f512-b400bfb3346b",
+        "b3a50767-8065-cbce-9d17-fdcdfeb15306",
+        "37c2d969-25b0-087a-8a8f-d31f1e2b33ea",
+        "4049a91a-0b1d-849d-e6a7-2ff3d6471837"
+      ],
+      "relevant_ids": [
+        "012f8ab7-ca74-d80c-8edc-838857e26bd1"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+      "retrieved_ids": [
+        "49f2c8e6-0ab1-b74f-9d75-28821e7421a5",
+        "f5873070-4b2e-7429-bc16-c0380540d14d",
+        "1f90b055-e9fa-022f-252d-0966bff2a83c",
+        "5dba9da4-f6fe-d877-6719-dba91899d83a",
+        "234cbd45-93a2-86b1-a501-1a30b814744b",
+        "de8d09ed-d99f-797d-05bc-f7c7b714303c",
+        "31714a8d-1253-8e6e-aa4d-080192e199ef",
+        "757aee00-8e95-909b-4530-8cae1018b871",
+        "00040985-d230-f896-c8bf-6629327d90e9",
+        "f57cf2aa-51e1-e80a-7569-8f954c8e77c8"
+      ],
+      "relevant_ids": [
+        "00040985-d230-f896-c8bf-6629327d90e9"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.1111111111111111
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+      "retrieved_ids": [
+        "52b20c40-b119-846d-ba19-22edbc12546e",
+        "5a98fc37-12f5-4886-8ada-d55708c3b6be",
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb",
+        "75ba0dea-822b-6cb7-01bf-0e21a9af7e52",
+        "2dec328c-dd41-c89d-a30d-dca848c4520f",
+        "137598f1-d09c-1021-7ce4-7ded88601f72",
+        "f6d1c40a-1eff-8d35-8c7d-1a81f575efb6",
+        "e92af180-9ebc-b821-3119-b82ac7496a70",
+        "ebc659bd-5b68-7017-a964-3be21a313511",
+        "5cfc4cf6-df15-7ccf-3b47-b5ed23e00c05"
+      ],
+      "relevant_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+      "retrieved_ids": [
+        "1b157829-891e-0131-8a23-03e15c30e754",
+        "b7c435ae-7edc-0223-8ebb-b18e8799ad1b",
+        "c0566ba7-536a-c6d8-4fd9-f4c256c30dec",
+        "5c30740d-b616-bbad-23e4-b7df29b46852",
+        "94428a03-df1d-0879-7085-41c9c3908a64",
+        "3975733c-521a-6327-aaaf-ae6aa8c1f599",
+        "a7d66e4a-cedb-66f7-f0f5-4d744bd3ebfb",
+        "31c79e89-40d0-c51b-7165-a97e57ac3d99",
+        "d93808cb-704d-5fc9-63e9-d491ce346518",
+        "0fcb1edd-0c0e-983d-9089-97a1a7227fab"
+      ],
+      "relevant_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+      "retrieved_ids": [
+        "1eb5f4b6-807e-be4a-0c07-fa49c81728bd",
+        "9b1f5e06-6628-de46-d685-fcb39de5c40e",
+        "75ba0dea-822b-6cb7-01bf-0e21a9af7e52",
+        "5c561feb-e1fe-8d2c-4307-08c29e2bb3b2",
+        "0ab4f9bc-7975-1aef-a9ae-1a053651e470",
+        "3f794419-2ad6-4667-43e4-d4fc4517599a",
+        "ed47f47d-3fa4-8806-da4c-c85fab742536",
+        "27e3157d-e138-a9b6-72f1-ea585857bbb3",
+        "a038b236-aade-4e58-cc85-1abf6854aaf1",
+        "7e6df022-9422-4df6-5a04-d4e79ebc400c"
+      ],
+      "relevant_ids": [
+        "00a21b60-e869-666b-59e5-6e18c295f9e5"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+      "retrieved_ids": [
+        "e15d37d5-7a0e-5f7e-5c6f-731de4b44d84",
+        "f990e63e-f8f0-ed81-ccc2-60f50b544edc",
+        "b7d6c3ab-d78d-06fa-e26c-23664366ba0e",
+        "695b4bd9-2293-ac55-e549-681a75dc6400",
+        "83b52d34-4c54-b6e8-797c-edfe57cf78b4",
+        "72a29d55-960d-d969-90c4-d7755a734863",
+        "687cf32a-420a-7f45-d897-be1efe7b1c57",
+        "678ec984-114a-bc08-205e-29ba017b6ca0",
+        "4d7dd82e-f0a4-b768-4144-e38969c3d585",
+        "a8402cd5-faef-44be-5564-8330c1b995eb"
+      ],
+      "relevant_ids": [
+        "012ca318-77bd-5bd0-1d69-365a181f0191"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+      "retrieved_ids": [
+        "94b53978-9f7b-e245-033f-e3fcd8a9f901",
+        "15bec5f2-8d44-e33d-7a9f-253382ad1080",
+        "ad655d41-18bb-7066-a079-fa536f8f598a",
+        "5f3fc84d-ee3f-6b6b-2209-ddee16442f52",
+        "9611e730-4886-2f33-e878-90cfdde3a689",
+        "066413ad-97ba-bd61-8b55-279c45f78175",
+        "31326969-3e7a-f6dd-104c-36cee530e94a",
+        "c02150c9-f6d9-cad4-e22c-e627ba65741a",
+        "0885c5e5-55d7-37ff-f3b0-2d042a8ef72b",
+        "f6d1c40a-1eff-8d35-8c7d-1a81f575efb6"
+      ],
+      "relevant_ids": [
+        "00f650c6-e53b-91da-4801-2c679a731956"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
+      "retrieved_ids": [
+        "c60f8066-151c-8283-8616-0e811369e4d0",
+        "08461eee-b5b5-ebdc-da3e-0b18c9fa367c",
+        "e27c4089-6cc5-8fcb-5186-90ca2b0cc0c2",
+        "0f04ba14-a46a-d954-5200-b2fc69fbdcd2",
+        "a512566f-c79c-4572-a0d8-52feb7c9192f",
+        "bc6597dc-30c0-adad-a18b-d22c513992f9",
+        "cc4f9982-7407-9a68-2fe9-80073e2f979f",
+        "8a130a59-75f9-241b-35d9-be62cbe14294",
+        "fe630b61-31f3-5f9d-d286-2869b8bef487",
+        "2bfb51d0-df5c-113b-6728-7b0c97776a1b"
+      ],
+      "relevant_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
+      "retrieved_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71",
+        "11f37876-3830-057f-b8c1-47d4624f4d6b",
+        "fe07e4d4-0b83-0a61-e7f0-d6010f4dd072",
+        "ef91cf32-d27b-5170-9ff7-7dca82c67155",
+        "c2797485-c319-292b-6173-264d0166e44f",
+        "b6e1781d-ed3c-77fd-cc23-18c00a5fe617",
+        "08e94cc3-2546-6674-8e70-4881b6dd38aa",
+        "1f3d47ad-0ec8-f4a0-4b9a-8b4a4f3e71e8",
+        "1d8d3e57-7462-27d7-7590-6e949ac0dd3c",
+        "78a34c44-14f3-b91a-1d2a-5ac2115dd305"
+      ],
+      "relevant_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+      "retrieved_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd",
+        "72a29d55-960d-d969-90c4-d7755a734863",
+        "5d4697f6-af1c-464d-cb30-0290e0ff9045",
+        "2d08ddfc-d1aa-23ad-70ab-c5e59a67a617",
+        "5dba9da4-f6fe-d877-6719-dba91899d83a",
+        "a038b236-aade-4e58-cc85-1abf6854aaf1",
+        "5870f547-af09-2e94-c1fb-a8fd3c4fdc2a",
+        "49f2c8e6-0ab1-b74f-9d75-28821e7421a5",
+        "373c5f42-3b7b-134b-b496-690c6bf81688",
+        "6fac59cc-75cf-7786-0582-6555160de99c"
+      ],
+      "relevant_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Dense",
+      "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+      "retrieved_ids": [
+        "8f7e3abf-467d-bc05-37c8-b334245215cf",
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051",
+        "1c8b7a35-044f-952b-e2f7-61e0a95b1bc2",
+        "fbcc8eab-6ee5-3aac-8390-c18305ac2504",
+        "bdac1fed-a253-774c-41d7-eec1935c9792",
+        "19a3bb00-5523-c3a0-5bd1-0c0c49232d2c",
+        "bffe4f6e-1dae-3ea4-0bcb-19ad695983b8",
+        "2519469a-17f8-cb15-3f91-2d1fc4e7b6a0",
+        "39cd2f42-2652-2147-c210-2e9c2c674aeb",
+        "4dc7a8c4-0e7d-e4ed-f8ca-3a7a1865a866"
+      ],
+      "relevant_ids": [
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Sparse",
+      "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
+      "retrieved_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2",
+        "e1ddb597-fc06-81ad-0c6f-197e2b8ec62f",
+        "1369f3b3-b8b6-4a5d-0739-4db8c0fdbee5",
+        "89813a99-307e-ac16-47f1-67908cdc255a",
+        "0bc770c9-1ebe-d735-641d-f08bda962d1f",
+        "07efa5f1-0c44-73e8-3b1d-b54f78d24676",
+        "cb05102a-ad4c-64f7-b44d-b1dbbf555683",
+        "1798becd-69dd-f133-719f-1829d082f3b8",
+        "9ecc48c3-bed4-8f9f-88a6-a589c11225b7",
+        "bde9e60c-8c3e-4292-4f06-4417f2f97f2c"
+      ],
+      "relevant_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
+      "retrieved_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4",
+        "7bddf805-c0ca-86a8-6b7b-3e75ef4d3570",
+        "19e08464-8b99-5e2d-1dae-eaf8e78c7309",
+        "f0d5a23e-030b-b68e-8e8d-abb5d3d0fa7f",
+        "8c44d689-6565-9b0d-ebe4-12e0469f32c4",
+        "48c92f1d-7873-c96f-6e31-7bd51de21b26",
+        "bfc5a93f-9871-851b-b177-f00fbae8cee2",
+        "cf03b9ae-bb49-c222-a54f-1c9adc905ab4",
+        "5be6f52d-69e4-8536-82a0-8ede88d982b8",
+        "dbf3aa26-0770-3cb5-22b6-62cee149e514"
+      ],
+      "relevant_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+      "retrieved_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6",
+        "0f12d8f3-fe72-f2d4-cc05-94e1e3d2c4e4",
+        "e88d1a7e-5d86-e193-febb-d99effeccc87",
+        "6a371697-81f5-102b-72ee-cc2d14399a19",
+        "9e44daeb-5700-e4ae-1365-7cee66c77622",
+        "0cf57a71-31f1-1683-0424-cf03f4e184a8",
+        "4c382134-a096-7f7f-b4b1-50759ae910b1",
+        "02fce18f-8ed7-eb74-562e-baad425b453c",
+        "1b9e1e11-b907-4112-4b81-db971f55a85b",
+        "adf93646-7a35-6197-304a-21fa3ced7a97"
+      ],
+      "relevant_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+      "retrieved_ids": [
+        "965821e7-6ca5-86ee-3af5-6ca7736afd08",
+        "17bd5ab3-a50d-073d-ceaf-2131f4279dad",
+        "73010fa8-41cc-d990-745c-adfed6e7abbe",
+        "74bf9bc9-9fc7-3623-8a70-e64158c140ca",
+        "0dd0f3d1-7503-7ab2-3060-3cb224db20b2",
+        "b13ce51d-fa19-f62d-1b85-217f32362216",
+        "b2404948-d6b7-7d96-1b09-8bf5f9a5c2df",
+        "f3c109df-c40b-94cb-6b77-2f5dfca30fa0",
+        "229b84e1-42fd-dcb4-3710-c6a4fe78d942",
+        "fbd3c6e9-56bb-a5f3-8852-078e62464d2f"
+      ],
+      "relevant_ids": [
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+      "retrieved_ids": [
+        "f47b6035-c208-4b30-bf52-6f3066307eb8",
+        "e201a7c6-9982-297f-9ca2-debac3f4726e",
+        "5b2cbd20-0143-043f-fe3f-70f5759891dd",
+        "804957d9-6982-dd06-e470-364b545900b7",
+        "d419477b-8fd9-9bbe-ac13-73a22f4baf89",
+        "d1da0d36-cffa-841c-1586-63c2f54d7050",
+        "ab21f528-bf95-531d-eaab-4d7073d46a32",
+        "725acee8-3002-7d30-eac5-b54ab29e424b",
+        "987fdda4-38d0-1bbd-6e66-0dec4c8eab39",
+        "43cd6476-4653-27d2-3585-62a6cbb9dfca"
+      ],
+      "relevant_ids": [
+        "0008559a-f7a3-061e-64ec-2ee85107be5b"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+      "retrieved_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b",
+        "a7d7955a-0974-2093-0ff1-bed0fe083a54",
+        "a9c28565-0cc3-1709-bbe2-108173207136",
+        "ffdd584f-96fe-e140-e6d7-08999183de4b",
+        "95aea243-94f4-e831-9135-792c801db547",
+        "ad0b9b78-1ae2-27f3-db25-9d1c69bd33db",
+        "4f51a70a-836f-90a5-e969-d55c73e370d4",
+        "fb03a501-5e82-49e2-944d-f8b070e2e345",
+        "510395a2-4833-b05a-b5d3-95cf3a6a83e4",
+        "e30ce0d3-ee4a-0f5e-613c-edeebab5458c"
+      ],
+      "relevant_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+      "retrieved_ids": [
+        "1046f7f5-638b-3b27-0ac2-ce12cb106e40",
+        "df56b5cb-a50a-68f5-74b2-eb44ad12c823",
+        "b36efb5d-e4bc-0ca0-fe83-35c2050ed967",
+        "737fe363-c773-c391-0d9b-8b01bc57066b",
+        "95082f9c-48ab-04a8-fbc4-ec7896948e57",
+        "f05fd6da-1bf4-e0e1-55dd-cd25a32f3bda",
+        "891033ba-934c-e1f9-3226-fe4100f0b7fe",
+        "13dc0d25-d693-610e-2712-70f775ca0dcd",
+        "48ba01e0-fcea-f1bb-9c61-525882a10f5c",
+        "d9bba2c4-c97c-7dc7-531f-e2dc411f7a97"
+      ],
+      "relevant_ids": [
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+      "retrieved_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d",
+        "03c6e4ac-12b2-d81c-57c1-6f4c054f4fad",
+        "5125d8af-453a-90c3-b405-4cee524b68fc",
+        "d7414596-1144-956c-39c3-6704182e833f",
+        "17c4e45b-01ec-864e-d789-4564d696dd57",
+        "00bf1379-270d-9d4d-1ddd-1f157d938bb7",
+        "ac681214-bef8-2184-37cd-49cdc8836077",
+        "d2334c3d-0f9d-6ef5-308f-f46717c2d9b4",
+        "e273ebc1-1f97-1e0d-b69b-530f9fd8b4a2",
+        "b939a7f4-c374-30c4-44b4-89f4b142b4a8"
+      ],
+      "relevant_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+      "retrieved_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55",
+        "ec596e0b-fa6c-edf0-963b-e535f8844823",
+        "7baa44e3-d0ce-1cca-723a-a92e6ee3f955",
+        "a03fb553-c9a5-da6a-22e7-eeff02676933",
+        "573ad0ad-3ad6-0a85-c13b-67faf6630463",
+        "c7189cf3-a5b3-0ef4-7d50-f5f9595dfa80",
+        "7d40fcf2-5382-0f40-d9ce-2eaff76802df",
+        "1d05636f-f4ba-6099-a45f-4fcde17559c6",
+        "77085f7f-b2bc-6766-df04-f118c6fec066",
+        "e04d1609-913b-4be4-fcf4-a15c904a5eac"
+      ],
+      "relevant_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+      "retrieved_ids": [
+        "5a909fc9-17c5-c59b-c9c7-d29ef99548a1",
+        "86ce9380-6d15-6168-b585-446df0472004",
+        "7f1bd4c9-cdfd-8cb5-0ada-9463842e0c1b",
+        "049b3452-4bbd-61b6-4853-063a10af89b4",
+        "a564d7c3-2d55-5c6d-a4cb-562b05d771b1",
+        "e9880c44-fbf3-5df9-5b92-4e7f12266dac",
+        "2b3140c0-c302-6a21-0223-b20c8ac6de7a",
+        "353a4090-ec93-7beb-f4e0-7718473d953a",
+        "c5ed8a05-9999-d869-bb51-18fab921620b",
+        "ec43498f-d426-35a0-ab11-cc731c53b51c"
+      ],
+      "relevant_ids": [
+        "00a845c6-8079-1736-387a-5fda5fbcd32c"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
+      "retrieved_ids": [
+        "ef6dfb6c-ea8e-8aae-c932-29be9a528372",
+        "6f00139a-26c0-0c60-b8b2-90d23ecff408",
+        "09492376-4442-5ae9-d1cb-eb24c5e097f3",
+        "199ae18d-ca13-2be5-e2d4-171ca7a5557e",
+        "1f30bfc5-dec3-21dd-4368-17fa8935ec22",
+        "37e21e95-ceba-3c40-44b0-1189123c141f",
+        "e67ad4ff-22b5-c47a-2cda-990eb483a3b6",
+        "9be77f4f-9edd-a431-5d41-29b9b5cf2645",
+        "85166df6-c40c-2711-d458-2e181830cde8",
+        "ce9babdd-aebb-9773-bf8d-28aa40072013"
+      ],
+      "relevant_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
+      "retrieved_ids": [
+        "0ea5a981-130d-0852-b9b9-c0ca7b3b7972",
+        "b28faf9a-0d13-ad36-f7da-a460c07c1581",
+        "852db500-0ab3-bc75-da3f-20ab8aa7c260",
+        "3daa6a54-3936-c518-3f3a-4e7dee483ba7",
+        "5388f472-656c-4ba0-b84d-8580b471d7f6",
+        "a08868b4-0474-e6e1-d5e0-f6c0fb309569",
+        "f5b5d742-55f7-9e28-9409-c87186d196a8",
+        "a87505a4-65bb-2f78-dd9f-81098d6009f8",
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d",
+        "25bee2f7-daa0-9843-8ad0-130a6f08d1db"
+      ],
+      "relevant_ids": [
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.1111111111111111
+    },
+    {
+      "mode": "Sparse",
+      "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+      "retrieved_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f",
+        "9741c0af-281a-f57e-2b9c-9da690dca6f8",
+        "ed9c36f4-2066-dded-df23-ec4bea9001c6",
+        "beed3b7a-f08a-8e8c-c1c2-4ebe6ac99f6a",
+        "7a3270f6-c9f1-2a34-c362-f4fb86aedbdf",
+        "434eff4b-17cd-08f1-e049-625790bf252a",
+        "c99b5cea-895d-3180-750a-10795afab129",
+        "22c149ec-d31f-a9bf-6fff-ddfebc828b28",
+        "9a587f78-acc2-74b0-c602-5dbea087106f",
+        "73af70d9-dad1-478e-f718-25b9cab68116"
+      ],
+      "relevant_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+      "retrieved_ids": [
+        "b0b50c73-9d3d-9412-67d2-6180017db960",
+        "b01aa280-1192-f0af-b7e7-83d566564c5c",
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f",
+        "bfe9176a-de0b-7bb8-669e-ce9d48d9e12e",
+        "2cce3386-ab63-2f14-ee83-9262bbd2ff13",
+        "aab369e0-aa73-9e7a-f741-36c8d108938f",
+        "c2ef5a98-da39-7a0f-29fe-62787929fd68",
+        "36072252-323f-4cba-7b4c-c9a010b47c8d",
+        "87004cb4-0545-a9eb-3d7a-6ae36184f0f4",
+        "2d310115-fab2-5069-7bab-89493b7a7c91"
+      ],
+      "relevant_ids": [
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+      "retrieved_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c",
+        "f4334ccd-cbd1-4915-31e9-d4123c22b231",
+        "18d7039a-9000-e179-9b40-285584f34f90",
+        "16cc2c92-b99f-4d4d-fdbc-852581504a71",
+        "db38133a-f88a-bebc-3eba-2ae51370fdc9",
+        "a7db8d08-086b-199c-d1c8-3862a0393437",
+        "c94f06b6-2b4f-0c25-d011-e1ea35dfb2c8",
+        "b9c5365f-eb99-da28-dd11-2ea5102d58fc",
+        "f3bd683e-65cb-f5b5-1f0b-45f1ec7e6813",
+        "c8f6b28a-c459-9b55-f22d-9533d58fa4da"
+      ],
+      "relevant_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+      "retrieved_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e",
+        "aee91042-f86e-51d8-054c-e4d44459928b",
+        "2b3140c0-c302-6a21-0223-b20c8ac6de7a",
+        "09ba1a90-0244-b3e5-ccd8-2150bcc8a972",
+        "a6c60f02-5f81-d2b9-a4b5-dbe32939b5b1",
+        "572c8cfc-0b31-bfd1-c963-83b3bbe4f2e6",
+        "0984ac68-da3c-72c4-c188-f36ee7a5c2f4",
+        "d0bd8aad-ad7d-017f-ce29-ac9a662ce05f",
+        "50db1c07-8c59-ad83-d2b0-592376ff06a5",
+        "dca0e2f6-46b3-cd93-2a27-6e36e68b19f3"
+      ],
+      "relevant_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+      "retrieved_ids": [
+        "2bf175a2-836f-3931-d23e-06e8bab4f886",
+        "a9bd2ba5-5de3-a993-d77b-3fe4d64c8ae7",
+        "1fa8034f-e255-99b3-e05e-25042adeba42",
+        "b07e6426-ba46-ad3c-7a41-6a374d279197",
+        "82c0edc8-a14f-a6d9-5eaf-dff1630041d8",
+        "fb6cb567-c845-8224-ce24-eed0428fc0d8",
+        "ef53b21d-68de-eee6-889f-3b282ea81893",
+        "a6c60f02-5f81-d2b9-a4b5-dbe32939b5b1",
+        "15ec3c0a-6659-ea44-cdd9-da306bb64359",
+        "a8f1ef39-c545-2119-1a3f-6f657f1e56aa"
+      ],
+      "relevant_ids": [
+        "012f8ab7-ca74-d80c-8edc-838857e26bd1"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+      "retrieved_ids": [
+        "aeca263b-b08d-2933-1d01-54df54af1c84",
+        "00040985-d230-f896-c8bf-6629327d90e9",
+        "37adcfce-36c4-077e-7063-2dd0f54af676",
+        "f5873070-4b2e-7429-bc16-c0380540d14d",
+        "49f2c8e6-0ab1-b74f-9d75-28821e7421a5",
+        "716dcd44-e797-b009-75af-ba22d16d544b",
+        "407ae2f7-8ac5-814e-8a26-4820a83dd7ad",
+        "ec6c7a29-4062-9911-e8e2-965636a30f0d",
+        "6201de08-31eb-cc41-4bb1-3c9336d164f2",
+        "c1419e5f-061d-aebc-420f-efe05b521ae0"
+      ],
+      "relevant_ids": [
+        "00040985-d230-f896-c8bf-6629327d90e9"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+      "retrieved_ids": [
+        "969540be-3e9d-5a23-a5cb-e973af0b922b",
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb",
+        "8f518c73-d7c8-0904-a10a-441b6dcf2e7e",
+        "c28da8cc-3b38-0f6b-68a9-d0c8e39e6fa8",
+        "c3b3d27c-7d2d-927e-48d8-01979663fc3f",
+        "e6a28588-9a80-3c2b-ad77-814cb409f25f",
+        "9670a6e0-7efd-a1ea-e878-d2cc2c5fd350",
+        "bac0c272-6f3e-c6f9-971f-c64a675c1d4c",
+        "505e3619-02f5-6307-4f3b-cc4c661b184f",
+        "359df000-bdf0-6aa5-4296-99ca6b83a3fc"
+      ],
+      "relevant_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+      "retrieved_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22",
+        "0fcb1edd-0c0e-983d-9089-97a1a7227fab",
+        "cdf62136-e10f-3f33-6395-6f006b534045",
+        "339074d9-ddd4-a3f4-cef8-8247a06dbd52",
+        "3e2cdd59-8c20-e2b3-5a4a-5523882170c5",
+        "2432ae19-d364-c359-1251-bcba7ba13ee4",
+        "285dfa87-9245-9cef-0b33-b5211b46722c",
+        "741be399-fc84-0fe2-e6b2-d8d9d4d5b9d8",
+        "06f7d1ee-0923-f4fb-f2c8-2a8b11b54c97",
+        "9931928c-99b3-1c95-1caa-7baf3c446a78"
+      ],
+      "relevant_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+      "retrieved_ids": [
+        "5a909fc9-17c5-c59b-c9c7-d29ef99548a1",
+        "a1ecd149-fbf5-2860-cd2d-a7b84e6777de",
+        "7f1bd4c9-cdfd-8cb5-0ada-9463842e0c1b",
+        "eaf3fb2e-5389-2d1c-346f-24841e6cc5d3",
+        "6e9d60e3-9ab2-d7b7-9bde-656685196e22",
+        "3923b5dd-178e-a197-99c5-b3e0a2b8f1f7",
+        "de4dd94b-0ce9-954a-ee62-3a96fd2de24b",
+        "1c9249c8-5bca-119b-c7c1-e5d783d753c6",
+        "049b3452-4bbd-61b6-4853-063a10af89b4",
+        "9d3b35da-84c4-dade-d192-07827af4d8d1"
+      ],
+      "relevant_ids": [
+        "00a21b60-e869-666b-59e5-6e18c295f9e5"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+      "retrieved_ids": [
+        "4160c22e-a951-1188-2304-705129593b2e",
+        "85166df6-c40c-2711-d458-2e181830cde8",
+        "17123547-f82d-3740-afc0-c678b427e3c8",
+        "5ba480ec-a2ff-902e-424e-caa0d1f9b460",
+        "75c72664-310f-1e3e-4d4c-7376bcf60813",
+        "d0bd8aad-ad7d-017f-ce29-ac9a662ce05f",
+        "ef6dfb6c-ea8e-8aae-c932-29be9a528372",
+        "4d92506e-caed-299e-4075-e2dad593616c",
+        "46feb0b2-e00d-4369-9918-1aec05121bd4",
+        "4bb8086f-ac07-5ab8-df3a-b5e04b8b44ac"
+      ],
+      "relevant_ids": [
+        "012ca318-77bd-5bd0-1d69-365a181f0191"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+      "retrieved_ids": [
+        "9b7874a9-aaa7-bf3f-3ef7-35d02104b9ed",
+        "00f650c6-e53b-91da-4801-2c679a731956",
+        "91891b21-08eb-7c94-1bb1-1b7a73ca6e50",
+        "b987478e-98d0-3c8b-2de3-a0d398d437ad",
+        "337bd5de-d120-097a-f3cf-b3937c1012d9",
+        "88cdaf8c-a3c3-b8f0-b3c6-497da240e2b2",
+        "0888bb67-4fcb-75d6-e2d4-63558e78eda5",
+        "44c620f8-676b-a39d-2a42-722262c47bc7",
+        "f43b0847-6148-ac9a-7338-c964a2dfa5b6",
+        "d242d62c-7590-3451-a0ff-9333cfaedd20"
+      ],
+      "relevant_ids": [
+        "00f650c6-e53b-91da-4801-2c679a731956"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
+      "retrieved_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3",
+        "5465cf6b-d31e-b46a-c357-4f5ccdbed8be",
+        "ad175beb-6518-19a7-273a-6f225736c6e5",
+        "c60f8066-151c-8283-8616-0e811369e4d0",
+        "6a0c87fe-b783-28eb-30e2-959c50a3fca9",
+        "98f85faf-0933-1d4a-72c4-46d1e411be0f",
+        "ef4b3ace-a57b-ad71-132b-116aae6e338d",
+        "d616d41f-981d-3bdb-eedf-0792dc60a340",
+        "7f0ea10a-15a3-73a8-70b7-0034877f7213",
+        "0888bb67-4fcb-75d6-e2d4-63558e78eda5"
+      ],
+      "relevant_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
+      "retrieved_ids": [
+        "cb70a472-d879-77e0-75d3-b501c752d9cb",
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71",
+        "ba40932b-11b0-6dfb-ca4a-cce7ddf16689",
+        "3e42629b-ca7e-4c8a-5000-6abdb2707720",
+        "ef6dfb6c-ea8e-8aae-c932-29be9a528372",
+        "66f05394-5efb-e8ce-3e8f-df2199a00584",
+        "6d666a8b-ab48-a800-cd4b-00a60e78f139",
+        "7d8ded03-4151-d5a3-49ac-6155b1e03ba0",
+        "1d8d3e57-7462-27d7-7590-6e949ac0dd3c",
+        "0a63cf65-87ae-f8de-f677-c5391cc162e0"
+      ],
+      "relevant_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+      "retrieved_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd",
+        "ff1531fe-38d7-338c-ad44-95e3aa73184c",
+        "71886d02-5634-a460-fc6d-031e911224cb",
+        "0885c5e5-55d7-37ff-f3b0-2d042a8ef72b",
+        "68f63413-08e2-120c-8efb-6c5f7db5c270",
+        "5ea07ced-e4dc-c820-eae2-ef416ecc89ac",
+        "0c232e18-ed63-6081-c87b-cd14a2a4a1bd",
+        "68165868-acd0-d269-c3e7-ea134c5cd54f",
+        "85166df6-c40c-2711-d458-2e181830cde8",
+        "09daf485-d85d-d244-b43c-a401747a3f3b"
+      ],
+      "relevant_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Sparse",
+      "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+      "retrieved_ids": [
+        "91bae68f-d749-b233-f88e-629f5c7196eb",
+        "255324ca-53be-44ca-d03c-53d9146df232",
+        "f1c9971f-4dd8-b16f-48ce-055bf98f63a8",
+        "ff452e90-d423-e042-14b9-19422efc91af",
+        "1fd8bc33-7075-131a-072d-62d0b2438ec0",
+        "ad404350-33ab-49f0-7499-1ff65e23a14a",
+        "198f25a5-5139-b6ac-fb29-80c7f3ddafcd",
+        "27f07cbb-3980-fdac-b2a3-c27726dcbf18",
+        "90fe5923-64af-47e8-9115-011406e9a72f",
+        "8e656e65-2518-36d4-6804-d30429e9d73a"
+      ],
+      "relevant_ids": [
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
+      "retrieved_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2",
+        "e1ddb597-fc06-81ad-0c6f-197e2b8ec62f",
+        "1369f3b3-b8b6-4a5d-0739-4db8c0fdbee5",
+        "c9d21a86-b6e9-d44d-f171-fe477ccebef3",
+        "89813a99-307e-ac16-47f1-67908cdc255a",
+        "df7735e0-098e-be1c-8738-8efd28655c88",
+        "0bc770c9-1ebe-d735-641d-f08bda962d1f",
+        "7866fd99-1d6c-9e34-6b9e-1cac79abc81d",
+        "e8ab7932-b614-8721-7ab4-642df04233ff",
+        "07efa5f1-0c44-73e8-3b1d-b54f78d24676"
+      ],
+      "relevant_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
+      "retrieved_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4",
+        "19e08464-8b99-5e2d-1dae-eaf8e78c7309",
+        "8c44d689-6565-9b0d-ebe4-12e0469f32c4",
+        "f8a97627-592a-cf93-2fd6-fa4c2b50c96d",
+        "7bddf805-c0ca-86a8-6b7b-3e75ef4d3570",
+        "a71e0bcb-445f-8f43-c697-fe898200014c",
+        "f0d5a23e-030b-b68e-8e8d-abb5d3d0fa7f",
+        "f83450f0-13cb-4801-5775-09a249eca0fe",
+        "eca87427-af25-66c3-461c-65a6d7bbf4e3",
+        "323dcbea-b75f-83cb-f745-3ae2f0770765"
+      ],
+      "relevant_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+      "retrieved_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6",
+        "6a371697-81f5-102b-72ee-cc2d14399a19",
+        "ef7a8ee0-327d-701e-bb0d-049290c45989",
+        "0f12d8f3-fe72-f2d4-cc05-94e1e3d2c4e4",
+        "e88d1a7e-5d86-e193-febb-d99effeccc87",
+        "84481d61-c991-599f-51b9-75f4b033eb44",
+        "1445919d-96a1-2175-3c9b-e116e0ecc6c8",
+        "2c3b6ed2-2db3-18bc-ac38-dbf98ad11092",
+        "9e44daeb-5700-e4ae-1365-7cee66c77622",
+        "0cf57a71-31f1-1683-0424-cf03f4e184a8"
+      ],
+      "relevant_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+      "retrieved_ids": [
+        "e28fe494-e24c-4f9e-fd53-0f67f3f0b346",
+        "965821e7-6ca5-86ee-3af5-6ca7736afd08",
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86",
+        "17bd5ab3-a50d-073d-ceaf-2131f4279dad",
+        "73010fa8-41cc-d990-745c-adfed6e7abbe",
+        "36072252-323f-4cba-7b4c-c9a010b47c8d",
+        "96640846-44d7-c645-1af4-28df314c6932",
+        "23b30a13-62ba-5340-0c4f-6b40c474d58e",
+        "74bf9bc9-9fc7-3623-8a70-e64158c140ca",
+        "9f55eb18-2575-f4a7-86a0-777a54c53362"
+      ],
+      "relevant_ids": [
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Hybrid",
+      "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+      "retrieved_ids": [
+        "51652980-598d-a59b-0b7f-071b43e49928",
+        "f47b6035-c208-4b30-bf52-6f3066307eb8",
+        "5b2cbd20-0143-043f-fe3f-70f5759891dd",
+        "ebbf81f5-d4b8-abc8-64f8-d196d5e7ff10",
+        "e201a7c6-9982-297f-9ca2-debac3f4726e",
+        "1f735cf1-d996-57ce-3355-ac02d1a81de4",
+        "804957d9-6982-dd06-e470-364b545900b7",
+        "c0530cd1-a159-2aab-ffdb-552441403739",
+        "ab21f528-bf95-531d-eaab-4d7073d46a32",
+        "d419477b-8fd9-9bbe-ac13-73a22f4baf89"
+      ],
+      "relevant_ids": [
+        "0008559a-f7a3-061e-64ec-2ee85107be5b"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+      "retrieved_ids": [
+        "a7d7955a-0974-2093-0ff1-bed0fe083a54",
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b",
+        "a9c28565-0cc3-1709-bbe2-108173207136",
+        "16e14e1f-2e20-e558-dd8a-765cea7904fc",
+        "b0b50c73-9d3d-9412-67d2-6180017db960",
+        "ffdd584f-96fe-e140-e6d7-08999183de4b",
+        "0d0d1d4c-527e-0a27-4145-251462999aac",
+        "b1b84f05-6aaf-d2c7-a7ba-d575d30ffd01",
+        "95aea243-94f4-e831-9135-792c801db547",
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+      ],
+      "relevant_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+      "retrieved_ids": [
+        "e0c2373b-799d-373d-b706-8de492fa9d09",
+        "1046f7f5-638b-3b27-0ac2-ce12cb106e40",
+        "b36efb5d-e4bc-0ca0-fe83-35c2050ed967",
+        "df56b5cb-a50a-68f5-74b2-eb44ad12c823",
+        "70158723-3749-85ec-c985-d2a968890618",
+        "02678337-4e92-fbf5-4417-88d81e01dd3e",
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00",
+        "737fe363-c773-c391-0d9b-8b01bc57066b",
+        "58f4bcd7-db82-719d-a9e6-ef48219b1fd0",
+        "95082f9c-48ab-04a8-fbc4-ec7896948e57"
+      ],
+      "relevant_ids": [
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.14285714285714285
+    },
+    {
+      "mode": "Hybrid",
+      "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+      "retrieved_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d",
+        "5125d8af-453a-90c3-b405-4cee524b68fc",
+        "03c6e4ac-12b2-d81c-57c1-6f4c054f4fad",
+        "d7414596-1144-956c-39c3-6704182e833f",
+        "9e7a8cb7-ce3a-965b-4b10-ce64a375c5ac",
+        "46d0d9b6-540b-3511-c803-29831ca6a046",
+        "48629fa4-69ea-c482-1686-8b81c267d7ae",
+        "17c4e45b-01ec-864e-d789-4564d696dd57",
+        "00bf1379-270d-9d4d-1ddd-1f157d938bb7",
+        "ac681214-bef8-2184-37cd-49cdc8836077"
+      ],
+      "relevant_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+      "retrieved_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55",
+        "e6cb74c0-e092-6548-8b0a-564310dcf520",
+        "ec596e0b-fa6c-edf0-963b-e535f8844823",
+        "7baa44e3-d0ce-1cca-723a-a92e6ee3f955",
+        "0f36d2d8-53c9-345b-7e21-9c73fc5b9758",
+        "a03fb553-c9a5-da6a-22e7-eeff02676933",
+        "1eb87803-0839-8fea-4e25-a2a9a7ea5c36",
+        "1e7e35b1-c659-479a-f610-39c6cd10772a",
+        "573ad0ad-3ad6-0a85-c13b-67faf6630463",
+        "c7189cf3-a5b3-0ef4-7d50-f5f9595dfa80"
+      ],
+      "relevant_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+      "retrieved_ids": [
+        "5a909fc9-17c5-c59b-c9c7-d29ef99548a1",
+        "d36eaf8f-86e2-346b-7e32-c72d82f1feac",
+        "124def3a-016a-2f45-ea24-8f7a1963cc26",
+        "86ce9380-6d15-6168-b585-446df0472004",
+        "7f1bd4c9-cdfd-8cb5-0ada-9463842e0c1b",
+        "528072ae-153a-4783-6603-d18e5cce2ac7",
+        "8cbaf7ab-ed2d-924d-8cca-81addb516ec3",
+        "049b3452-4bbd-61b6-4853-063a10af89b4",
+        "a564d7c3-2d55-5c6d-a4cb-562b05d771b1",
+        "260f83fa-3715-7503-9340-97e8434fb173"
+      ],
+      "relevant_ids": [
+        "00a845c6-8079-1736-387a-5fda5fbcd32c"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
+      "retrieved_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332",
+        "ef6dfb6c-ea8e-8aae-c932-29be9a528372",
+        "74e5e1eb-e78c-531e-47c3-d28c3f2e1044",
+        "6f00139a-26c0-0c60-b8b2-90d23ecff408",
+        "6e093952-8019-c46f-8171-b49ac841180a",
+        "09492376-4442-5ae9-d1cb-eb24c5e097f3",
+        "8120d603-9917-c4ed-e7c2-f2ba96b775a9",
+        "199ae18d-ca13-2be5-e2d4-171ca7a5557e",
+        "6520e835-2175-d2d7-6b44-67b515c35dfd",
+        "1f30bfc5-dec3-21dd-4368-17fa8935ec22"
+      ],
+      "relevant_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
+      "retrieved_ids": [
+        "0ea5a981-130d-0852-b9b9-c0ca7b3b7972",
+        "b28faf9a-0d13-ad36-f7da-a460c07c1581",
+        "95929f2f-e82a-f6ee-5ca0-8501bf46d9e8",
+        "3daa6a54-3936-c518-3f3a-4e7dee483ba7",
+        "996a18c4-39c6-e873-961a-330dafab1e50",
+        "a08868b4-0474-e6e1-d5e0-f6c0fb309569",
+        "852db500-0ab3-bc75-da3f-20ab8aa7c260",
+        "f5b5d742-55f7-9e28-9409-c87186d196a8",
+        "5388f472-656c-4ba0-b84d-8580b471d7f6",
+        "2293d049-bdf5-0e04-65ee-031e40f41e0b"
+      ],
+      "relevant_ids": [
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+      "retrieved_ids": [
+        "2ad1af54-4585-f1e1-906b-5989f7c9f585",
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f",
+        "556d7f22-c421-6581-cae3-a22e9e4f65a5",
+        "9741c0af-281a-f57e-2b9c-9da690dca6f8",
+        "ed9c36f4-2066-dded-df23-ec4bea9001c6",
+        "a0251284-6238-e5ef-c565-87ecf1dcc9f0",
+        "857be04b-78db-977c-2e9f-2e23b29925ec",
+        "beed3b7a-f08a-8e8c-c1c2-4ebe6ac99f6a",
+        "6aef7597-495a-ffaa-f0e4-a56975d08751",
+        "7a3270f6-c9f1-2a34-c362-f4fb86aedbdf"
+      ],
+      "relevant_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+      "retrieved_ids": [
+        "b0b50c73-9d3d-9412-67d2-6180017db960",
+        "85c038a2-ec83-7a75-2b7b-52f6d2bdcb36",
+        "b01aa280-1192-f0af-b7e7-83d566564c5c",
+        "36072252-323f-4cba-7b4c-c9a010b47c8d",
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f",
+        "66d8713d-9c4d-6728-c404-ce9063a5d3f0",
+        "aab369e0-aa73-9e7a-f741-36c8d108938f",
+        "bfe9176a-de0b-7bb8-669e-ce9d48d9e12e",
+        "17558c08-0aa5-926e-df0a-eae8089876f5",
+        "c2ef5a98-da39-7a0f-29fe-62787929fd68"
+      ],
+      "relevant_ids": [
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.2
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+      "retrieved_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c",
+        "a7f806fa-6367-764e-7abb-bd65185897c8",
+        "f4334ccd-cbd1-4915-31e9-d4123c22b231",
+        "49c3697b-a42f-494d-2765-a83aff5baad1",
+        "18d7039a-9000-e179-9b40-285584f34f90",
+        "16cc2c92-b99f-4d4d-fdbc-852581504a71",
+        "b281c196-08a9-0b55-e9a1-d4f5f43525bd",
+        "e8105cd9-8e5e-1bac-71ec-b268858babcd",
+        "db38133a-f88a-bebc-3eba-2ae51370fdc9",
+        "c94f06b6-2b4f-0c25-d011-e1ea35dfb2c8"
+      ],
+      "relevant_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+      "retrieved_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e",
+        "81273089-3f82-99e9-a001-b6e5609a2941",
+        "2b3140c0-c302-6a21-0223-b20c8ac6de7a",
+        "aee91042-f86e-51d8-054c-e4d44459928b",
+        "b7835495-877b-e76c-2c4a-168566e34bdd",
+        "81eb8614-32d0-3a14-8a0d-e112803de594",
+        "09ba1a90-0244-b3e5-ccd8-2150bcc8a972",
+        "27f7e018-3358-3f49-ccd3-265a881b6598",
+        "a6c60f02-5f81-d2b9-a4b5-dbe32939b5b1",
+        "db69498f-fc35-b8f3-0ca6-23e63a5be9b7"
+      ],
+      "relevant_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+      "retrieved_ids": [
+        "337bd5de-d120-097a-f3cf-b3937c1012d9",
+        "2bf175a2-836f-3931-d23e-06e8bab4f886",
+        "3b43eaa8-a04c-c471-4442-19d2cb250fbc",
+        "a9bd2ba5-5de3-a993-d77b-3fe4d64c8ae7",
+        "a8f1ef39-c545-2119-1a3f-6f657f1e56aa",
+        "1fa8034f-e255-99b3-e05e-25042adeba42",
+        "9611e730-4886-2f33-e878-90cfdde3a689",
+        "b07e6426-ba46-ad3c-7a41-6a374d279197",
+        "c5bd4903-6ba6-99ec-4f10-570cf1bf1d6d",
+        "82c0edc8-a14f-a6d9-5eaf-dff1630041d8"
+      ],
+      "relevant_ids": [
+        "012f8ab7-ca74-d80c-8edc-838857e26bd1"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+      "retrieved_ids": [
+        "49f2c8e6-0ab1-b74f-9d75-28821e7421a5",
+        "f5873070-4b2e-7429-bc16-c0380540d14d",
+        "aeca263b-b08d-2933-1d01-54df54af1c84",
+        "00040985-d230-f896-c8bf-6629327d90e9",
+        "1f90b055-e9fa-022f-252d-0966bff2a83c",
+        "37adcfce-36c4-077e-7063-2dd0f54af676",
+        "5dba9da4-f6fe-d877-6719-dba91899d83a",
+        "234cbd45-93a2-86b1-a501-1a30b814744b",
+        "de8d09ed-d99f-797d-05bc-f7c7b714303c",
+        "716dcd44-e797-b009-75af-ba22d16d544b"
+      ],
+      "relevant_ids": [
+        "00040985-d230-f896-c8bf-6629327d90e9"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.25
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+      "retrieved_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb",
+        "52b20c40-b119-846d-ba19-22edbc12546e",
+        "969540be-3e9d-5a23-a5cb-e973af0b922b",
+        "5a98fc37-12f5-4886-8ada-d55708c3b6be",
+        "8f518c73-d7c8-0904-a10a-441b6dcf2e7e",
+        "75ba0dea-822b-6cb7-01bf-0e21a9af7e52",
+        "c28da8cc-3b38-0f6b-68a9-d0c8e39e6fa8",
+        "2dec328c-dd41-c89d-a30d-dca848c4520f",
+        "c3b3d27c-7d2d-927e-48d8-01979663fc3f",
+        "e6a28588-9a80-3c2b-ad77-814cb409f25f"
+      ],
+      "relevant_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+      "retrieved_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22",
+        "1b157829-891e-0131-8a23-03e15c30e754",
+        "0fcb1edd-0c0e-983d-9089-97a1a7227fab",
+        "b7c435ae-7edc-0223-8ebb-b18e8799ad1b",
+        "339074d9-ddd4-a3f4-cef8-8247a06dbd52",
+        "cdf62136-e10f-3f33-6395-6f006b534045",
+        "c0566ba7-536a-c6d8-4fd9-f4c256c30dec",
+        "5c30740d-b616-bbad-23e4-b7df29b46852",
+        "3975733c-521a-6327-aaaf-ae6aa8c1f599",
+        "3e2cdd59-8c20-e2b3-5a4a-5523882170c5"
+      ],
+      "relevant_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+      "retrieved_ids": [
+        "5a909fc9-17c5-c59b-c9c7-d29ef99548a1",
+        "1eb5f4b6-807e-be4a-0c07-fa49c81728bd",
+        "a1ecd149-fbf5-2860-cd2d-a7b84e6777de",
+        "9b1f5e06-6628-de46-d685-fcb39de5c40e",
+        "75ba0dea-822b-6cb7-01bf-0e21a9af7e52",
+        "7f1bd4c9-cdfd-8cb5-0ada-9463842e0c1b",
+        "eaf3fb2e-5389-2d1c-346f-24841e6cc5d3",
+        "5c561feb-e1fe-8d2c-4307-08c29e2bb3b2",
+        "0ab4f9bc-7975-1aef-a9ae-1a053651e470",
+        "6e9d60e3-9ab2-d7b7-9bde-656685196e22"
+      ],
+      "relevant_ids": [
+        "00a21b60-e869-666b-59e5-6e18c295f9e5"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+      "retrieved_ids": [
+        "e15d37d5-7a0e-5f7e-5c6f-731de4b44d84",
+        "4160c22e-a951-1188-2304-705129593b2e",
+        "f990e63e-f8f0-ed81-ccc2-60f50b544edc",
+        "85166df6-c40c-2711-d458-2e181830cde8",
+        "17123547-f82d-3740-afc0-c678b427e3c8",
+        "b7d6c3ab-d78d-06fa-e26c-23664366ba0e",
+        "695b4bd9-2293-ac55-e549-681a75dc6400",
+        "5ba480ec-a2ff-902e-424e-caa0d1f9b460",
+        "83b52d34-4c54-b6e8-797c-edfe57cf78b4",
+        "75c72664-310f-1e3e-4d4c-7376bcf60813"
+      ],
+      "relevant_ids": [
+        "012ca318-77bd-5bd0-1d69-365a181f0191"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+      "retrieved_ids": [
+        "9b7874a9-aaa7-bf3f-3ef7-35d02104b9ed",
+        "94b53978-9f7b-e245-033f-e3fcd8a9f901",
+        "00f650c6-e53b-91da-4801-2c679a731956",
+        "15bec5f2-8d44-e33d-7a9f-253382ad1080",
+        "91891b21-08eb-7c94-1bb1-1b7a73ca6e50",
+        "ad655d41-18bb-7066-a079-fa536f8f598a",
+        "337bd5de-d120-097a-f3cf-b3937c1012d9",
+        "5f3fc84d-ee3f-6b6b-2209-ddee16442f52",
+        "b987478e-98d0-3c8b-2de3-a0d398d437ad",
+        "9611e730-4886-2f33-e878-90cfdde3a689"
+      ],
+      "relevant_ids": [
+        "00f650c6-e53b-91da-4801-2c679a731956"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
+      "retrieved_ids": [
+        "c60f8066-151c-8283-8616-0e811369e4d0",
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3",
+        "5465cf6b-d31e-b46a-c357-4f5ccdbed8be",
+        "08461eee-b5b5-ebdc-da3e-0b18c9fa367c",
+        "ad175beb-6518-19a7-273a-6f225736c6e5",
+        "e27c4089-6cc5-8fcb-5186-90ca2b0cc0c2",
+        "0f04ba14-a46a-d954-5200-b2fc69fbdcd2",
+        "a512566f-c79c-4572-a0d8-52feb7c9192f",
+        "6a0c87fe-b783-28eb-30e2-959c50a3fca9",
+        "98f85faf-0933-1d4a-72c4-46d1e411be0f"
+      ],
+      "relevant_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
+      "retrieved_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71",
+        "cb70a472-d879-77e0-75d3-b501c752d9cb",
+        "11f37876-3830-057f-b8c1-47d4624f4d6b",
+        "ba40932b-11b0-6dfb-ca4a-cce7ddf16689",
+        "fe07e4d4-0b83-0a61-e7f0-d6010f4dd072",
+        "ef91cf32-d27b-5170-9ff7-7dca82c67155",
+        "1d8d3e57-7462-27d7-7590-6e949ac0dd3c",
+        "3e42629b-ca7e-4c8a-5000-6abdb2707720",
+        "ef6dfb6c-ea8e-8aae-c932-29be9a528372",
+        "c2797485-c319-292b-6173-264d0166e44f"
+      ],
+      "relevant_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+      "retrieved_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd",
+        "ff1531fe-38d7-338c-ad44-95e3aa73184c",
+        "72a29d55-960d-d969-90c4-d7755a734863",
+        "71886d02-5634-a460-fc6d-031e911224cb",
+        "5d4697f6-af1c-464d-cb30-0290e0ff9045",
+        "5ea07ced-e4dc-c820-eae2-ef416ecc89ac",
+        "0885c5e5-55d7-37ff-f3b0-2d042a8ef72b",
+        "2d08ddfc-d1aa-23ad-70ab-c5e59a67a617",
+        "5dba9da4-f6fe-d877-6719-dba91899d83a",
+        "68f63413-08e2-120c-8efb-6c5f7db5c270"
+      ],
+      "relevant_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid",
+      "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+      "retrieved_ids": [
+        "8f7e3abf-467d-bc05-37c8-b334245215cf",
+        "91bae68f-d749-b233-f88e-629f5c7196eb",
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051",
+        "255324ca-53be-44ca-d03c-53d9146df232",
+        "1c8b7a35-044f-952b-e2f7-61e0a95b1bc2",
+        "f1c9971f-4dd8-b16f-48ce-055bf98f63a8",
+        "ff452e90-d423-e042-14b9-19422efc91af",
+        "fbcc8eab-6ee5-3aac-8390-c18305ac2504",
+        "bdac1fed-a253-774c-41d7-eec1935c9792",
+        "1fd8bc33-7075-131a-072d-62d0b2438ec0"
+      ],
+      "relevant_ids": [
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.3333333333333333
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "من هو القيادي المحلي الذي نقل عنه بأن الايرانيين طرحوا بند اخراج الاف شخص من كفريا والفوعة؟",
+      "retrieved_ids": [
+        "e1ddb597-fc06-81ad-0c6f-197e2b8ec62f",
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2",
+        "c9d21a86-b6e9-d44d-f171-fe477ccebef3",
+        "e8ab7932-b614-8721-7ab4-642df04233ff",
+        "cbba770a-ac8e-d827-dddf-a9b3e7e55f29",
+        "a0acbd89-0b7e-aa81-7263-abce15e0260f",
+        "862f0527-618f-39f0-6742-e401f9f534af",
+        "bde9e60c-8c3e-4292-4f06-4417f2f97f2c",
+        "1b35fd2a-cc1a-7aed-4adf-f2f0044f7843",
+        "df7735e0-098e-be1c-8738-8efd28655c88"
+      ],
+      "relevant_ids": [
+        "0093fa4c-11fb-4e22-e309-c875f44fe5b2"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "لمن قدّمت كتلة الاحرار البرلمانية احتجاجا رسميا؟",
+      "retrieved_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4",
+        "7bddf805-c0ca-86a8-6b7b-3e75ef4d3570",
+        "f83450f0-13cb-4801-5775-09a249eca0fe",
+        "49d02947-044d-25d1-8e0d-d03a169309be",
+        "eca87427-af25-66c3-461c-65a6d7bbf4e3",
+        "8c44d689-6565-9b0d-ebe4-12e0469f32c4",
+        "66b27ef7-e77b-f535-f6cb-f31aa7716357",
+        "19e08464-8b99-5e2d-1dae-eaf8e78c7309",
+        "323dcbea-b75f-83cb-f745-3ae2f0770765",
+        "f9fa8b28-b267-c313-4946-9720f2726ade"
+      ],
+      "relevant_ids": [
+        "009a8bd5-b80e-1027-0e2f-565ce6743da4"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "كم عدد عناصر داعش الذين قتلوا في قصف التحالف جنوب الموصل؟",
+      "retrieved_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6",
+        "6a371697-81f5-102b-72ee-cc2d14399a19",
+        "0cf57a71-31f1-1683-0424-cf03f4e184a8",
+        "301612bc-a176-61ed-575d-f6462b6be4a6",
+        "6ba17387-5c95-2d77-c6ab-b7aa0f7f1588",
+        "1445919d-96a1-2175-3c9b-e116e0ecc6c8",
+        "dedf6e3c-880d-9e61-a85e-e29a49c31366",
+        "6ceb1c3d-3ea2-2919-1694-3e0818fc8d0e",
+        "0f12d8f3-fe72-f2d4-cc05-94e1e3d2c4e4",
+        "4c382134-a096-7f7f-b4b1-50759ae910b1"
+      ],
+      "relevant_ids": [
+        "000fd18b-9c76-ff83-4b98-1801b125ffd6"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ماذا قال القيادي عبد الكريم عبطان حول المناطق المستعادة من داعش؟",
+      "retrieved_ids": [
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86",
+        "13a64b5c-8c9c-4189-5bf0-ee757ec9c7fc",
+        "23b30a13-62ba-5340-0c4f-6b40c474d58e",
+        "0dd0f3d1-7503-7ab2-3060-3cb224db20b2",
+        "bcfd4037-dcb9-822d-2d5a-6566d7cfef7d",
+        "f3c109df-c40b-94cb-6b77-2f5dfca30fa0",
+        "96640846-44d7-c645-1af4-28df314c6932",
+        "cc1dfa02-1762-909d-2a23-9e91287588d8",
+        "70622c03-3a1e-5776-cdfc-1db0ac323add",
+        "46532cfd-baaf-5399-ea85-68945f62f112"
+      ],
+      "relevant_ids": [
+        "0064befa-9d75-ff84-ea8c-a9f8eafedb86"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "من هي الفصائل العسكرية التي تسيطر على مخيم اليرموك؟",
+      "retrieved_ids": [
+        "0008559a-f7a3-061e-64ec-2ee85107be5b",
+        "f47b6035-c208-4b30-bf52-6f3066307eb8",
+        "ebbf81f5-d4b8-abc8-64f8-d196d5e7ff10",
+        "97d8eb39-d737-7144-d1b4-4bfc91789106",
+        "1f735cf1-d996-57ce-3355-ac02d1a81de4",
+        "e218c824-ff81-520e-dc8f-c0a97665cd0d",
+        "91e29c35-0dba-4b69-180d-8952a63cf2b7",
+        "51652980-598d-a59b-0b7f-071b43e49928",
+        "5b2cbd20-0143-043f-fe3f-70f5759891dd",
+        "e201a7c6-9982-297f-9ca2-debac3f4726e"
+      ],
+      "relevant_ids": [
+        "0008559a-f7a3-061e-64ec-2ee85107be5b"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي المحافظة التي وقعت فيها اشتباكات بين مسؤول المجلس الاعلى الاسلامي العراقي وتنظيم داعش؟",
+      "retrieved_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b",
+        "a7d7955a-0974-2093-0ff1-bed0fe083a54",
+        "e30ce0d3-ee4a-0f5e-613c-edeebab5458c",
+        "91627386-b496-ae4c-8de1-b9403804703d",
+        "16e14e1f-2e20-e558-dd8a-765cea7904fc",
+        "d133bc6f-0499-29ce-8909-e1a9a9433052",
+        "cb24f43c-fdb7-9787-2f54-eddacd827d0a",
+        "bab754df-582f-5fc5-1019-d40a7b5d14cd",
+        "b1b84f05-6aaf-d2c7-a7ba-d575d30ffd01",
+        "8d572b4a-32cc-8074-60bd-19b949c5edf5"
+      ],
+      "relevant_ids": [
+        "002f0e4c-e127-a59f-b4ff-6be473b4355b"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ماذا سيفعل شعب اليمن في مواجهة تلك العناصر التي تحاول السيطرة على المحافظة؟",
+      "retrieved_ids": [
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00",
+        "b36efb5d-e4bc-0ca0-fe83-35c2050ed967",
+        "ef405b00-6a5e-780d-b382-2913314eff12",
+        "737fe363-c773-c391-0d9b-8b01bc57066b",
+        "70158723-3749-85ec-c985-d2a968890618",
+        "1046f7f5-638b-3b27-0ac2-ce12cb106e40",
+        "f0cd8b96-cbd8-9a6b-8935-d26451edcdae",
+        "8f2277a8-4281-d5cc-0ad3-93083288b62d",
+        "efaeeb84-9ee0-8a2a-0317-94f4afbfacb7",
+        "02678337-4e92-fbf5-4417-88d81e01dd3e"
+      ],
+      "relevant_ids": [
+        "002f1db4-7f73-a65f-2010-e2e7f60cbb00"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "متى سيستضيف الاتحاد الاوروبي اجتماعا حول ليبيا؟",
+      "retrieved_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d",
+        "f91c1538-8465-96a6-7484-d8b81b2e4e12",
+        "7ec3ba91-e702-9de4-b06b-d16eb5d5ce76",
+        "ec43498f-d426-35a0-ab11-cc731c53b51c",
+        "adca6d4b-ec42-8264-425e-cc0b06a4a480",
+        "46d0d9b6-540b-3511-c803-29831ca6a046",
+        "ac681214-bef8-2184-37cd-49cdc8836077",
+        "b939a7f4-c374-30c4-44b4-89f4b142b4a8",
+        "e273ebc1-1f97-1e0d-b69b-530f9fd8b4a2",
+        "d7414596-1144-956c-39c3-6704182e833f"
+      ],
+      "relevant_ids": [
+        "00b3b94c-6e5e-022c-6774-050bd914e59d"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ماذا فعل العلماء بال كنيسة البريطانية الرسمية؟",
+      "retrieved_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55",
+        "a03fb553-c9a5-da6a-22e7-eeff02676933",
+        "e04d1609-913b-4be4-fcf4-a15c904a5eac",
+        "1df76be6-f94a-ea2b-1bc5-940f2c595dad",
+        "573ad0ad-3ad6-0a85-c13b-67faf6630463",
+        "b7835495-877b-e76c-2c4a-168566e34bdd",
+        "0f36d2d8-53c9-345b-7e21-9c73fc5b9758",
+        "77085f7f-b2bc-6766-df04-f118c6fec066",
+        "54bb641f-69a2-9138-369d-0c0a0dcb730b",
+        "90ee8f5a-dd7b-43cc-8fa8-94cdbe3d51ad"
+      ],
+      "relevant_ids": [
+        "00387974-ec38-44ae-6971-0eade809ce55"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي بعض الإجراءات التي طالب بها الناشطون الروسيون تجاه تركيا؟",
+      "retrieved_ids": [
+        "8cbaf7ab-ed2d-924d-8cca-81addb516ec3",
+        "260f83fa-3715-7503-9340-97e8434fb173",
+        "2b8faf8c-88ee-92ca-e5f0-6cd30bd9e2a0",
+        "71934c77-82c7-3a2d-4656-09e99883ccc4",
+        "5740bab4-f6e6-7d3f-fb32-3a2cd5aa7813",
+        "5a909fc9-17c5-c59b-c9c7-d29ef99548a1",
+        "dd033e80-2ff0-48e7-6388-7611a0f970f7",
+        "86ce9380-6d15-6168-b585-446df0472004",
+        "124def3a-016a-2f45-ea24-8f7a1963cc26",
+        "27a6a6c1-4bf4-3a0c-dcfc-dc929d86e6bc"
+      ],
+      "relevant_ids": [
+        "00a845c6-8079-1736-387a-5fda5fbcd32c"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي المشكلة الرئيسية التي تظل دون حل في مصر؟",
+      "retrieved_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332",
+        "8120d603-9917-c4ed-e7c2-f2ba96b775a9",
+        "ce9babdd-aebb-9773-bf8d-28aa40072013",
+        "199ae18d-ca13-2be5-e2d4-171ca7a5557e",
+        "46086c0e-cc67-15ea-c033-5d104820ec91",
+        "13b61f3a-031f-1652-6dc8-951fc9cf9869",
+        "76e165bb-b6ef-ff53-9a0d-d9a1fb4c4f01",
+        "6f00139a-26c0-0c60-b8b2-90d23ecff408",
+        "606b4486-30f2-c16c-48d0-3ee2bd4f5cd2",
+        "a45f866a-0fe9-d1ad-14f4-00c408be394e"
+      ],
+      "relevant_ids": [
+        "004db7f6-f85e-15a6-e430-18b7e31da332"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "متى كان من المفترض أن يستقيل سعد الحريري؟",
+      "retrieved_ids": [
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d",
+        "a87505a4-65bb-2f78-dd9f-81098d6009f8",
+        "b28faf9a-0d13-ad36-f7da-a460c07c1581",
+        "c1d516dd-30ef-5613-f14e-2c1e6e26cc61",
+        "4661f02d-fda6-053e-3c25-e61dad30e278",
+        "dda942ef-ceb6-d9a0-2ff8-df9ec265c686",
+        "ac97ea7f-5a37-4ce5-0914-dc1003c093b1",
+        "9dbe8fe6-d68e-048a-3e8d-22cf3e2c2719",
+        "0ea5a981-130d-0852-b9b9-c0ca7b3b7972",
+        "58dc6216-00d1-ba72-4c2e-78f2c7643eb8"
+      ],
+      "relevant_ids": [
+        "003b28c8-18d1-2de5-5caf-ef38a9c1664d"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "متى سيجري مؤتمر الرياض لتوحيد المعارضة السورية؟",
+      "retrieved_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f",
+        "ed9c36f4-2066-dded-df23-ec4bea9001c6",
+        "9b4bdda9-2041-e7f0-d54a-09d11c429eda",
+        "34991856-942f-5ecf-a4b4-8c1979990b33",
+        "beed3b7a-f08a-8e8c-c1c2-4ebe6ac99f6a",
+        "2ad1af54-4585-f1e1-906b-5989f7c9f585",
+        "9a587f78-acc2-74b0-c602-5dbea087106f",
+        "22c149ec-d31f-a9bf-6fff-ddfebc828b28",
+        "c99b5cea-895d-3180-750a-10795afab129",
+        "556d7f22-c421-6581-cae3-a22e9e4f65a5"
+      ],
+      "relevant_ids": [
+        "00a51de0-2c69-b98e-dc0f-8439f5d8fd7f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما الطلب الذي وجهه رئيس الوزراء العراقي حيدر العبادي لاهالي مدينة الموصل أثناء التقدم نحوها؟",
+      "retrieved_ids": [
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f",
+        "c2ef5a98-da39-7a0f-29fe-62787929fd68",
+        "8eb08a9d-d0e3-6dfc-283d-36cd6df100d5",
+        "66d8713d-9c4d-6728-c404-ce9063a5d3f0",
+        "9a24565d-9786-f502-2f52-073385ca1c4d",
+        "0e1fd6ae-d6fa-559d-0c06-c9b50f0f3a89",
+        "bfe9176a-de0b-7bb8-669e-ce9d48d9e12e",
+        "bab754df-582f-5fc5-1019-d40a7b5d14cd",
+        "79b0659b-2a25-fa25-9949-9f9f545616fb",
+        "3a6f2142-d874-d4fc-af8f-efc0ae830600"
+      ],
+      "relevant_ids": [
+        "009748a3-3f83-a6c6-ff61-2518b1ff281f"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو الاسم الكيميائي لعقار اديي المخصص للاستخدام قبل مرحلة انقطاع الطمث؟",
+      "retrieved_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c",
+        "a7f806fa-6367-764e-7abb-bd65185897c8",
+        "49c3697b-a42f-494d-2765-a83aff5baad1",
+        "2a244f1f-a748-c0b3-262c-949a6728354d",
+        "c02c49e3-0e63-dad4-6413-e0c96fc22524",
+        "c94f06b6-2b4f-0c25-d011-e1ea35dfb2c8",
+        "49425631-0097-e573-332d-330c843a0285",
+        "18d7039a-9000-e179-9b40-285584f34f90",
+        "a83708d5-ae33-3251-5432-9b901c4b493b",
+        "22913904-3b29-d88c-449f-9d50d50ba321"
+      ],
+      "relevant_ids": [
+        "00260e4d-36e7-5f4d-89de-d23164664a1c"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما الزهرة التي تستخدم لجلب النوم؟",
+      "retrieved_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e",
+        "02d72e0b-bcdd-8ac4-bd59-8b9be8b70970",
+        "12b611f1-74f0-bd07-d3ab-ec507096df4f",
+        "b7835495-877b-e76c-2c4a-168566e34bdd",
+        "50db1c07-8c59-ad83-d2b0-592376ff06a5",
+        "42b221ae-195a-7c9c-3377-d4e52bd8c9d9",
+        "a8f9ebc0-9e79-d57d-e9e1-6b3ba423f4e4",
+        "27f7e018-3358-3f49-ccd3-265a881b6598",
+        "4abebda2-6351-0144-b698-6ae579c497f6",
+        "81273089-3f82-99e9-a001-b6e5609a2941"
+      ],
+      "relevant_ids": [
+        "004aac7b-3ce1-aae2-3d66-90e8844fff7e"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو معدل النوم اليومي الذي يقل عن المتعارف عليه؟",
+      "retrieved_ids": [
+        "c5bd4903-6ba6-99ec-4f10-570cf1bf1d6d",
+        "a8f1ef39-c545-2119-1a3f-6f657f1e56aa",
+        "2d7de09d-0e04-3065-f512-b400bfb3346b",
+        "24c4a64e-5d6c-48d6-06cc-09300d737ce9",
+        "37c2d969-25b0-087a-8a8f-d31f1e2b33ea",
+        "4103ab54-8429-9c6f-41a8-d19b39549379",
+        "fb703c8d-9e37-963c-2544-5680951946e8",
+        "1fa8034f-e255-99b3-e05e-25042adeba42",
+        "2bf175a2-836f-3931-d23e-06e8bab4f886",
+        "337bd5de-d120-097a-f3cf-b3937c1012d9"
+      ],
+      "relevant_ids": [
+        "012f8ab7-ca74-d80c-8edc-838857e26bd1"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "كيف وصف الخبراء الدراسة التي تناولت التطور الادراكي لدى المصابين بمتلازمة داون؟",
+      "retrieved_ids": [
+        "00040985-d230-f896-c8bf-6629327d90e9",
+        "aeca263b-b08d-2933-1d01-54df54af1c84",
+        "37adcfce-36c4-077e-7063-2dd0f54af676",
+        "f57cf2aa-51e1-e80a-7569-8f954c8e77c8",
+        "234cbd45-93a2-86b1-a501-1a30b814744b",
+        "de8d09ed-d99f-797d-05bc-f7c7b714303c",
+        "f5873070-4b2e-7429-bc16-c0380540d14d",
+        "1f90b055-e9fa-022f-252d-0966bff2a83c",
+        "407ae2f7-8ac5-814e-8a26-4820a83dd7ad",
+        "6201de08-31eb-cc41-4bb1-3c9336d164f2"
+      ],
+      "relevant_ids": [
+        "00040985-d230-f896-c8bf-6629327d90e9"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو دور الصوم في تقوية عملية الالتهام الذاتي؟",
+      "retrieved_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb",
+        "c4c16e06-e42f-91dc-5cde-373af92f9a22",
+        "c3b3d27c-7d2d-927e-48d8-01979663fc3f",
+        "969540be-3e9d-5a23-a5cb-e973af0b922b",
+        "1d7a2160-d7e9-0abe-6685-7697b4075677",
+        "e273163b-2385-d8ef-3d8a-da7ca5393e24",
+        "5cfc4cf6-df15-7ccf-3b47-b5ed23e00c05",
+        "359df000-bdf0-6aa5-4296-99ca6b83a3fc",
+        "ebc659bd-5b68-7017-a964-3be21a313511",
+        "e6a28588-9a80-3c2b-ad77-814cb409f25f"
+      ],
+      "relevant_ids": [
+        "008f1985-ccf6-337a-5d0c-20bb25bd02eb"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو الشهر المخصص لمكافحة سرطان الثدي لدى النساء في الحملة العالمية؟",
+      "retrieved_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22",
+        "741be399-fc84-0fe2-e6b2-d8d9d4d5b9d8",
+        "5c30740d-b616-bbad-23e4-b7df29b46852",
+        "2432ae19-d364-c359-1251-bcba7ba13ee4",
+        "28b71f40-ead6-f0a4-5ae4-a19d90205d7a",
+        "a7d66e4a-cedb-66f7-f0f5-4d744bd3ebfb",
+        "cdf62136-e10f-3f33-6395-6f006b534045",
+        "9931928c-99b3-1c95-1caa-7baf3c446a78",
+        "3975733c-521a-6327-aaaf-ae6aa8c1f599",
+        "65b61ece-4aa6-98f7-5fb9-b1eb5184205c"
+      ],
+      "relevant_ids": [
+        "00b7bcba-4e54-82a0-7a66-44f5b064ec22"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي بعض الوظائف التي يقوم بها الجهاز الهضمي؟",
+      "retrieved_ids": [
+        "9b1f5e06-6628-de46-d685-fcb39de5c40e",
+        "ed47f47d-3fa4-8806-da4c-c85fab742536",
+        "1eb5f4b6-807e-be4a-0c07-fa49c81728bd",
+        "5c561feb-e1fe-8d2c-4307-08c29e2bb3b2",
+        "27e3157d-e138-a9b6-72f1-ea585857bbb3",
+        "3f794419-2ad6-4667-43e4-d4fc4517599a",
+        "a564d7c3-2d55-5c6d-a4cb-562b05d771b1",
+        "75ba0dea-822b-6cb7-01bf-0e21a9af7e52",
+        "d2eafec0-6909-f70b-7053-94f915704947",
+        "e286cde1-0de7-f71c-94ea-467295a76faa"
+      ],
+      "relevant_ids": [
+        "00a21b60-e869-666b-59e5-6e18c295f9e5"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي الأعضاء التي يمتلكها الطفل المذكور في المقطع؟",
+      "retrieved_ids": [
+        "83b52d34-4c54-b6e8-797c-edfe57cf78b4",
+        "4160c22e-a951-1188-2304-705129593b2e",
+        "f4f1377e-88f2-4586-12b6-197fa4bbcb08",
+        "46feb0b2-e00d-4369-9918-1aec05121bd4",
+        "cc9e3247-6e0d-c489-ae5b-4357ba288151",
+        "a6c60f02-5f81-d2b9-a4b5-dbe32939b5b1",
+        "e15d37d5-7a0e-5f7e-5c6f-731de4b44d84",
+        "04e8a481-7d37-4f32-c378-02cecf9c448e",
+        "17123547-f82d-3740-afc0-c678b427e3c8",
+        "b1807b23-72ea-45af-4593-5c8e2f0fbb44"
+      ],
+      "relevant_ids": [
+        "012ca318-77bd-5bd0-1d69-365a181f0191"
+      ],
+      "recall_at_5": 0.0,
+      "recall_at_10": 0.0,
+      "precision_at_5": 0.0,
+      "mrr": 0.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو تأثير تناول الكافيين أثناء الحمل على وزن الطفل؟",
+      "retrieved_ids": [
+        "00f650c6-e53b-91da-4801-2c679a731956",
+        "44c620f8-676b-a39d-2a42-722262c47bc7",
+        "9b7874a9-aaa7-bf3f-3ef7-35d02104b9ed",
+        "15bec5f2-8d44-e33d-7a9f-253382ad1080",
+        "94b53978-9f7b-e245-033f-e3fcd8a9f901",
+        "691f953c-37e3-b915-f7ec-e56c32e2a470",
+        "91891b21-08eb-7c94-1bb1-1b7a73ca6e50",
+        "6c0d2b4c-da0e-fcd3-cec2-c0bc441fb5d4",
+        "31326969-3e7a-f6dd-104c-36cee530e94a",
+        "336bc994-c177-52eb-1d61-bd3a352f8131"
+      ],
+      "relevant_ids": [
+        "00f650c6-e53b-91da-4801-2c679a731956"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هو الفيتامين الموجود في البرتقال الذي يساعد على تحسين وظائف الدماغ؟",
+      "retrieved_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3",
+        "08461eee-b5b5-ebdc-da3e-0b18c9fa367c",
+        "6a0c87fe-b783-28eb-30e2-959c50a3fca9",
+        "fe630b61-31f3-5f9d-d286-2869b8bef487",
+        "0f04ba14-a46a-d954-5200-b2fc69fbdcd2",
+        "03703731-60b6-602f-ff62-c77d410592e5",
+        "a512566f-c79c-4572-a0d8-52feb7c9192f",
+        "98f85faf-0933-1d4a-72c4-46d1e411be0f",
+        "2bfb51d0-df5c-113b-6728-7b0c97776a1b",
+        "cc4f9982-7407-9a68-2fe9-80073e2f979f"
+      ],
+      "relevant_ids": [
+        "00d8d199-365f-e19f-33f7-6cd1416b39c3"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي الطريقة التي ستمنع المزيد من انتشار الفيروس وفقاً لمنظمة الصحة العالمية؟",
+      "retrieved_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71",
+        "ac8c238a-a14f-577e-c9ce-5d21161502fd",
+        "e236a85e-dbba-3645-429e-7bfb574d7c86",
+        "5e593745-85d5-4184-1669-43ef9d3bc7c9",
+        "22c37f5f-65b7-10d9-d914-41d30bcb9540",
+        "78a34c44-14f3-b91a-1d2a-5ac2115dd305",
+        "1d8d3e57-7462-27d7-7590-6e949ac0dd3c",
+        "11f37876-3830-057f-b8c1-47d4624f4d6b",
+        "fe07e4d4-0b83-0a61-e7f0-d6010f4dd072",
+        "ccbb4aaf-25cb-6d93-886e-9ae409a77c9a"
+      ],
+      "relevant_ids": [
+        "00e9b03c-ab64-9ba8-2b62-fd158ac8aa71"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما هي الأدوية التي تعرض حياة المسافرين للخطر عند تناولها على متن الطائرة؟",
+      "retrieved_ids": [
+        "ff1531fe-38d7-338c-ad44-95e3aa73184c",
+        "00e1a4c3-7892-48df-9317-642953ce4dbd",
+        "68f63413-08e2-120c-8efb-6c5f7db5c270",
+        "373c5f42-3b7b-134b-b496-690c6bf81688",
+        "f4ad61a4-7a53-1ae8-b3ab-d2703c438ec7",
+        "71886d02-5634-a460-fc6d-031e911224cb",
+        "70c14762-7f5f-f711-1afb-c196ecc0528f",
+        "6fac59cc-75cf-7786-0582-6555160de99c",
+        "72a29d55-960d-d969-90c4-d7755a734863",
+        "5d4697f6-af1c-464d-cb30-0290e0ff9045"
+      ],
+      "relevant_ids": [
+        "00e1a4c3-7892-48df-9317-642953ce4dbd"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 0.5
+    },
+    {
+      "mode": "Hybrid + Reranker",
+      "query": "ما نسبة الأمريكيين البالغين الذين يتناولون المكملات الفيتامينية؟",
+      "retrieved_ids": [
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051",
+        "8e656e65-2518-36d4-6804-d30429e9d73a",
+        "fbcc8eab-6ee5-3aac-8390-c18305ac2504",
+        "64abf216-ed36-6ea4-cb8f-8dacf4192c2d",
+        "2519469a-17f8-cb15-3f91-2d1fc4e7b6a0",
+        "8f98c81c-6086-5f15-667c-ea7a5d4f87aa",
+        "39cd2f42-2652-2147-c210-2e9c2c674aeb",
+        "d7c96f88-bc3c-c446-6676-97a55cd01303",
+        "bdac1fed-a253-774c-41d7-eec1935c9792",
+        "547afb42-717a-4956-6577-754e308d3383"
+      ],
+      "relevant_ids": [
+        "00d2793b-b0f9-e33c-7b33-f2fa046da051"
+      ],
+      "recall_at_5": 1.0,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.2,
+      "mrr": 1.0
+    }
+  ]
+}
